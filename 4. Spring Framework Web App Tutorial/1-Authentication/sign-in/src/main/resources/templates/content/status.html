@@ -1,0 +1,21 @@
+<div class="card">
+    <h5 class="card-header bg-primary">
+        <div sec:authorize="isAuthenticated()">
+            You're signed in!
+        </div>
+        <div sec:authorize="isAnonymous()">
+            You're not signed in.
+        </div>
+    </h5>
+    <div class="card-body">
+        <p class="card-text">
+            <div sec:authorize="isAuthenticated()">
+                <a class="btn btn-success" href="/token_details">ID Token Details</a>
+            </div>
+            <div sec:authorize="isAnonymous()">
+                Use the button on the top right to sign in.
+                Attempts to go to a protected page, such as the <a href="/token_details">ID Token Details page</a> will result in automatic redirection to Microsoft identity platform sign in page.
+            </div>
+        </p>
+    </div>
+</div>

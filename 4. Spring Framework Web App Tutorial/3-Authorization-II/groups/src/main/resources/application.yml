@@ -1,0 +1,25 @@
+azure:
+  activedirectory:
+    # Specifies your Active Directory ID:
+    tenant-id: Enter_Your_Tenant_ID_Here
+    # Specifies your App Registration's Application ID:
+    client-id: Enter_Your_Client_ID_Here
+    # Specifies your App Registration's secret key:
+    client-secret: Enter_Your_Client_Secret_Here
+    # Specifies the post-log-out-redirect-uri, where to return your app after logout.
+    post-logout-redirect-uri: http://localhost:8080
+    # Groups - this enables the getting the full set of groups in Authorities.
+    user-group:
+      allowed-group-ids: Enter_Your_Admin_Group_ID_Here, Enter_Your_User_Group_ID_Here
+      enable-full-list: true
+    # Specifies the Microsoft Graph scopes that your app needs access to - required in this app in case of too many groups to fit in token (overage)
+    # authorization-clients:
+      graph:
+        scopes: https://graph.microsoft.com/User.Read, https://graph.microsoft.com/GroupMember.Read.All
+
+# which routes to restrict to authenticated users only (see SecurityConfig.java):
+# enter String array (comma-separated) or just one route.
+# e.g. authenticated: /route1, /route2, /route3
+app:
+  protect:
+    authenticated: /token_details, /admin_only, /regular_user

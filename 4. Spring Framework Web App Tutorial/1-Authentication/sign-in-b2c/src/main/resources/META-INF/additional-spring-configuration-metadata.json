@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "app.protect.authenticated",
+      "type": "java.lang.String[]",
+      "description": "limit these pages to authenticated users. Use '=/route1' for a single route. Use '=/route1, /route2' for multiple."
+    }
+  ]
+}

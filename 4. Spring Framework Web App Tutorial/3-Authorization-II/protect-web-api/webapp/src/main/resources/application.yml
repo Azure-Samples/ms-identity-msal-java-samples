@@ -1,0 +1,26 @@
+azure:
+  activedirectory:
+    # Specifies your Active Directory ID:
+    tenant-id: Enter_Your_Tenant_ID_Here
+    # Specifies your App Registration's Application ID:
+    client-id: Enter_Your_Client_ID_Here
+    # Specifies your App Registration's secret key:
+    client-secret: Enter_Your_Client_Secret_Here
+    # Specifies the post-log-out-redirect-uri, where to return your app after logout.
+    post-logout-redirect-uri: http://localhost:8080
+    # Specifies the Microsoft Graph scopes that your app needs access to - not required in this app.
+    authorization-clients:
+      web-api:
+        scopes: api://Enter_Your_WebAPI_Client_ID_Here/access_as_user
+
+# which routes to restrict to authenticated users only (see SecurityConfig.java):
+# enter String array (comma-separated) or just one route.
+# e.g. authenticated: /route1, /route2, /route3
+app:
+  protect:
+    authenticated: /token_details
+
+  # The API to will call, and its endpoint
+  api:
+    base-address: http://localhost:8082
+    date-endpoint: /api/date

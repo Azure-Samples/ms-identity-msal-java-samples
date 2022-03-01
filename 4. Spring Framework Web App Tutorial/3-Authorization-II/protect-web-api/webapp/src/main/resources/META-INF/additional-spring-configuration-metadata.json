@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "app.protect.authenticated",
+    "type": "java.lang.String[]",
+    "description": "limit these pages to authenticated users. Use '=/route1' for a single route. Use '=/route1, /route2' for multiple."
+  },
+  {
+    "name": "app.api.date-endpoint",
+    "type": "java.lang.String",
+    "description": "The get date endpoint on the protected resource API that the app will call."
+  },
+  {
+    "name": "app.api.base-address",
+    "type": "java.lang.String",
+    "description": "The base address of the resource API that the app will call."
+  }
+]}

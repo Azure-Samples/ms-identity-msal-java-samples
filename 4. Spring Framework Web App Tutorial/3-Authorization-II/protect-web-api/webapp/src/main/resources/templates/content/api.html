@@ -1,0 +1,17 @@
+<div class="card">
+    <h5 class="card-header bg-primary">
+        Call API: http://localhost:8082/date Endpoint
+    </h5>
+    <div class="card-body">
+        <p class="card-text">
+            <th:block th:each="item : ${apiResp}">
+                <strong><th:block th:text="${item.key}"></th:block>: </strong>
+                <th:block th:text="${item.value}"></th:block>
+                <br>
+            </th:block>
+            <br>
+            <a class="btn btn-success" href="/sign_in_status">Sign-in Status</a>
+            <a class="btn btn-success" href="/token_details">Token Details</a>
+        </p>
+    </div>
+</div>

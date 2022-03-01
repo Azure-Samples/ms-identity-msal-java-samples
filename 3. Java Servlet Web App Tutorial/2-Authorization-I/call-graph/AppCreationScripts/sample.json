@@ -1,0 +1,48 @@
+{
+    "Sample": {
+      "Title": "Enable your Java Servlet web app to sign in users to your Azure Active Directory tenant with the Microsoft identity platform",
+      "Level": 100,
+      "Client": "Java Servlet web app",
+      "RepositoryUrl": "ms-identity-java-servlet-webapp-call-graph",
+      "Endpoint": "AAD v2.0"
+    },
+    "AADApps": [
+      {
+        "Id": "webApp",
+        "Name": "java-servlet-webapp-call-graph",
+        "Kind": "WebApp",
+        "Audience": "AzureADMyOrg",
+        "PasswordCredentials": "Auto",
+        "AllowImplicitFlow": false,
+        "HomePage": "http://localhost:8080/msal4j-servlet-graph/index",
+        "ReplyUrls": "http://localhost:8080/msal4j-servlet-graph/auth/redirect",
+        "RequiredResourcesAccess": [
+          {
+            "Resource": "Microsoft Graph",
+            "DelegatedPermissions": ["User.Read" ]
+          }
+        ],
+      }
+    ],
+    "CodeConfiguration": [
+      {
+        "App": "webApp",
+        "SettingKind": "Replace",
+        "SettingFile": "\\..\\src\\main\\resources\\authentication.properties",
+        "Mappings": [
+          {
+            "key": "{enter-your-tenant-id-here}",
+            "value": "$tenantId"
+          },
+          {
+            "key": "{enter-your-client-id-here}",
+            "value": "webApp.AppId"
+          },
+          {
+            "key": "{enter-your-client-secret-here}",
+            "value": ".AppKey"
+          }
+        ]
+      }
+    ]
+  }
