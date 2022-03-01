@@ -1,0 +1,60 @@
+{
+  "Sample": {
+    "Title": "Integrating Azure AD into a Java command line using username and password",
+    "Level": 200,
+    "Client": "Java Console Application",
+    "Service": "Microsoft Graph"
+  },
+
+
+  /*
+  This section describes the Azure AD  Applications to configure, and their dependencies
+  */
+  "AADApps": [
+    {
+      "Id": "app",
+      "Name": "Native-Headless-Application",
+      "IsPublicClient": true,
+      "RequiredResourcesAccess": [
+        {
+          "Resource": "Microsoft Graph",
+          "DelegatedPermissions": [ "User.Read" ]
+        }
+      ],
+      "ManualSteps": [
+        { "Comment": "click Settings > Required permissions > Grant Permissions" }
+      ]
+    }
+  ],
+
+  /*
+    This section describes the users that need to be created to test the sample (if any) with their roles and groups
+  */
+  "Users": [
+    /*
+    {
+      "Alias": "user1"
+    }
+*/
+  ],
+
+
+  /*
+    This section describes how to update (the code in configuration files) from the apps coordinates
+   Each section describes a configuration file, for one of the apps, it's type (XML, JSon, plain text), its location
+   with respect to the root of the sample, and the mappping (which string in the config file is mapped to which value
+  */
+  "CodeConfiguration": [
+    {
+      "App": "app",
+      "SettingKind": "Text",
+      "SettingFile": "\\..\\src\\main\\java\\PublicClient.java",
+      "Mappings": [
+        {
+          "key": "private final static String APP_ID",
+          "value": "app.AppId"
+        }
+      ]
+    }
+  ]
+}

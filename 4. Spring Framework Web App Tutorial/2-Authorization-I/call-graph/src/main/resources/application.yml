@@ -1,0 +1,30 @@
+azure:
+  activedirectory:
+    # Specifies your Active Directory ID:
+    tenant-id: Enter_Your_Tenant_ID_Here
+    # Specifies your App Registration's Application ID:
+    client-id: Enter_Your_Client_ID_Here
+    # Specifies your App Registration's secret key:
+    client-secret: Enter_Your_Client_Secret_Here
+    # Specifies the post-log-out-redirect-uri, where to return your app after logout.
+    post-logout-redirect-uri: http://localhost:8080
+    authorization-clients:
+      graph:
+        # Specifies the Microsoft Graph scopes that your app needs access to:
+        scopes: https://graph.microsoft.com/User.Read
+
+# which routes to restrict to authenticated users only (see SecurityConfig.java):
+# enter String array (comma-separated) or just one route.
+# e.g. app.protect.authenticated=/route1, /route2, /route3
+app:
+  protect:
+    authenticated: /token_details, /call_graph
+
+# un-comment the following lines if you are deploying to a reverse proxy (e.g. Azure App Service)
+# server:
+#   forward-headers-strategy: native
+#   tomcat:
+#     remoteip:
+#       protocol-header: "X-Forwarded-Proto"
+#       remote-ip-header: "X-Forwarded-For"
+#       internal-proxies: ".*"

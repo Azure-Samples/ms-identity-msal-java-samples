@@ -1,0 +1,43 @@
+{
+    "Sample": {
+        "Title": "Enable your Java Spring Boot web app to sign in users on your Azure Active Directory tenant with the Microsoft identity platform",
+        "Level": 100,
+        "Client": "Java Spring Boot web app",
+        "RepositoryUrl": "ms-identity-java-spring-tutorial",
+        "Endpoint": "AAD v2.0"
+    },
+    "AADApps": [
+        {
+            "Id": "webApp",
+            "Name": "java-spring-webapp-auth",
+            "Kind": "WebApp",
+            "Audience": "AzureADMyOrg",
+            "PasswordCredentials": "Auto",
+            "AllowImplicitFlow": false,
+            "HomePage": "http://localhost:8080/",
+            "ReplyUrls": "http://localhost:8080/login/oauth2/code/",
+            "RequiredResourcesAccess": []
+        }
+    ],
+    "CodeConfiguration": [
+        {
+            "App": "webApp",
+            "SettingKind": "Replace",
+            "SettingFile": "\\..\\src\\main\\resources\\application.yml",
+            "Mappings": [
+                {
+                    "key": "Enter_Your_Tenant_ID_Here",
+                    "value": "$tenantId"
+                },
+                {
+                    "key": "Enter_Your_Client_ID_Here",
+                    "value": "webApp.AppId"
+                },
+                {
+                    "key": "Enter_Your_Client_Secret_Here",
+                    "value": ".AppKey"
+                }
+            ]
+        }
+    ]
+}

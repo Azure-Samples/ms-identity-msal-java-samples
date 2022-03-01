@@ -1,0 +1,26 @@
+azure:
+  activedirectory:
+    b2c:
+      base-uri: https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/
+      client-id: 373ac824-ac4f-4b35-a5a3-1547722fba77
+      client-secret: 7.18gt132wO-t.~Cf.mfZCy_C7rHmicnuO
+      logout-success-url: http://localhost:8080/
+      user-flows:
+        sign-up-or-sign-in: b2c_1_susi
+        profile-edit: b2c_1_edit_profile
+        password-reset: b2c_1_reset
+      user-name-attribute-name: name
+
+app:
+  protect:
+    authenticated: /token_details
+
+
+# un-comment the following lines if you are deploying to a reverse proxy (e.g. Azure App Service)
+# server:
+#   forward-headers-strategy: native
+#   tomcat:
+#     remoteip:
+#       protocol-header: "X-Forwarded-Proto"
+#       remote-ip-header: "X-Forwarded-For"
+#       internal-proxies: ".*"

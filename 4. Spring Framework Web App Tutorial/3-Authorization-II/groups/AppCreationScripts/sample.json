@@ -1,0 +1,89 @@
+{
+    "Sample": {
+        "Title": "Enable your Java Spring boot web app to restrict access to routes using security groups with the Microsoft identity platform",
+        "Level": 100,
+        "Client": "Java Spring Boot web app",
+        "RepositoryUrl": "ms-identity-java-spring-tutorial",
+        "Endpoint": "AAD v2.0"
+    },
+    "AADApps": [
+        {
+            "Id": "webApp",
+            "Name": "java-spring-webapp-groups",
+            "Kind": "WebApp",
+            "Audience": "AzureADMyOrg",
+            "PasswordCredentials": "Auto",
+            "AllowImplicitFlow": false,
+            "HomePage": "http://localhost:8080/",
+            "ReplyUrls": "http://localhost:8080/login/oauth2/code/",
+            "GroupMembershipClaims": "SecurityGroup",
+            "RequiredResourcesAccess": [
+                {
+                    "Resource": "Microsoft Graph",
+                    "DelegatedPermissions": [
+                        "GroupMember.Read.All"
+                    ]
+                }
+            ],
+            "SecurityGroups": [
+                {
+                    "Name": "AdminGroup",
+                    "Description": "Admin Security Group"
+                },
+                {
+                    "Name": "UserGroup",
+                    "Description": "User Security Group"
+                }
+            ],
+            "ManualSteps": [
+                {
+                    "Comment": "Navigate to the API Permissions blade of your app in the Azure portal, and grant admin consent to GroupMember.Read.All."
+                }
+            ]
+        }
+    ],
+    "CodeConfiguration": [
+        {
+            "App": "webApp",
+            "SettingKind": "Replace",
+            "SettingFile": "\\..\\src\\main\\resources\\application.yml",
+            "Mappings": [
+                {
+                    "key": "Enter_Your_Tenant_ID_Here",
+                    "value": "$tenantId"
+                },
+                {
+                    "key": "Enter_Your_Client_ID_Here",
+                    "value": "webApp.AppId"
+                },
+                {
+                    "key": "Enter_Your_Client_Secret_Here",
+                    "value": ".AppKey"
+                },
+                {
+                    "key": "Enter_Your_Admin_Group_ID_Here",
+                    "value": "$AdminGroup.objectId"
+                },
+                {
+                    "key": "Enter_Your_User_Group_ID_Here",
+                    "value": "$UserGroup.objectId"
+                }
+            ]
+        },
+        {
+            "App": "webApp",
+            "SettingKind": "Replace",
+            "SettingFile": "\\..\\src\\main\\java\\com\\microsoft\\azuresamples\\msal4j\\msidentityspringbootwebapp\\SampleController.java",
+            "Mappings": [
+                {
+                    "key": "Enter_Your_Admin_Group_ID_Here",
+                    "value": "$AdminGroup.objectId"
+                },
+                {
+                    "key": "Enter_Your_User_Group_ID_Here",
+                    "value": "$UserGroup.objectId"
+                }
+            ]
+        }
+    ]
+}

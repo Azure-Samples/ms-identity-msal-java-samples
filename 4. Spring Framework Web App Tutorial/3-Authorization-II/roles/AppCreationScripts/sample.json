@@ -1,0 +1,51 @@
+{
+    "Sample": {
+        "Title": "Enable your Java Spring Boot web app to restrict access to routes using app roles & the roles claim with the Microsoft identity platform",
+        "Level": 100,
+        "Client": "Java Spring Boot web app",
+        "RepositoryUrl": "ms-identity-java-spring-tutorial",
+        "Endpoint": "AAD v2.0"
+    },
+    "AADApps": [
+        {
+            "Id": "webApp",
+            "Name": "java-spring-webapp-roles",
+            "Kind": "WebApp",
+            "Audience": "AzureADMyOrg",
+            "PasswordCredentials": "Auto",
+            "AllowImplicitFlow": false,
+            "HomePage": "http://localhost:8080/",
+            "ReplyUrls": "http://localhost:8080/login/oauth2/code/",
+            "RequiredResourcesAccess": [],
+            "ManualSteps": [
+                {
+                    "Comment": " You can run the ..\\CreateUsersAndAssignRoles.ps1 command to automatically create a number of users, and assign users to these roles or assign users to this application app roles using the portal."
+                },
+                {
+                    "Comment": "To receive the `roles` claim with the name of the app roles this user is assigned to, make sure that the user accounts you plan to sign in to this app is assigned to the app roles of this app. Use this guide for step-by-step directions: https://docs.microsoft.com/azure/active-directory/manage-apps/assign-user-or-group-access-portal#assign-a-user-to-an-app---portal"
+                }
+            ]
+        }
+    ],
+    "CodeConfiguration": [
+        {
+            "App": "webApp",
+            "SettingKind": "Replace",
+            "SettingFile": "\\..\\src\\main\\resources\\application.yml",
+            "Mappings": [
+                {
+                    "key": "Enter_Your_Tenant_ID_Here",
+                    "value": "$tenantId"
+                },
+                {
+                    "key": "Enter_Your_Client_ID_Here",
+                    "value": "webApp.AppId"
+                },
+                {
+                    "key": "Enter_Your_Client_Secret_Here",
+                    "value": ".AppKey"
+                }
+            ]
+        }
+    ]
+}

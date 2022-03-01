@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "app.ui.base",
+    "type": "java.lang.String",
+    "description": "the base UI template page name in src/main/webapp"
+  },
+  {
+    "name": "app.ui.content",
+    "type": "java.lang.String",
+    "description": "content with which to populate app.ui.base, also located in same folder."
+  },
+  {
+    "name": "app.protect.authenticated",
+    "type": "java.lang.String[]",
+    "description": "limit these pages to authenticated users. Use '=/route1' for a single route. Use '=/route1, /route2' for multiple."
+  }
+]}
