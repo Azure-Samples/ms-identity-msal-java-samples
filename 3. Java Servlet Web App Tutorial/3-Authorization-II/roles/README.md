@@ -200,7 +200,7 @@ Open the project in your IDE to configure the code.
 5. Find the key `app.roles` and make sure the value is set to `app.roles=admin PrivilegedAdmin, user RegularUser` (or substitute the names of your specific roles).
 
 ## Running The Sample
-###Build .war File Using Maven
+#### Build .war File Using Maven
 
 1. Navigate to the directory containing the pom.xml file for this sample (the same directory as this README), and run the following Maven command:
     ```
@@ -208,7 +208,7 @@ Open the project in your IDE to configure the code.
     ```
 1. This should generate a `.war` file which can be run on a variety of application servers
 
-###Deploying the Sample
+#### Deploying the Sample
 
 Our samples can be deployed to a number of application servers, such as Tomcat, WebLogic, or Webshpere, and MSAL Java itself can generally be integrated into existing applications without changes to your existing deployment set up.
 
