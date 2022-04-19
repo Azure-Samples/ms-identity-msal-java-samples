@@ -71,9 +71,8 @@ An Identity Developer session covered Azure AD App roles and security groups, fe
 
 ## Prerequisites
 
-- [JDK Version 15](https://jdk.java.net/15/). This sample has been developed on Java 15 but should be compatible with some lower versions.
+- [JDK Version 8 or higher](https://jdk.java.net/8/)
 - [Maven 3](https://maven.apache.org/download.cgi)
-- [Tomcat 9](https://tomcat.apache.org/download-90.cgi)
 - An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
 - A user account in your own Azure AD tenant.
 - Two security groups, **GroupAdmin** and **GroupMember**, containing users you want to test with.
@@ -228,21 +227,20 @@ You have two different options available to you on how you can further configure
 2. Find the string `{enter-your-admins-group-id-here}` and replace the existing value with the **object ID** of the **GroupAdmin** group copied from the Azure portal. Remove the curly braces from the placeholder value as well.
 3. Find the string `{enter-your-users-group-id-here}` and replace the existing value with the **object ID** of the **GroupMember** group copied from the Azure portal. Remove the curly braces from the placeholder value as well.
 
-## Running the sample
+## Running The Sample
+###Build .war File Using Maven
 
-1. Make certain that your Tomcat server is running and you have privileges to deploy a web app to it.
-2. Make certain that your server host address is `http://localhost:8080` (or change the `app.homePage` value in your [authentication.properties](src/main/resources/authentication.properties) file and in the AAD app registration).
-3. Compile and package the project using **Maven**:
-
-    ```Shell
-    cd project-directory
+1. Navigate to the directory containing the pom.xml file for this sample (the same directory as this README), and run the following Maven command:
+    ```
     mvn clean package
     ```
+1. This should generate a `.war` file which can be run on a variety of application servers
 
-4. Find the resulting `.war` file in `./target/msal4j-servlet-groups.war` and deploy it to Tomcat or any other J2EE container solution.
-     - To deploy to Tomcat, copy this `.war` file to the `/webapps/` directory in your Tomcat installation directory and start the Tomcat server.
-5. Ensure that the context path that the app is served on is `/msal4j-servlet-groups` (or change the `app.homePage` value in your [authentication.properties](src/main/resources/authentication.properties) file and in the AAD app registration). If you change the properties file, you'll needs to repeat step 3 above (maven clean and package).
-6. Open your browser and navigate to `http://localhost:8080/msal4j-servlet-groups/`
+###Deploying the Sample
+
+Our samples can be deployed to a number of application servers, such as Tomcat, WebLogic, or Webshpere, and MSAL Java itself can generally be integrated into existing applications without changes to your existing deployment set up.
+
+You can find instructions for deploying our samples [here on MSAL Java's Github wiki](https://github.com/AzureAD/microsoft-authentication-library-for-java/wiki/Deployment-Instructions-for-MSAL-Java-Samples).
 
 ![Experience](./ReadmeFiles/app.png)
 
