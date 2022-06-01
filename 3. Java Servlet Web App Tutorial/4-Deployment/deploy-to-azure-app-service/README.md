@@ -33,14 +33,14 @@ This readme demonstrates how to deploy a Java Servlet web application that signs
 
 ## Setup
 
-Follow the setup instructions in [Enable your Java Servlet webapp to sign in users and call Microsoft Graph with the Microsoft identity platform](https://github.com/azure-samples/ms-identity-java-servlet-webapp-call-graph) sample.
+Follow the setup instructions in [Enable your Java Servlet webapp to sign in users and call Microsoft Graph with the Microsoft identity platform](https://github.com/Azure-Samples/ms-identity-msal-java-samples/tree/main/3.%20Java%20Servlet%20Web%20App%20Tutorial/1-Authentication/sign-in) sample.
 
 ## Registration
 
 ### Register the web app
 
 Use an Azure AD application registration and its matching sample that that you have completed previously.
-If you have not completed a sample yet, we recommend you proceed to complete [Enable your Java Servlet webapp to sign in users and call Microsoft Graph with the Microsoft identity platform](https://github.com/azure-samples/ms-identity-java-servlet-webapp-call-graph) sample and use the app registration from it.
+If you have not completed a sample yet, we recommend you proceed to complete [Enable your Java Servlet webapp to sign in users and call Microsoft Graph with the Microsoft identity platform](https://github.com/Azure-Samples/ms-identity-msal-java-samples/tree/main/3.%20Java%20Servlet%20Web%20App%20Tutorial/1-Authentication/sign-in) sample and use the app registration from it.
 
 ## Deployment
 
@@ -78,7 +78,7 @@ You **may skip the rest of this step** if you are doing a test deployment with a
 
 1. Supply a config file that omits secrets (i.e., `authentication.properties` that does not contain `aad.secret` and its value)
 2. After you've deployed your app in the next sections, come back and add the secrets from a secure location such as:
-   1. **Azure Keyv Vault**. Use the [Microsoft Azure Key Vault SDK for Java](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault). Set the client secret value in vault, naming it `CLIENT_SECRET` for example. Then set up the Azure key vault client in your app. Modify the `helpers/Config.java` file as follows:
+   1. **Azure Key Vault**. Use the [Microsoft Azure Key Vault SDK for Java](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault). Set the client secret value in vault, naming it `CLIENT_SECRET` for example. Then set up the Azure key vault client in your app. Modify the `helpers/Config.java` file as follows:
 
          ```Java
          // remove this line:
