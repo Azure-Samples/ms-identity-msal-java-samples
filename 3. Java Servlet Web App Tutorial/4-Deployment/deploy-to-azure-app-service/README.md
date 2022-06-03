@@ -108,7 +108,6 @@ This guide is for deploying to **Azure App Service** via **VS Code Azure Tools E
     1. Open the VSCode command palette (ctrl+shift+P on Windows and command+shift+P on Mac).
     1. Click  `Maven: Execute Commands...`.
     1. Click `package`.
-    1. Click `clean`.
 1. You should see the output of the command in your integrated VSCode terminal window. The words `BUILD SUCCESS` indicate that the .WAR file has been generated.
 1. Now you must deploy the .WAR file to the app service you created earlier.
     1. Open the VSCode command palette (ctrl+shift+P on Windows and command+shift+P on Mac).
