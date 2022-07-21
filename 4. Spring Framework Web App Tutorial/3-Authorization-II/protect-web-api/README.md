@@ -7,7 +7,7 @@ products:
   - msal-java
   - azure-active-directory
 name: Protect your Java Spring Boot web API with the Microsoft identity platform
-urlFragment: ms-identity-java-spring-tutorial
+urlFragment: ms-identity-java-spring-api-tutorial
 description: "This sample demonstrates a Java Spring web application calling a Java Spring web API that is secured using Azure AD"
 ---
 # Protect your Java Spring Boot web API with the Microsoft identity platform
