@@ -6,7 +6,6 @@ products:
   - azure
   - msal-java
   - azure-active-directory
-  - microsoft-identity-platform
 name: Enable your Java Servlet web app to sign in users with the Microsoft identity platform
 urlFragment: ms-identity-java-servlet-webapp-authentication
 description: "This sample demonstrates a Java Servlet web app that signs in users with the Microsoft identity platform"
