@@ -12,8 +12,8 @@ languages:
 products:
   - azure
   - azure-active-directory
-  - java
-  - office-ms-graph
+  - msal-java
+  - ms-graph
 description: "This sample demonstrates how a daemon console app can use a self-signed certificate to get an access token to call Microsoft Graph using MSAL4J."
 ---
 
