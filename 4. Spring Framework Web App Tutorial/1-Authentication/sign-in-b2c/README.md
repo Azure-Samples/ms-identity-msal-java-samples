@@ -7,7 +7,7 @@ products:
   - msal-java
   - azure-active-directory
 name: Enable your Java Spring Boot web app to sign in users on your Azure Active Directory B2C tenant with the Microsoft identity platform (Azure AD B2C)
-urlFragment: ms-identity-java-spring-tutorial
+urlFragment: ms-identity-java-spring-auth-tutorial
 description: "This sample demonstrates a Java Spring MVC web app that authenticates users with Azure AD B2C"
 ---
 # Enable your Java Spring Boot web app to sign in users on your Azure Active Directory B2C tenant with the Microsoft identity platform (Azure AD B2C)
