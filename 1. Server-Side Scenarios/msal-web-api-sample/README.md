@@ -12,8 +12,8 @@ languages:
 products:
   - azure
   - azure-active-directory
-  - java
-  - office-ms-graph
+  - msal-java
+  - ms-graph
 description: "This sample demonstrates a Java web app application calling a Java Web API that is secured using Azure Active Directory using the On-Behalf-Of flow"
 ---
 
