@@ -7,7 +7,7 @@ languages:
 products:
 - azure-active-directory
 description: "This sample demonstrates a Java web application calling a Microsoft Graph that is secured using Azure Active Directory."
-urlFragment: ms-identity-java-webapp
+urlFragment: ms-identity-graph-java-webapp
 ---
 
 # A Java Web application that signs in users with the Microsoft identity platform and calls Microsoft Graph
