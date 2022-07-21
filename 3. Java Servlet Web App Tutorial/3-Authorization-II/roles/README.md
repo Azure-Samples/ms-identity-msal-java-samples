@@ -6,7 +6,6 @@ products:
   - azure
   - msal-java
   - azure-active-directory
-  - microsoft-identity-platform
 
 name: "Add authorization using app roles & roles claims to a Java servlet web app that signs-in users with the Microsoft identity platform"
 urlFragment: "ms-identity-java-servlet-webapp-authentication"
