@@ -6,7 +6,6 @@ products:
   - azure
   - msal-java
   - azure-active-directory
-  - microsoft-identity-platform
 
 name: "Enable your Java Servlet web app to sign in users and call Microsoft Graph with the Microsoft identity platform"
 urlFragment: "ms-identity-java-servlet-webapp-call-graph"
