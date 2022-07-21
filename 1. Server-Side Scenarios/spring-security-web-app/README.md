@@ -5,7 +5,7 @@ languages:
 - html
 author: ramya25
 products:
-- spring security
+- azure-spring-cloud
 - azure-active-directory
 description: "This sample demonstrates a Java web application showcasing how to use Spring security for logging in an user using OAuth2.0"
 urlFragment: ms-identity-java-webapp
