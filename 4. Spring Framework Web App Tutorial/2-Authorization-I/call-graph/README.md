@@ -7,7 +7,7 @@ products:
   - msal-java
   - azure-active-directory
 name: Enable your Java Spring Boot web app to sign in users and call Microsoft Graph with the Microsoft identity platform
-urlFragment: ms-identity-java-spring-tutorial
+urlFragment: ms-identity-java-spring-graph-tutorial
 description: "This sample demonstrates a Java Spring MVC web app that signs in users and calls Microsoft Graph"
 ---
 # Enable your Java Spring Boot web app to sign in users and call Microsoft Graph with the Microsoft identity platform
