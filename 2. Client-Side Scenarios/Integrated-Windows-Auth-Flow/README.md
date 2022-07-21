@@ -9,8 +9,8 @@ author: ramya25
 products:
   - azure
   - azure-active-directory
-  - Java
-  - office-ms-graph
+  - msal-java
+  - ms-graph
 description: "This sample demonstrates how to use MSAL4J to sign-in users using windows Integrated Auth (WIA) in apps that run on a domain joined or AAD joined Windows machine."
 urlFragment: Integrated-Windows-Auth-Flow
 ---
