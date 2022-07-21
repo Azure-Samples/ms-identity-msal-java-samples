@@ -7,7 +7,7 @@ products:
   - msal-java
   - azure-active-directory
 name: Enable your Java Spring Boot web app to restrict access to routes using app roles with the Microsoft identity platform
-urlFragment: ms-identity-java-spring-tutorial
+urlFragment: ms-identity-java-spring-roles-tutorial
 description: "This sample demonstrates a Java Spring MVC web app that authenticates users with Azure AD and restricts access to routes based on the roles claim from the ID token."
 ---
 # Enable your Java Spring Boot web app to restrict access to routes using app roles with the Microsoft identity platform
