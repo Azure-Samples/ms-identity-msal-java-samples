@@ -12,7 +12,7 @@ languages:
 products:
   - azure
   - azure-active-directory  
-  - office-ms-graph
+  - ms-graph
 description: "This sample demonstrates calling the Microsoft Graph from a Java console application without a browser for interaction"
 ---
 # Invoking an API protected by Azure AD from a device without a browser for interaction
