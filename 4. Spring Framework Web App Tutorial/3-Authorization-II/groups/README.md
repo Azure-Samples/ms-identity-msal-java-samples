@@ -6,7 +6,7 @@ products:
   - ms-graph
   - azure-active-directory  
 name: Enable your Java Spring boot web app to restrict access to routes using security groups with the Microsoft identity platform
-urlFragment: ms-identity-java-spring-tutorial
+urlFragment: ms-identity-java-spring-groups-tutorial
 description: "This sample demonstrates a Java Spring Boot web app that authenticates users against Azure AD"
 ---
 # Enable your Java Spring boot web app to restrict access to routes using security groups with the Microsoft identity platform
