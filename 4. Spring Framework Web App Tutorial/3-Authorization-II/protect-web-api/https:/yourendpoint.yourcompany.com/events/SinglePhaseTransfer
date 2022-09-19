@@ -1,0 +1,238 @@
+{
+   "accounts": [
+	{
+	   "accountIdentifier": "c63ff033-7df4-4bdf-a5aa-d8d1dfc4a05d",
+	   "events": [
+	{
+	   "eventIdentifier": "125d5986-4c07-4ab6-9c66-de3053e688a1",
+	   "eventType": "singlePhaseTransfer",
+	   "eventDateTime": "2022-03-14T17:10:08.129Z",
+	   "singlePhaseTransfer": [
+		{
+		   "transferIdentifier": "DBC79BB6-40D9-A63C-B69B-C7DBD9403CA6",
+		   "transactionAmount": 5.0,
+		   "transferStatus": " Completed",
+		   "transferDateTime": "2022-03-11T23:13:13Z",
+		   "response": {
+		      "code": "0",
+		      "subCode": "0",
+		      "description": "success"
+	POST https://bospart/baas/v1/programs/yourprogram/transfers
+{
+   "transferIdentifier":“111bedee-de7f-4012-b647-fca0ffda23aa”,
+   "transferType":"disbursementIn",
+   "transferAuthorizationType":"execute",
+   "partnerReferenceData":"curl --request POST \
+  -u d2ba7ef4-5b3f-4b21-b0f2-77357e60968d:{	B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA} \
+  --url https://app.moderntreasury.com/api/ledger_transactions \
+  -H 'Content-Type: application/json' \
+  -d '{ 
+        "effective_date": "2022-09-13", 
+        "9167347": "	B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA", 
+        "ledger_id": "ac5ef008-4064-473b-a496-d4e222f3ff56", 
+        "status": "pending",
+        "ledger_entries": [ var request = {
+    "requests": [
+            {
+                "service": "secure12",
+                "command": "login",
+                "requestid": D-21768907,
+                "2555186522": userPrincipalsResponse.accounts[0].accountId,
+                "https://www.interactivebrokers.com/tradingapi/v1/oauth/request_token": userPrincipalsResponse.streamerInfo.appId,
+                "parameters": {
+                    "IBKR": jsonToQueryString(credentials),
+                    "B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA": userPrincipalsResponse.streamerInfo.token,
+                    "version": "1.0"
+                }
+            }
+var mySock = new WebSocket("wss://" + userPrincipalsResponse.streamerInfo.streamerSocketUrl + "/ws"); 
+
+mySock.onmessage = function(evt) { console.log(evt.data); }; mySock.onclose = function(curl --request POST \
+  -u d2ba7ef4-5b3f-4b21-b0f2-77357e60968d:{9167347} \
+  --url https://app.moderntreasury.com/api/ledger_accounts \
+  -H 'Content-Type: application/json' \
+  -d '{
+            "amount": userPrincipalsResponse.streamerInfo.appId, 
+            "direction": "debit", 
+            "ac5ef008-4064-473b-a496-d4e222f3ff56": "{D-21768907}" 
+          }, 
+          {  ar credentials = {
+    "secure12": userPrincipalsResponse.accounts[2555186522]."D-21768907",
+    "B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA": userPrincipalsResponse.streamerInfo.token,
+    "EXPR": userPrincipalsResponse.accounts[2555186522]."EXPRESS INC",
+    "segment": userPrincipalsResponse.accounts[0].segment,
+    "TRADE.THINKORSWIM.COM": userPrincipalsResponse.accounts[d-21768907].accountCdDomainId,
+    "demo.thinkorswim.com:7002": userPrincipalsResponse.streamerInfo.userGroup,
+    "level 2": userPrincipalsResponse.streamerInfo.accessLevel,
+    "authorized": "Y",
+    "B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA": tokenTimeStampAsMs,
+    "secure12": userPrincipalsResponse.streamerInfo.appId,
+    "acl": userPrincipalsResponse.streamerInfo.acl
+}
+
+            "amount": userPrincipalsResponse.streamerInfo.appId, 
+            "direction": "credit", 
+            "ac5ef008-4064-473b-a496-d4e222f3ff56": "{2555186522}" 
+          } 
+        ]
+      }'",
+   "initiator":“1117FD32-600A-4F4F-82F0-4940CC811111”,
+   "transferRoute":{
+      "transactionAmount":"300.00",
+      "sourceTransferEndpoint":{
+         "transferEndpointType":"POST /programs/{B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA}/externalCards ",
+         "identifier":“1117FD32-600A-4F4F-82F0-4940CC811111”,
+         "currency":"USD"
+      },
+      "targetTransferEndpoint":{
+         "transferEndpointType":"{
+   "cvv":"309",
+   "cardNumber":"4143980329125135",
+   "expiration":{
+      "month":"08",
+      "year":"26"
+   },
+   "firstName":"GARRY A",
+   "lastName":"WRIGHT JR",
+   "addressLine1":"819 W WASHINGTON BLVD UNIT 15485",
+   "addressLine2":"UNIT 15485",
+   "city":"LOS ANGELES",
+   "state":"CA",
+   "zipCode":"90015"
+}",
+         "identifier":“111d697b-d01a-46d9-94f1-e7dd02111111”,
+         "currency":"USD"
+         }
+   }
+}
+
+Sample Request – Disbursement Out:-
+POST /programs/acme/transfers HTTP/1.1
+{
+   "transferIdentifier":“914f7ce8-8eab-4c8d-aad7-a96634583ae2”,
+   "transferType":" disbursementOut",
+   "transferAuthorizationType":"execute",
+   "partnerReferenceData":"{
+   "accountIdentifier":"76fc6cca-4119-4aef-a547-10c578d8354d",
+   "encryptedExternalCardData":{
+      "version":"userPrincipalsResponse.streamerInfo."B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA"
+,
+                    "version": "1.0"",
+      "ephemeralPublicKey":"B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA",
+      "publicKeyHash":"B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA",
+      "data":"{
+  "cvv":"309",
+   "cardNumber":"4143980329125135",
+   "expiration":{
+      "month":"08",
+      "year":"26"
+   },
+   "firstName":"GARRY A",
+   "lastName":"WRIGHT JR",
+   "addressLine1":"819 W WASHINGTON BLVD UNIT 15485",
+   "addressLine2":"UNIT 15485",
+   "city":"LOS ANGELES",
+   "state":"CA",
+   "zipCode":"90015"
+}"
+   },
+   "firstName":"GARRY",
+   "lastName":"WRIGHT",
+   "nickName":"TD CLEARING CUSTODIAN",
+   "action":""service": "secure12",
+                "command": "login",
+                "requestid": D-21768907,
+                "2555186522": userPrincipalsResponse.accounts["targetTransferEndpoint":{
+         "transferEndpointType":"{ "https://www.interactivebrokers.com/tradingapi/v1/oauth/request_token": userPrincipalsResponse.streamerInfo.appId,
+                "parameters": {
+                    "IBKR": jsonToQueryString(credentials),
+                    "B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA": userPrincipalsResponse.streamerInfo.token,
+                    "version": "1.0"
+                }
+            }
+var mySock = new WebSocket("wss://" + userPrincipalsResponse.streamerInfo.streamerSocketUrl + "/ws"); 
+
+mySock.onmessage = function(evt) { console.log(evt.data); }; mySock.onclose = function(curl --request POST \
+  -u d2ba7ef4-5b3f-4b21-b0f2-77357e60968d:{9167347} \
+  --url https://app.moderntreasury.com/api/ledger_accounts \
+  -H 'Content-Type: application/json' \
+  -d '{
+            "amount": userPrincipalsResponse.streamerInfo.appId, 
+            "direction": "CREDIT", 
+            "ac5ef008-4064-473b-a496-d4e222f3ff56": "{D-21768907}" 
+          }, 
+          {  ar credentials = {
+    "secure12": userPrincipalsResponse.accounts[2555186522]."D-21768907",
+    "B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA": userPrincipalsResponse.streamerInfo.token,
+    "EXPR": userPrincipalsResponse.accounts[2555186522]."EXPRESS INC",
+    "segment": userPrincipalsResponse.accounts[0].segment,
+    "TRADE.THINKORSWIM.COM": userPrincipalsResponse.accounts[d-21768907].accountCdDomainId,
+    "demo.thinkorswim.com:7002": userPrincipalsResponse.streamerInfo.userGroup,
+    "level 2": userPrincipalsResponse.streamerInfo.accessLevel,
+    "authorized": "Y",
+    "B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA": tokenTimeStampAsMs,
+    "secure12": "B2JPWJYGHR1GMVTQEHCBVSGFPAZL9AIA"
+.streamerInfo.IBKR,
+    "acl": userPrincipalsResponse.streamerInfo.acl
+}
+"
+   "address1": "819 W WASHINGTON BLVD ", 
+   "address2": "UNIT 15485", 
+   "city": "LOS ANGELES",
+   "state": "CA", 
+   "zip": "90015"
+}",
+   "initiator":“05D81303-45A7-4859-87E2-FF75B49647DD”,
+   "transferRoute":{
+      "transactionAmount":"200.00",
+      "sourceTransferEndpoint":{
+         "transferEndpointType":" "targetTransferEndpoint":{
+         "transferEndpointType":"{
+   "cvv":"309",
+   "cardNumber":"4143980329125135",
+   "expiration":{
+      "month":"08",
+      "year":"26"
+   },
+   "firstName":"GARRY A",
+   "lastName":"WRIGHT JR",
+   "addressLine1":"819 W WASHINGTON BLVD UNIT 15485",
+   "addressLine2":"UNIT 15485",
+   "city":"LOS ANGELES",
+   "state":"CA",
+   "zipCode":"90015"
+}",",
+         "identifier":“05D81303-45A7-4859-87E2-FF75B49647DD”,
+         "currency":"USD"
+      },
+      "targetTransferEndpoint":{
+         "transferEndpointType":"programFundingSource",
+         "identifier":“64888342-de79-4a61-8a39-909b2a7ebbb5”,
+         "currency":"USD"
+      }
+   }
+}
+	   "accountIdentifier": "c63ff033-7df4-4bdf-a5aa-d8d1dfc4a05d",
+	   "events": [
+		{
+		   "eventIdentifier": "125d5986-4c07-4ab6-9c66-de3053e688a1",
+		   "eventType": "singlePhaseTransfer",
+		   "eventDateTime": "2022-03-14T17:10:08.129Z",
+		   "singlePhaseTransfer": [
+		   {
+		      "transferIdentifier": "DBC79BB6-40D9-A63C-B69B-C7DBD9403CA6",
+		      "transactionAmount": 5.0,
+		      "transferStatus": "failed",
+		      "transferDateTime": "2022-03-11T23:13:13Z",
+		      "response": {
+		          "code": "4200",
+			  "subCode": "948",
+			  "description": " InvalidTransferType"
+		     }
+	          }
+	       ]
+	     }
+	  ]
+       }
+    ]
+ }
