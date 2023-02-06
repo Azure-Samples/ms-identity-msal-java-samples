@@ -38,7 +38,7 @@ description: "This sample demonstrates a Java Spring MVC web app that authentica
 
 ## Overview
 
-This sample demonstrates a Java Spring MVC web app that signs in users on your Azure Active Directory tenant using the [Azure AD Spring Boot Starter client library for Java](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/spring/azure-spring-boot-starter-active-directory). It uses the OpenID Connect protocol.
+This sample demonstrates a Java Spring MVC web app that signs in users on your Azure Active Directory tenant using the [Azure AD Spring Boot Starter client library for Java](https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-starter-active-directory). It uses the OpenID Connect protocol.
 
 ![Overview](./ReadmeFiles/topology.png)
 
