@@ -27,59 +27,66 @@ import java.util.concurrent.CompletableFuture;
 
 class ClientCredentialGrant {
 
-    private static String authority;
-    private static String clientId;
-    private static String scope;
-    private static String keyPath;
-    private static String certPath;
+
     private static ConfidentialClientApplication app;
 
-    public static void main(String args[]) throws Exception{
+    public static void main(String args[]) throws Exception {
 
-        setUpSampleData();
+
+        // Load properties file and set properties used throughout the sample
+        Properties properties = new Properties();
+        properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
+        String authority = properties.getProperty("AUTHORITY");
+        String clientId = properties.getProperty("CLIENT_ID");
+        String keyPath = properties.getProperty("KEY_PATH");
+        String certPath = properties.getProperty("CERT_PATH");
+        String scope = properties.getProperty("SCOPE");
 
         try {
-        	BuildConfidentialClientObject();
-            IAuthenticationResult result = getAccessTokenByClientCredentialGrant();
+
+            // Ensure the app object is not re-created on each request, as it holds a token cache
+            // If you are getting tokens for many tenants (millions), see the msal-client-credential-secret-high-availability sample
+            // which shows how to use an in-memory token cache with eviction based on a size limit
+            GetOrCreateApp(clientId, authority, keyPath, certPath);
+
+            ClientCredentialParameters clientCredentialParam = ClientCredentialParameters.builder(
+                            Collections.singleton(scope))
+                    .build();
+
+            // The first time this is called, the app will make an HTTP request to the token issuer, so this is slow. Latency can be >1s
+            IAuthenticationResult result = app.acquireToken(clientCredentialParam).get();
+
+            // On subsequent calls, the app will return a token from its cache. It is important to reuse the app object
+
+            // Now that we have a Bearer token, call the protected API
             String usersListFromGraph = getUsersListFromGraph(result.accessToken());
 
             System.out.println("Users in the Tenant = " + usersListFromGraph);
             System.out.println("Press any key to exit ...");
             System.in.read();
 
-        } catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("Oops! We have an exception of type - " + ex.getClass());
             System.out.println("Exception message - " + ex.getMessage());
             throw ex;
         }
     }
- private static void BuildConfidentialClientObject() throws Exception {
-        
-	 PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(Files.readAllBytes(Paths.get(keyPath)));
-     PrivateKey key = KeyFactory.getInstance("RSA").generatePrivate(spec);
 
-     InputStream certStream = new ByteArrayInputStream(Files.readAllBytes(Paths.get(certPath)));
-     X509Certificate cert = (X509Certificate) CertificateFactory.getInstance("X.509").generateCertificate(certStream);
+    private static void GetOrCreateApp(String clientId, String authority, String keyPath, String certPath) throws Exception {
 
-     app = ConfidentialClientApplication.builder(
-             clientId,
-             ClientCredentialFactory.createFromCertificate(key, cert))
-             .authority(authority)
-             .build();        
-    }
-    private static IAuthenticationResult getAccessTokenByClientCredentialGrant() throws Exception {
+        if (app == null) {
+            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(Files.readAllBytes(Paths.get(keyPath)));
+            PrivateKey key = KeyFactory.getInstance("RSA").generatePrivate(spec);
 
-       
+            InputStream certStream = new ByteArrayInputStream(Files.readAllBytes(Paths.get(certPath)));
+            X509Certificate cert = (X509Certificate) CertificateFactory.getInstance("X.509").generateCertificate(certStream);
 
-        // With client credentials flows the scope is ALWAYS of the shape "resource/.default", as the
-        // application permissions need to be set statically (in the portal), and then granted by a tenant administrator
-
-        ClientCredentialParameters clientCredentialParam = ClientCredentialParameters.builder(
-                Collections.singleton(scope))
-                .build();
-
-        CompletableFuture<IAuthenticationResult> future = app.acquireToken(clientCredentialParam);
-        return future.get();
+            app = ConfidentialClientApplication.builder(
+                            clientId,
+                            ClientCredentialFactory.createFromCertificate(key, cert))
+                    .authority(authority)
+                    .build();
+        }
     }
 
     private static String getUsersListFromGraph(String accessToken) throws IOException {
@@ -88,18 +95,18 @@ class ClientCredentialGrant {
 
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Authorization", "Bearer " + accessToken);
-        conn.setRequestProperty("Accept","application/json");
+        conn.setRequestProperty("Accept", "application/json");
 
         int httpResponseCode = conn.getResponseCode();
-        if(httpResponseCode == HTTPResponse.SC_OK) {
+        if (httpResponseCode == HTTPResponse.SC_OK) {
 
             StringBuilder response;
-            try(BufferedReader in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()))){
+            try (BufferedReader in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()))) {
 
                 String inputLine;
                 response = new StringBuilder();
-                while (( inputLine = in.readLine()) != null) {
+                while ((inputLine = in.readLine()) != null) {
                     response.append(inputLine);
                 }
             }
@@ -108,20 +115,5 @@ class ClientCredentialGrant {
             return String.format("Connection returned HTTP code: %s with message: %s",
                     httpResponseCode, conn.getResponseMessage());
         }
-    }
-
-    /**
-     * Helper function unique to this sample setting. In a real application these wouldn't be so hardcoded, for example
-     * different users may need different authority endpoints and the key/cert paths could come from a secure keyvault
-     */
-    private static void setUpSampleData() throws IOException {
-        // Load properties file and set properties used throughout the sample
-        Properties properties = new Properties();
-        properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
-        authority = properties.getProperty("AUTHORITY");
-        clientId = properties.getProperty("CLIENT_ID");
-        keyPath = properties.getProperty("KEY_PATH");
-        certPath = properties.getProperty("CERT_PATH");
-        scope = properties.getProperty("SCOPE");
     }
 }

@@ -25,6 +25,7 @@ description: "This sample demonstrates how a daemon console app can use a secret
 
 This app demonstrates how to use the [Microsoft identity platform](http://aka.ms/aadv2) to access the data of Microsoft business customers in a long-running, non-interactive process. It uses the [Microsoft Authentication Library (MSAL) for Java](https://github.com/AzureAD/microsoft-authentication-library-for-java) to acquire an [access token](https://docs.microsoft.com/azure/active-directory/develop/access-tokens), which it then uses to call [Microsoft Graph](https://graph.microsoft.io) and accesses organizational data. The sample utilizes the [OAuth 2 client credentials grant](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow) and a secret value configured in Azure to obtain an access token for calls to Microsoft Graph.
 
+
 ## Scenario
 
 The console application:
@@ -133,8 +134,11 @@ The relevant code for this sample is in the `ClientCredentialGrant.java` file.
 
 1. Create the MSAL confidential client application.
 
-    Important note: even if we are building a console application, it is a daemon, and therefore a confidential client application, as it does not
+    Important notes: even if we are building a console application, it is a daemon, and therefore a confidential client application, as it does not
     access Web APIs on behalf of a user, but on its own application behalf.
+
+    The app object needs to be reused, as it holds a token cache. This will work for up single tenant requests. For multi-tenant apps, once you get to millions of tokens, the app object will consume too much memory. See msal-client-credential-secret-high-availability sample in this directory for a high scale multi-tenant app.
+
 
     ```Java
        ConfidentialClientApplication app = ConfidentialClientApplication.builder(

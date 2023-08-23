@@ -147,7 +147,7 @@ The relevant code for this sample is in the `ClientCredentialGrant.java` file.
 1. Create the MSAL confidential client application.
 
     Important note: even if we are building a console application, it is a daemon, and therefore a confidential client application, as it does not
-    access Web APIs on behalf of a user, but on its own application behalf.
+    access Web APIs on behalf of a user, but on its own application behalf. The app object needs to be reused to get a token 
 
     ```Java
        ConfidentialClientApplication app = ConfidentialClientApplication.builder(

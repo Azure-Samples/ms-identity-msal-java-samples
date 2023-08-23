@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import com.microsoft.aad.msal4j.ClientCredentialFactory;
-import com.microsoft.aad.msal4j.ClientCredentialParameters;
-import com.microsoft.aad.msal4j.ConfidentialClientApplication;
-import com.microsoft.aad.msal4j.IAuthenticationResult;
+import com.microsoft.aad.msal4j.*;
 import com.nimbusds.oauth2.sdk.http.HTTPResponse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Properties;
@@ -18,19 +16,37 @@ import java.util.concurrent.CompletableFuture;
 
 class ClientCredentialGrant {
 
-    private static String authority;
-    private static String clientId;
-    private static String secret;
-    private static String scope;
-    private static ConfidentialClientApplication app;
+
+    private static IConfidentialClientApplication app;
 
     public static void main(String args[]) throws Exception{
 
-        setUpSampleData();
+        // Load properties file and set properties used throughout the sample
+        Properties properties = new Properties();
+        properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
+
+        String authority = properties.getProperty("AUTHORITY");
+        String clientId = properties.getProperty("CLIENT_ID");
+        String secret = properties.getProperty("SECRET");
+        String scope = properties.getProperty("SCOPE");
 
         try {
-        	BuildConfidentialClientObject();
-            IAuthenticationResult result = getAccessTokenByClientCredentialGrant();
+
+            // Ensure the app object is not re-created on each request, as it holds a token cache
+            // If you are getting tokens for many tenants (millions), see the msal-client-credential-secret-high-availability sample
+            // which shows how to use an in-memory token cache with eviction based on a size limit
+            GetOrCreateApp(clientId, secret, authority);
+
+            ClientCredentialParameters clientCredentialParam = ClientCredentialParameters.builder(
+                            Collections.singleton(scope))
+                    .build();
+
+            // The first time this is called, the app will make an HTTP request to the token issuer, so this is slow. Latency can be >1s
+            IAuthenticationResult result = app.acquireToken(clientCredentialParam).get();
+
+            // On subsequent calls, the app will return a token from its cache. It is important to reuse the app object
+
+            // Now that we have a Bearer token, call the protected API
             String usersListFromGraph = getUsersListFromGraph(result.accessToken());
 
             System.out.println("Users in the Tenant = " + usersListFromGraph);
@@ -43,26 +59,16 @@ class ClientCredentialGrant {
             throw ex;
         }
     }
-    private static void BuildConfidentialClientObject() throws Exception {
-        
-    	// Load properties file and set properties used throughout the sample
-    	app = ConfidentialClientApplication.builder(
-                clientId,
-                ClientCredentialFactory.createFromSecret(secret))
-                .authority(authority)
-                .build();		        
-    }
 
-    private static IAuthenticationResult getAccessTokenByClientCredentialGrant() throws Exception {
-    	
-    	// With client credentials flows the scope is ALWAYS of the shape "resource/.default", as the
-        // application permissions need to be set statically (in the portal), and then granted by a tenant administrator
-        ClientCredentialParameters clientCredentialParam = ClientCredentialParameters.builder(
-                Collections.singleton(scope))
-                .build();
-    	
-        CompletableFuture<IAuthenticationResult> future = app.acquireToken(clientCredentialParam);
-        return future.get();
+    private static void GetOrCreateApp(String clientId, String secret, String authority) throws MalformedURLException {
+
+        if (app!=null) {
+            app = ConfidentialClientApplication.builder(
+                            clientId,
+                            ClientCredentialFactory.createFromSecret(secret))
+                    .authority(authority)
+                    .build();
+        }
     }
 
     private static String getUsersListFromGraph(String accessToken) throws IOException {
@@ -98,12 +104,6 @@ class ClientCredentialGrant {
      * different users may need different authority endpoints or scopes
      */
     private static void setUpSampleData() throws IOException {
-        // Load properties file and set properties used throughout the sample
-        Properties properties = new Properties();
-        properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
-        authority = properties.getProperty("AUTHORITY");
-        clientId = properties.getProperty("CLIENT_ID");
-        secret = properties.getProperty("SECRET");
-        scope = properties.getProperty("SCOPE");
+
     }
 }
