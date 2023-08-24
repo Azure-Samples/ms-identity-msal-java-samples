@@ -2,7 +2,7 @@
 languages:
   - java
 products:
-  - java
+  - msal-java
   - azure
   - azure-active-directory
 page_type: sample
