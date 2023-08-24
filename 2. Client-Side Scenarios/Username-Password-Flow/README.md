@@ -4,13 +4,13 @@ platforms: Java
 endpoint: Microsoft identity platform
 page_type: sample
 languages:
-  - Java
+  - java
 author: ramya25
 products:
   - azure
   - azure-active-directory
-  - Java
-  - office-ms-graph
+  - msal-java
+  - ms-graph
 description: "Java console application letting users sign-in with their username/password and call Microsoft Graph API"
 urlFragment: call-msgraph-with-username-password
 ---
