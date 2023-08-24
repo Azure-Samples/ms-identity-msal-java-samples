@@ -4,7 +4,7 @@ languages:
 - java
 products:
 - ms-graph
-- azure-app-services
+- azure-app-service
 - azure-storage
 - azure-key-vault
 - azure-active-directory
