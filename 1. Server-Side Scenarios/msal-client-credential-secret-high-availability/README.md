@@ -27,14 +27,14 @@ This app demonstrates how to use the [Microsoft identity platform](http://aka.ms
 
 This sample builds upon the [MSAL Java daemon sample](../msal-client-credential-secret) and adds the following feature:
 
-- A custom token cache implementation that uses an in-memory cache with size eviction, based on Google Guava cache https://github.com/google/guava/wiki/CachesExplained
+- A custom token cache implementation that uses an in-memory cache with size eviction, based on [Google Guava cache](https://github.com/google/guava/wiki/CachesExplained).
 
 
 ## Community Help and Support
 
 Use [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) to get support from the community.
-Ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before.
-Make sure that your questions or comments are tagged with [`msal` `java`].
+Ask your questions on Stack Overflow first and [browse existing issues](https://github.com/Azure-Samples/ms-identity-msal-java-samples/issues) to see if someone has asked your question before.
+Make sure that your questions or comments are tagged with `msal` and `java`.
 
 If you find a bug in the sample, please raise the issue on [GitHub Issues](../../issues).
 
