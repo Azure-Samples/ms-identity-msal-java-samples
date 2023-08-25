@@ -52,16 +52,16 @@ class ClientCredentialGrant {
 
             IAuthenticationResult result = getAccessTokenByClientCredentialGrant(instance, clientId, tenantId, secret, scope);
 
-            // if you try to fetch the same token again, it will hit the token cache and it will be much faster
-            // in case AAD has an outage, cached tokens are still available...
+            // If you try to fetch the same token again, it will hit the token cache and it will be much faster.
+            // In case AAD has an outage, cached tokens are still available, increasing your app's resiliency.
             result = getAccessTokenByClientCredentialGrant(instance, clientId, tenantId, secret, scope);
 
 
 
-           // String usersListFromGraph = getUsersListFromGraph(result.accessToken());
-//            System.out.println("Users in the Tenant = " + usersListFromGraph);
-//            System.out.println("Press any key to exit ...");
-//            System.in.read();
+            String usersListFromGraph = getUsersListFromGraph(result.accessToken());
+            System.out.println("Users in the Tenant = " + usersListFromGraph);
+            System.out.println("Press any key to exit ...");
+            System.in.read();
 
         } catch(Exception ex){
             System.out.println("Oops! We have an exception of type - " + ex.getClass());
