@@ -23,11 +23,11 @@ description: "This sample demonstrates how run a daemon console app, with an in-
 
 ### Overview
 
-This app demonstrates how to use the [Microsoft identity platform](http://aka.ms/aadv2) to access the data of Microsoft business customers in a long-running, non-interactive process. It uses the [Microsoft Authentication Library (MSAL) for Java](https://github.com/AzureAD/microsoft-authentication-library-for-java) to acquire an [access token](https://learn.microsoft.com/azure/active-directory/develop/access-tokens), which it then uses to call [Microsoft Graph](https://learn.microsoft.com/graph/overview) and accesses organizational data. The sample utilizes the [OAuth 2 client credentials grant](https://learn.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow) and a secret value configured in Azure to obtain an access token for calls to Microsoft Graph.
-
-This sample builds upon the [MSAL Java daemon sample](../msal-client-credential-secret) and adds the following feature:
+This sample **builds upon** the [MSAL Java daemon sample](../msal-client-credential-secret) and adds the following feature:
 
 - A custom token cache implementation that uses an in-memory cache with size eviction, based on [Google Guava cache](https://github.com/google/guava/wiki/CachesExplained).
+
+
 
 
 ## Community Help and Support
