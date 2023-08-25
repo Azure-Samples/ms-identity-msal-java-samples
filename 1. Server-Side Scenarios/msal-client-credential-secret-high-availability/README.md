@@ -52,10 +52,10 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 For more information, see:
 
-- MSAL4J [conceptual documentation](https://github.com/AzureAD/microsoft-authentication-library-for-java/wiki).
-- [Permissions and Consent](https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent)
-- [OAuth 2 client credentials grant](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow)
-- [Quickstart: Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app)
+- [MSAL4J documentation](https://learn.microsoft.com/entra/msal/java/).
+- [Permissions and Consent](https://learn.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent)
+- [OAuth 2 client credentials grant](https://learn.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow)
+- [Quickstart: Register an application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app)
 - [Quickstart: Configure a client application to access web APIs](https://learn.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis)
 - [Documentation for Microsoft identity platform](https://aka.ms/aadv2)
 - [Other samples for Microsoft identity platform](https://aka.ms/aaddevsamplesv2)
