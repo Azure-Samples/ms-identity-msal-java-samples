@@ -28,6 +28,7 @@ import java.util.concurrent.CompletableFuture;
 class ClientCredentialGrant {
 
 
+    // It is important to reuse this object, as it will cache tokens
     private static ConfidentialClientApplication app;
 
     public static void main(String args[]) throws Exception {
