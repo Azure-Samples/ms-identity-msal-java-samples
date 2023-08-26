@@ -29,11 +29,52 @@ This sample builds upon the [MSAL Java daemon sample](../msal-client-credential-
 
 - A custom token cache implementation that uses an in-memory cache with size eviction, based on [Google Guava cache](https://github.com/google/guava/wiki/CachesExplained).
 
+## Prerequisites
 
-## Community Help and Support
+To use the sample, make sure that you have the following tools installed:
+
+- [JDK Version 8](https://jdk.java.net/8/) (or later)
+- [Maven 3](https://maven.apache.org/download.cgi)
+
+## Running the sample
+
+Prior to running the sample, ensure that you've configured your application properties in `src/main/resources/application.properties`. The following are required:
+
+| Property | Description |
+|:---------|:------------|
+| `TENANT_ID` | The unique GUID for your Microsoft Entra ID tenant. |
+| `CLIENT_ID` | The unique GUID for your application, registered in your Microsoft Entra ID tenant. |
+| `SECRET` | The secret configured for the client through the Azure Portal or via the Azure CLI. Make sure to use the client secret **value** and not the ID. |
+
+>**Note**
+>If you do not have an application register, refer to [Quickstart: Register an application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app).
+
+To run the sample, navigate to the folder after cloning the repository:
+
+```powershell
+cd '.\1. Server-Side Scenarios\msal-client-credential-secret-high-availability\'
+```
+
+Build the project using Maven:
+
+```powershell
+mvn clean package
+```
+
+After the build is complete, navigate to the `target` folder and execute the sample with:
+
+```powershell
+java -jar  .\msal-client-credential-secret-1.0.0.jar
+```
+
+>**Note**
+>If you are getting a "No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK?", make sure that your `JAVA_HOME` environment variable points to the installed JDK and that you have installed the **Java Development Kit (JDK)** and not the Java Runtime Environment (JRE).
+
+## Community help and support
 
 Use [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) to get support from the community.
 Ask your questions on Stack Overflow first and [browse existing issues](https://github.com/Azure-Samples/ms-identity-msal-java-samples/issues) to see if someone has asked your question before.
+
 Make sure that your questions or comments are tagged with `msal` and `java`.
 
 If you find a bug in the sample, please raise the issue on [GitHub Issues](../../issues).

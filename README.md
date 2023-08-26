@@ -18,6 +18,7 @@ description: "Securing Java apps using the Microsoft Identity platform and MSAL 
 The Microsoft Authentication Library (MSAL) enables developers to acquire tokens from the Microsoft identity platform, allowing applications to authenticate users and access secured web APIs. It can be used to provide secure access to Microsoft Graph, other Microsoft APIs, third-party web APIs, or your own web API.
 
 This collection of samples covers a number of scenarios where MSAL Java can be used to secure Java applications, and is meant to build an understanding of MSAL Java and demonstrate how to integrate the library into your applications.
+
 ### Prerequisites
 
 - [JDK Version 8](https://jdk.java.net/8/)
@@ -27,7 +28,7 @@ These are the basic prerequisites for each sample, though each sample may specif
 
 ### Structure of the repository
 
-This repository contains a number of scenario-specific samples and more comprehensive tutorials. We recommend starting with the [MSAL Java wiki](https://github.com/AzureAD/microsoft-authentication-library-for-java/wiki) to get familiar with MSAL Java, and then try out the samples that best fit your use case. 
+This repository contains a number of scenario-specific samples and more comprehensive tutorials. We recommend starting with the [MSAL Java wiki](https://github.com/AzureAD/microsoft-authentication-library-for-java/wiki) to get familiar with MSAL Java, and then try out the samples that best fit your use case.
 
 Chapters 1 and 2 are collections of samples covering specific use cases which demonstrate how to integrate MSAL Java into your application, and chapters 3 and 4 are more comprehensive tutorials demonstrating how to create simple and secure web apps from scratch.
 
