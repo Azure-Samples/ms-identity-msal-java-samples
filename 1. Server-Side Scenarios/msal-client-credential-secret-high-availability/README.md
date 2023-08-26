@@ -47,7 +47,7 @@ Prior to running the sample, ensure that you've configured your application prop
 | `SECRET` | The secret configured for the client through the Azure Portal or via the Azure CLI. Make sure to use the client secret **value** and not the ID. |
 
 >**Note**
->If you do not have an application register, refer to [Quickstart: Register an application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app).
+>If you do not have an application registered, refer to [Quickstart: Register an application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app).
 
 To run the sample, navigate to the folder after cloning the repository:
 
@@ -61,14 +61,14 @@ Build the project using Maven:
 mvn clean package
 ```
 
+>**Note**
+>If you are getting a "No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK?", make sure that your `JAVA_HOME` environment variable points to the installed JDK and that you have installed the **Java Development Kit (JDK)** and not the Java Runtime Environment (JRE).
+
 After the build is complete, navigate to the `target` folder and execute the sample with:
 
 ```powershell
 java -jar  .\msal-client-credential-secret-1.0.0.jar
 ```
-
->**Note**
->If you are getting a "No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK?", make sure that your `JAVA_HOME` environment variable points to the installed JDK and that you have installed the **Java Development Kit (JDK)** and not the Java Runtime Environment (JRE).
 
 ## Community help and support
 
