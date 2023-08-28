@@ -8,7 +8,7 @@ products:
 - azure-spring-cloud
 - azure-active-directory
 description: "This sample demonstrates a Java web application showcasing how to use Spring security for logging in an user using OAuth2.0"
-urlFragment: ms-identity-java-webapp
+urlFragment: ms-identity-java-webapp-1-server-side-scenario-spring-web-app
 ---
 
 # A Java web application using Spring security which signs in users with the Microsoft identity platform
