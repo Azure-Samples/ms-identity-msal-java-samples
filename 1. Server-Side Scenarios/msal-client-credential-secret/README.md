@@ -15,6 +15,7 @@ products:
   - msal-java
   - ms-graph
 description: "This sample demonstrates how a daemon console app can use a secret configured in Azure get an access token to call Microsoft Graph using MSAL4J."
+urlFragment: ms-identity-java-server-side-scenario-msal-client-cred-secret 
 ---
 
 # MSAL Java sample demonstrating how a daemon console application can call Microsoft Graph using its own identity
