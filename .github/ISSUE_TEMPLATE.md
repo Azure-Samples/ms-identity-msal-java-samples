@@ -12,6 +12,10 @@ IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE M
 - [ ] regression (a behavior that used to work and stopped in a new release)
 ```
 
+### Which sample?
+
+Please provide the name of the sample you are using. E.g. `Server-Side Scenarios\client-credential-certificate`
+
 ### Minimal steps to reproduce
 >
 
