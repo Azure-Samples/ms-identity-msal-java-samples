@@ -7,7 +7,7 @@ products:
   - msal-java
   - azure-active-directory
 name: Enable your Java Spring Boot web app to sign in users on your Azure Active Directory tenant with the Microsoft identity platform
-urlFragment: ms-identity-java-spring-tutorial
+urlFragment: ms-identity-java-spring-tutorial-1-authentication-sign-in
 description: "This sample demonstrates a Java Spring MVC web app that authenticates users with Azure AD"
 ---
 # Enable your Java Spring Boot web app to sign in users on your Azure Active Directory tenant with the Microsoft identity platform
