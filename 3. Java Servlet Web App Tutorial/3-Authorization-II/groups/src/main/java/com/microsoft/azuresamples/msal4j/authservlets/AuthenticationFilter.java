@@ -65,6 +65,11 @@ public class AuthenticationFilter implements Filter {
         }
     }
 
+        @Override
+    public void init(FilterConfig filterConfig) {
+
+    }
+    
     private void sendToUnauthorizedPage(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
         req.setAttribute("bodyContent", "content/401.jsp");
