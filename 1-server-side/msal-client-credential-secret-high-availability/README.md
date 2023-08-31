@@ -4,7 +4,7 @@ extensions:
     services: active-directory
     platforms: Java
     endpoint: Microsoft identity platform
-    author: bogavril
+    author: bgavrilMS
     level: 300
     client: Java console daemon app
     service: Microsoft Graph
