@@ -14,6 +14,7 @@ products:
   - azure-active-directory
   - ms-graph
 description: "This sample demonstrates how run a daemon console app, with an in-memory token cache with size eviction, to get an access token for many tenants to call Microsoft Graph using MSAL4J."
+urlFragment: ms-identity-java-server-side-scenario-msal-client-cred-secret-high-availability 
 ---
 
 # MSAL Java sample demonstrating how a daemon console application can call Microsoft Graph using its own identity
