@@ -49,28 +49,28 @@ Please refer to each sample's README for sample-specific recommendations.
 
 |               |               |
 |---------------|---------------|
-| <img src="./ReadmeFiles/sign-in.png" width="200"> | [**1.1 Sign-in with Azure AD**](./1-Authentication/sign-in) </br> Sign your users in with **Azure AD** and learn to work with **ID Tokens**.  |
-| <img src="./ReadmeFiles/sign-in-2.png" width="200"> | [**1.2 Sign-in with Azure AD B2C**](./1-Authentication/sign-in-b2c) </br> Sign your customers in with **Azure AD B2C**. Learn to integrate with **external social identity providers**. Learn how to use **user-flows** and **custom policies**. |
+| <img src="ReadmeFiles/sign-in.png" width="200"> | [**1.1 Sign-in with Azure AD**](./1-Authentication/sign-in) </br> Sign your users in with **Azure AD** and learn to work with **ID Tokens**.  |
+| <img src="ReadmeFiles/sign-in-2.png" width="200"> | [**1.2 Sign-in with Azure AD B2C**](./1-Authentication/sign-in-b2c) </br> Sign your customers in with **Azure AD B2C**. Learn to integrate with **external social identity providers**. Learn how to use **user-flows** and **custom policies**. |
 
 ### Chapter 2: Get an Access Token and call Microsoft Graph
 
 |                |               |
 |----------------|---------------|
-| <img src="./ReadmeFiles/topology.png" width="200"> | [**2.1 Acquire an Access Token from Azure AD and call Microsoft Graph**](./2-Authorization-I/call-graph) </br> Enable your web app to acquire an Access Token to Authorize it to call **Microsoft Graph API**. |
+| <img src="ReadmeFiles/topology.png" width="200"> | [**2.1 Acquire an Access Token from Azure AD and call Microsoft Graph**](./2-Authorization-I/call-graph) </br> Enable your web app to acquire an Access Token to Authorize it to call **Microsoft Graph API**. |
 
 
 ### Chapter 3: Restrict access to routes based on group and / or role membership
 
 |                |               |
 |----------------|---------------|
-| <img src="./ReadmeFiles/sign-in.png" width="200"> | [**3.1 Acquire an ID Token with the roles claim**](./3-Authorization-II/roles) </br> Enable your web app to acquire an ID Token with the **Roles** claim. Filter access to routes based on the role membership. |
-| <img src="./ReadmeFiles/sign-in.png" width="200"> | [**3.2 Acquire an ID Token with the Groups claim**](./3-Authorization-II/groups) </br> Enable your web app to acquire an ID Token with a **Groups** claim. Filter access to routes based on the role membership. Learn how to call Graph to handle edge cases where the user is a member of too many groups to fit into an ID Token. |
+| <img src="ReadmeFiles/sign-in.png" width="200"> | [**3.1 Acquire an ID Token with the roles claim**](./3-Authorization-II/roles) </br> Enable your web app to acquire an ID Token with the **Roles** claim. Filter access to routes based on the role membership. |
+| <img src="ReadmeFiles/sign-in.png" width="200"> | [**3.2 Acquire an ID Token with the Groups claim**](./3-Authorization-II/groups) </br> Enable your web app to acquire an ID Token with a **Groups** claim. Filter access to routes based on the role membership. Learn how to call Graph to handle edge cases where the user is a member of too many groups to fit into an ID Token. |
 
 ### Chapter 4: Deploy your app to Azure
 
 |                 |               |
 |-----------------|---------------|
-| <img src="./ReadmeFiles/sign-in.png" width="200"> | [**4.1 Deploy to Azure App Service**](./4-Deployment/deploy-to-azure-app-service) </br> Prepare your app for deployment to Azure App Service. Learn how to package and upload files, configure authentication parameters and use various Azure services for managing your operations. |
+| <img src="ReadmeFiles/sign-in.png" width="200"> | [**4.1 Deploy to Azure App Service**](./4-Deployment/deploy-to-azure-app-service) </br> Prepare your app for deployment to Azure App Service. Learn how to package and upload files, configure authentication parameters and use various Azure services for managing your operations. |
 
 ## We'd love your feedback!
 

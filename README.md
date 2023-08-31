@@ -7,7 +7,7 @@ products:
   - azure-active-directory
   - entra
 page_type: sample
-urlFragment: index
+urlFragment: introduction-msal-java
 description: "Securing Java apps using the Microsoft Identity platform and MSAL Java"
 ---
 

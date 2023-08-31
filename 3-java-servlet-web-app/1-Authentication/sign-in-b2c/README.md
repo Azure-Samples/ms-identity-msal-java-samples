@@ -22,7 +22,7 @@ description: "This sample demonstrates a Java Servlet webapp that signs in users
  1. [Running the sample](#running-the-sample)
  1. [Explore the sample](#explore-the-sample)
  1. [About the code](#about-the-code)
- 1. [Deployment](#deployment)
+ 1. [Deployment](#deploying-the-sample)
  1. [More information](#more-information)
  1. [Community Help and Support](#community-help-and-support)
  1. [Contributing](#contributing)
@@ -80,6 +80,7 @@ or download and extract the repository .zip file.
 ### Register the sample application with your Azure AD B2C tenant
 
 :warning: This sample comes with a pre-registered application for testing purposes. If you would like to use your own **Azure AD B2C** tenant and application, follow the steps below to register and configure the application in the **Azure Portal**. Otherwise, continue with the steps for [Running the sample](#running-the-sample).
+
 <details>
   <summary>Expand this section to see manual steps for configuring your own tenant:</summary>
 
@@ -138,7 +139,8 @@ Open the project in your IDE (like **Visual Studio Code**) to configure the code
 </details>
 
 ## Running The Sample
-#### Build .war File Using Maven
+
+####Build .war File Using Maven
 
 1. Navigate to the directory containing the pom.xml file for this sample (the same directory as this README), and run the following Maven command:
     ```
@@ -146,7 +148,7 @@ Open the project in your IDE (like **Visual Studio Code**) to configure the code
     ```
 1. This should generate a `.war` file which can be run on a variety of application servers
 
-#### Deploying the Sample
+## Deploying the Sample
 
 Our samples can be deployed to a number of application servers, such as Tomcat, WebLogic, or Webshpere, and MSAL Java itself can generally be integrated into existing applications without changes to your existing deployment set up.
 
@@ -163,7 +165,7 @@ You can find instructions for deploying our samples [here on MSAL Java's Github 
 - The middle of the screen now has an option to click for ID Token Details: click it to see some of the ID token's decoded claims.
 - You also have the option of editing your profile. Click the link to edit details like your display name, place of residence, and profession.
 - You can also use the button on the top right to sign out.
-- After signing out, click this link to the [token details page](http://localhost:8080/ms-identity-b2c-java-servlet-webapp-authentication/auth_token_details) to observe how the app displays a `401: unauthorized` error instead of the ID token claims.
+- After signing out, click this link to the token details page: `http://localhost:8080/ms-identity-b2c-java-servlet-webapp-authentication/auth_token_details` to observe how the app displays a `401: unauthorized` error instead of the ID token claims.
 
 > :information_source: Did the sample not work for you as expected? Then please reach out to us using the [GitHub Issues](../issues) page.
 

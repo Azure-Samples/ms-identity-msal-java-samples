@@ -199,7 +199,7 @@ The relevant code for this sample is in the `ClientCredentialGrant.java` file.
 ### Did you forget to provide admin consent? This is needed for daemon apps
 
 If you get an `Forbidden` error when calling the API, this is because the tenant administrator has not granted permissions
-to the application. Check the steps in [Register the client app (daemon-console)](#register-the-client-app-daemon-console) above.
+to the application. Check the steps in [Register the client app (daemon-console)](#register-the-client-app-java-daemon-console) above.
 
 ## Community Help and Support
 
