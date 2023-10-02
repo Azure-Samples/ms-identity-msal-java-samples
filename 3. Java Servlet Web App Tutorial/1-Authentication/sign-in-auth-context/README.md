@@ -5,37 +5,38 @@ languages:
 products:
   - azure
   - msal-java
-  - azure-active-directory
-name: Enable your Java Servlet web app to sign in users with the Microsoft Entra platform and step-up the authentication challenge on demand.
-urlFragment: ms-identity-java-servlet-webapp-authentication
-description: "This sample demonstrates a Java Servlet web app that signs in users with the Microsoft Entra platform and to step up the authentication challenge on demand."
+  - entra
+urlFragment: java-servlet-webapp-authentication
+description: "This sample demonstrates a Java Servlet web app that signs users in with the Microsoft Entra platform and steps up the authentication challenge on-demand."
 ---
 # Enable your Java Servlet web app to sign in users to your Azure Active Directory tenant with the Microsoft identity platform
 
 
 ## Overview
 
-This sample demonstrates a Java Servlet web app that signs in users to your Azure Active Directory tenant using the [Microsoft Authentication Library (MSAL) for Java](https://github.com/AzureAD/microsoft-authentication-library-for-java).
+This sample demonstrates a Java Servlet web app that signs users in to your Microsoft Entra tenant using the [Microsoft Authentication Library (MSAL) for Java](https://learn.microsoft.com/entra/msal/java/).
 It also demonstrates how to step-up the authentication challenge by requiring multi-factor authentication (MFA) for certain routes.
 
 ![Overview](./ReadmeFiles/topology.png)
 
-Important: Make sure you understand the [basic web site authentication sample](../sign-in) first. This shows how to sing-in users.
+>**Note**
+>Make sure you understand the [basic web site authentication sample](../sign-in) first. This shows how to sign users in.
 
 ## Scenario
 
 This web application shows how to challenge users to authenticate for some routes and challenge users to authenticate and perform MFA for other routes.
 
-1. Some web site actions (routes) need the user to be authenticated and some web site actions (routes) require the user to be 
-have authenticated and to have passed MFA.
-1. An authentication context "c1" has already been created and associated with MFA
-1. If an MFA route is accessed by the user, the ID token is checked for proof of MFA - a claim named "arcs" with the value "C1"
-1. If an id token does not exist (i.e. user is not authenticated at all) or if the claim does not exist (they have not MFA-ed), the user is challenged to MFA. This means that they are redirected to the authorization page and a claims challenge is appended to the authorization URI. 
+1. Some web site actions (routes) need the user to be authenticated and others require the user to be
+authenticated and to have passed the MFA challenge.
+1. An authentication context `c1` has already been created and associated with MFA
+1. If an MFA route is accessed by the user, the ID token is checked for proof of MFA - a claim named `arcs` with the value `C1`
+1. If an ID token does not exist (i.e., user is not authenticated at all) or if the claim does not exist (they have not passed the MFA challenge), the user is challenged to MFA. This means that they are redirected to the authorization page and a claims challenge is appended to the authorization URI. 
 
 
 Example claim challenge: `{"id_token":{"acrs":{"essential":true,"value":"c1"}}}`
 
-**Important** MFA is only one of the many [Conditional Access](https://learn.microsoft.com/azure/active-directory/conditional-access/overview) controls available. Any of them may be used.
+>**Note**
+>MFA is one of the many [Conditional Access](https://learn.microsoft.com/azure/active-directory/conditional-access/overview) controls available. Any of them may be used.
 
 ## Prerequisites
 
@@ -46,13 +47,14 @@ Example claim challenge: `{"id_token":{"acrs":{"essential":true,"value":"c1"}}}`
 
 ### 1. Create a Microsoft Entra application registration for the website
 
-Note: this is identical to the [basic web site authentication sample](../sign-in)
+>**Note**
+>This is identical to the [basic web site authentication sample](../sign-in).
 
 <details>
 
 <summary>Details here</summary>
 
-[Register a new web app](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Azure Portal](https://portal.azure.com).
+[Register a new web app](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Azure Portal](https://portal.azure.com).
 Following this guide, you must:
 
 1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.
@@ -91,7 +93,7 @@ Open the project in your IDE to configure the code.
 
 ### 2. Setup the MFA Conditional Access Context
 
-1. In the Azure Portal, go to the Conditional Access section.
+1. In the Azure Portal, go to the Microsoft Entra Conditional Access section.
 
 ![CA](./ReadmeFiles/CA.png)
 
@@ -129,10 +131,10 @@ You can find instructions for deploying our samples [here on MSAL Java's Github 
 
 
 
-- In `authwebapp` there are 2 protected routes: "token_details" requires simple authentication and "token_details_mfa" which requires MFA.
-- The orchestration logic is in the AuthenticationFilter. It figures out the state of the user (authenticated, authenticated + MFA, not authenticated) and the requirements of the route (based on configuration).
+- In `authwebapp` there are 2 protected routes: `token_details` requires simple authentication and `token_details_mfa` which requires MFA.
+- The orchestration logic is in the `AuthenticationFilter`. It figures out the state of the user (authenticated, authenticated + MFA, not authenticated) and the requirements of the route (based on configuration).
 - If the auth requirement is not met, the user is challenged, meaning they are redirected to the Identity Provider (Microsoft Entra).
-- To understand if a user meets the authentication context (MFA), the sample looks at the ID Token for a claim named "acrs" and value "c1"
+- To understand if a user meets the authentication context (MFA), the sample looks at the ID Token for a claim named `acrs` and value `c1`.
 - To challenge a user if they are not authenticated, the sample adds a claims challenge to the authorization URI `claims={"id_token":{"acrs":{"essential":true,"value":"c1"}}}`
 
 
@@ -140,12 +142,12 @@ You can find instructions for deploying our samples [here on MSAL Java's Github 
 
 ## We'd love your feedback!
 
-Were we successful in addressing your learning objective? Consider taking a moment to [share your experience with us](https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR73pcsbpbxNJuZCMKN0lURpURDQwVUxQWENUMlpLUlA0QzdJNVE3TUJRSyQlQCN0PWcu).
+Were we successful in addressing your learning objective? Consider taking a moment to [share your experience with us](https://github.com/Azure-Samples/ms-identity-msal-java-samples/issues).
 
 
 ## Next Steps or Deploy to Azure
 
-As next steps, we can now either [get an Access Token for the users we signed-in in this tutorial](https://github.com/Azure-Samples/ms-identity-java-servlet-webapp-call-graph), or we can proceed [to deploy this app to the **Azure App Service**](https://github.com/Azure-Samples/ms-identity-java-servlet-webapp-authentication/tree/main/4-Deployment/deploy-to-azure-app-service).
+As next steps, we can now either [get an Access Token for the users we signed-in in this tutorial](https://github.com/Azure-Samples/ms-identity-java-servlet-webapp-call-graph), or we can proceed [to deploy this app to Azure App Service](https://github.com/Azure-Samples/ms-identity-java-servlet-webapp-authentication/tree/main/4-Deployment/deploy-to-azure-app-service).
 
 ## Community Help and Support
 
@@ -155,7 +157,6 @@ Make sure that your questions or comments are tagged with [`azure-active-directo
 
 If you find a bug in the sample, please raise the issue on [GitHub Issues](../../../../issues).
 
-To provide a recommendation, visit the following [User Voice page](https://feedback.azure.com/forums/169401-azure-active-directory).
 
 ## Contributing
 
@@ -167,10 +168,11 @@ This project has adopted the Microsoft Open Source Code of Conduct. For more inf
 
 ## More information
 
+- [MSAL Java documentation](https://learn.microsoft.com/entra/msal/java/)
 - [Microsoft Authentication Library \(MSAL\) for Java](https://github.com/AzureAD/microsoft-authentication-library-for-java)
-- [MSAL Java Reference Documentation](http://javadoc.io/doc/com.microsoft.azure/msal4j)
-- [Microsoft identity platform (Azure Active Directory for developers)](https://docs.microsoft.com/azure/active-directory/develop/)
-- [Quickstart: Register an application with the Microsoft identity platform (Preview)](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app)
-- [Understanding Azure AD application consent experiences](https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience)
-- [Understand user and admin consent](https://docs.microsoft.com/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#understand-user-and-admin-consent)
-- [MSAL code samples](https://docs.microsoft.com/azure/active-directory/develop/sample-v2-code)
+- [MSAL Java Reference Documentation](https://learn.microsoft.com/java/api/overview/msal-java/)
+- [Microsoft identity platform (Azure Active Directory for developers)](https://learn.microsoft.com/azure/active-directory/develop/)
+- [Quickstart: Register an application with the Microsoft identity platform (Preview)](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app)
+- [Understanding Azure AD application consent experiences](https://learn.microsoft.com/azure/active-directory/develop/application-consent-experience)
+- [Understand user and admin consent](https://learn.microsoft.com/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#understand-user-and-admin-consent)
+- [MSAL code samples](https://learn.microsoft.com/azure/active-directory/develop/sample-v2-code)
