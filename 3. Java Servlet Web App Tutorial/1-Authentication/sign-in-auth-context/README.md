@@ -20,7 +20,7 @@ It also demonstrates how to step-up the authentication challenge by requiring mu
 ![Overview](./ReadmeFiles/topology.png)
 
 >**Note**
->Make sure you understand the [basic web site authentication sample](../sign-in) first. This shows how to sign users in.
+>Make sure you understand the [basic web site authentication sample](https://github.com/Azure-Samples/ms-identity-msal-java-samples/tree/bogavril/auth-context/3-java-servlet-web-app/1-Authentication/sign-in) first. This shows how to sign users in.
 
 ## Scenario
 
