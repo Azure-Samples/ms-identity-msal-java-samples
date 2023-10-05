@@ -63,7 +63,19 @@ Example claim challenge: `{"id_token":{"acrs":{"essential":true,"value":"c1"}}}`
 
 ## Setup
 
-### 1. Create a Microsoft Entra application registration for the website
+### 1. Clone or download this repository
+
+From your shell or command line:
+
+```console
+git clone https://github.com/Azure-Samples/ms-identity-java-servlet-webapp-authentication.git
+cd 1-Authentication/sign-in
+```
+
+or download and extract the repository .zip file.
+
+> :warning: To avoid file path length limitations on Windows, clone the repository into a directory near the root of your hard drive.
+### 2. Create a Microsoft Entra application registration for the website
 
 >**Note**
 >This is identical to the [basic web site authentication sample](../sign-in).
@@ -109,7 +121,7 @@ Open the project in your IDE to configure the code.
 
 </details>
 
-### 2. Setup the MFA Conditional Access Context
+### 3. Setup the MFA Conditional Access Context
 
 1. In the Azure Portal, go to the Microsoft Entra Conditional Access section.
 
