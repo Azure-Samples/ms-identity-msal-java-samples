@@ -69,7 +69,7 @@ From your shell or command line:
 
 ```console
 git clone https://github.com/Azure-Samples/ms-identity-java-servlet-webapp-authentication.git
-cd 1-Authentication/sign-in
+cd 1-Authentication/sign-in-auth-context
 ```
 
 or download and extract the repository .zip file.
