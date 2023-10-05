@@ -38,6 +38,22 @@ Example claim challenge: `{"id_token":{"acrs":{"essential":true,"value":"c1"}}}`
 >**Note**
 >MFA is one of the many [Conditional Access](https://learn.microsoft.com/azure/active-directory/conditional-access/overview) controls available. Any of them may be used.
 
+## Contents
+
+| File/folder                                                        | Description                                                                            |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `AppCreationScripts/`                                              | Scripts to automatically configure Azure AD app registrations.                         |
+| `src/main/java/com/microsoft/azuresamples/msal4j/authwebapp/`      | This directory contains the classes that define the web app's backend business logic.  |
+| `src/main/java/com/microsoft/azuresamples/msal4j/authservlets/`    | This directory contains the classes that are used for sign in and sign out endpoints.  |
+| `____Servlet.java`                                                 | All of the endpoints available are defined in .java classes ending in ____Servlet.java.|
+| `src/main/java/com/microsoft/azuresamples/msal4j/helpers/`         | Helper classes for authentication.                                                     |
+| `AuthenticationFilter.java`                                        | Redirects unauthenticated requests to protected endpoints to a 401 page.               |
+| `src/main/resources/authentication.properties`                     | Azure AD and program configuration.                                                    |
+| `src/main/webapp/`                                                 | This directory contains the UI (JSP templates)                                         |
+| `CHANGELOG.md`                                                     | List of changes to the sample.                                                         |
+| `CONTRIBUTING.md`                                                  | Guidelines for contributing to the sample.                                             |
+| `LICENSE`                                                          | The license for the sample.                                                            |
+
 ## Prerequisites
 
 - [JDK Version 8 or higher](https://jdk.java.net/8/)
