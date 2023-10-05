@@ -38,17 +38,47 @@ Example claim challenge: `{"id_token":{"acrs":{"essential":true,"value":"c1"}}}`
 >**Note**
 >MFA is one of the many [Conditional Access](https://learn.microsoft.com/azure/active-directory/conditional-access/overview) controls available. Any of them may be used.
 
+## Contents
+
+| File/folder                                                        | Description                                                                            |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `AppCreationScripts/`                                              | Scripts to automatically configure Azure AD app registrations.                         |
+| `src/main/java/com/microsoft/azuresamples/msal4j/authwebapp/`      | This directory contains the classes that define the web app's backend business logic.  |
+| `src/main/java/com/microsoft/azuresamples/msal4j/authservlets/`    | This directory contains the classes that are used for sign in and sign out endpoints.  |
+| `____Servlet.java`                                                 | All of the endpoints available are defined in .java classes ending in ____Servlet.java.|
+| `src/main/java/com/microsoft/azuresamples/msal4j/helpers/`         | Helper classes for authentication.                                                     |
+| `AuthenticationFilter.java`                                        | Redirects unauthenticated requests to protected endpoints to a 401 page.               |
+| `src/main/resources/authentication.properties`                     | Azure AD and program configuration.                                                    |
+| `src/main/webapp/`                                                 | This directory contains the UI (JSP templates)                                         |
+| `CHANGELOG.md`                                                     | List of changes to the sample.                                                         |
+| `CONTRIBUTING.md`                                                  | Guidelines for contributing to the sample.                                             |
+| `LICENSE`                                                          | The license for the sample.                                                            |
+
 ## Prerequisites
 
 - [JDK Version 8 or higher](https://jdk.java.net/8/)
 - [A Microsoft Entra premium tenant](https://azure.microsoft.com/pricing/details/active-directory/) is required to work with Conditional Access policies.
+- [How to get a Microsoft Entra tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
+- A user account in your own Microsoft Entra tenant if you want to work with **accounts in your organizational directory only** (single-tenant mode). If have not yet [created a user account](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory) in your Microsoft Entra tenant yet, you should do so before proceeding.
 
 ## Setup
 
-### 1. Create a Microsoft Entra application registration for the website
+### 1. Clone or download this repository
+
+From your shell or command line:
+
+```console
+git clone https://github.com/Azure-Samples/ms-identity-msal-java-samples.git
+cd 3-java-servlet-web-app/1-Authentication/sign-in-auth-context
+```
+
+or download and extract the repository .zip file.
+
+> :warning: To avoid file path length limitations on Windows, clone the repository into a directory near the root of your hard drive.
+### 2. Create a Microsoft Entra application registration for the website
 
 >**Note**
->This is identical to the [basic web site authentication sample](../sign-in).
+>This is identical to the [basic web site authentication sample](https://github.com/Azure-Samples/ms-identity-msal-java-samples/tree/bogavril/auth-context/3-java-servlet-web-app/1-Authentication/sign-in).
 
 <details>
 
@@ -91,7 +121,7 @@ Open the project in your IDE to configure the code.
 
 </details>
 
-### 2. Setup the MFA Conditional Access Context
+### 3. Setup the MFA Conditional Access Context
 
 1. In the Azure Portal, go to the Microsoft Entra Conditional Access section.
 
