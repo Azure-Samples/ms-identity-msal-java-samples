@@ -78,7 +78,7 @@ or download and extract the repository .zip file.
 ### 2. Create a Microsoft Entra application registration for the website
 
 >**Note**
->This is identical to the [basic web site authentication sample](../sign-in).
+>This is identical to the [basic web site authentication sample]([../sign-in](https://github.com/Azure-Samples/ms-identity-msal-java-samples/tree/bogavril/auth-context/3-java-servlet-web-app/1-Authentication/sign-in)).
 
 <details>
 
