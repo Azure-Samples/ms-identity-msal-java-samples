@@ -158,7 +158,7 @@ Our samples can be deployed to a number of application servers, such as Tomcat, 
 
 You can find instructions for deploying our samples [here on MSAL Java's Github wiki](https://github.com/AzureAD/microsoft-authentication-library-for-java/wiki/Deployment-Instructions-for-MSAL-Java-Samples).
 
-
+![login](./ReadmeFiles/login.png)
 
 ## Explore the sample
 
