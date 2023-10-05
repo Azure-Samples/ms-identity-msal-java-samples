@@ -42,6 +42,8 @@ Example claim challenge: `{"id_token":{"acrs":{"essential":true,"value":"c1"}}}`
 
 - [JDK Version 8 or higher](https://jdk.java.net/8/)
 - [A Microsoft Entra premium tenant](https://azure.microsoft.com/pricing/details/active-directory/) is required to work with Conditional Access policies.
+- [How to get a Microsoft Entra tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
+- A user account in your own Microsoft Entra tenant if you want to work with **accounts in your organizational directory only** (single-tenant mode). If have not yet [created a user account](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory) in your Microsoft Entra tenant yet, you should do so before proceeding.
 
 ## Setup
 
