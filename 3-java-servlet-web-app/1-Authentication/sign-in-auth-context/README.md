@@ -129,7 +129,7 @@ Open the project in your IDE to configure the code.
 
 Note: this is a different Azure Portal section than Microsoft Entra ID
 
-2. Go to the `Authentication Contexts` page, and click on `New Authentication context`. Give it a name (e.g. "MFA") and select an ID from the list, for example `c1`. Ensure the "Publish To Apps" checkbox is checked. Make a note of the ID.
+2. Go to the `Authentication Contexts` page, and click on `New Authentication context`. Give it a name (e.g. "MFA") and select an ID of the Auth context from the list, for example `c1`. Ensure the "Publish To Apps" checkbox is checked. Make a note of the ID.
 
 **Note:** We have already configured the conditional access auth context ID to `c1` in the code for you but you can modify it in the `authentication.properties` file.
 Modify the value of `app.protect.authContextIdMfa` to any ID you want but make sure it matches the ID you chose in the portal.
