@@ -123,7 +123,7 @@ Open the project in your IDE to configure the code.
 
 ### 3. Setup the MFA Conditional Access Context
 
-1. In the Azure Portal, type Microsoft Entra Conditional Access in the searchbar and select it.
+1. In the Azure Portal, type Microsoft Entra Conditional Access in the search bar and select it.
 
 ![CA](./ReadmeFiles/CA.png)
 
