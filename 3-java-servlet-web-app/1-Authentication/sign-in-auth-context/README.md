@@ -123,19 +123,25 @@ Open the project in your IDE to configure the code.
 
 ### 3. Setup the MFA Conditional Access Context
 
-1. In the Azure Portal, go to the Microsoft Entra Conditional Access section.
+1. In the Azure Portal, type Microsoft Entra Conditional Access in the search bar and select it.
 
 ![CA](./ReadmeFiles/CA.png)
 
 Note: this is a different Azure Portal section than Microsoft Entra ID
 
-2. Go to the "Authentication Contexts" page, and create a new context. Give it a name (e.g. "MFA") and select and id from the list, for example "c1". Ensure the "Publish To Apps" checkbox is checked. Make a note of the ID.
+2. Go to the `Authentication Contexts` page, and click on `New Authentication context`. Give it a name (e.g. "MFA") and select an ID of the Auth context from the list, for example `c1`. Ensure the "Publish To Apps" checkbox is checked. Make a note of the ID.
+
+**Note:** We have already configured the conditional access auth context ID to `c1` in the code for you but you can modify it in the `authentication.properties` file.
+Modify the value of `app.protect.authContextIdMfa` to any ID you want but make sure it matches the ID you chose in the portal.
+
 3. Now go to Policies and create a new Conditional Access policy. 
-    - Select "All Users" or a subset of users
-    - Select "Target Resources" and set it to "Authentication Context". Then add the context you just created.
+    - **Name** it `MFA-app-policy` or something meaningful.
+    - Select **All Users** or a subset of users.
+    - Select **Target Resources** and set it to **Authentication Context**. Then add the context you just created.
     - You can skip the "Conditions" part of the flow. This policy will apply to all calls.
-    - In Grant, check the "Require Multi-Factor Authentication" policy.
-    - You can skip the "Session" 
+    - In **Grant**, check the **Require Multi-Factor Authentication** policy.
+    - You can skip **Session**.
+    - Click the **Select** button then click **Create**.
 
 ![CA-MFA](./ReadmeFiles/CA-MFA.png)
 
@@ -150,12 +156,13 @@ Note: this is a different Azure Portal section than Microsoft Entra ID
 1. This should generate a `.war` file which can be run on a variety of application servers
 
 #### Deploying the Sample
+The homepage for the sample is `http://localhost:8080/msal4j-servlet-auth` as seen in the `authentication.properties` file
 
 Our samples can be deployed to a number of application servers, such as Tomcat, WebLogic, or Webshpere, and MSAL Java itself can generally be integrated into existing applications without changes to your existing deployment set up.
 
 You can find instructions for deploying our samples [here on MSAL Java's Github wiki](https://github.com/AzureAD/microsoft-authentication-library-for-java/wiki/Deployment-Instructions-for-MSAL-Java-Samples).
 
-
+![signed-in](./ReadmeFiles/signed-in.png)
 
 ## Explore the sample
 

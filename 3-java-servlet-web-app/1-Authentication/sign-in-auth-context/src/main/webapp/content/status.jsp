@@ -21,7 +21,7 @@
             <c:if test = "${not isAuthenticated}">
                 Use the button on the top right to sign in.
                 Attempts to get your <a href="token_details">ID Token Details</a> will result in a 401 error.
-                Attempts to get to the <a href="token_details_mfa"> page </a> will result in an auth challenge + MFA.
+                Attempts to get to this <a href="token_details_mfa"> page </a> will result in an auth challenge + MFA.
             </c:if>
         </p>
     </div>
