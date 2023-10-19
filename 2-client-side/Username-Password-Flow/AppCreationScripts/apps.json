@@ -1,6 +1,6 @@
 {
   "Sample": {
-    "Title": "Integrating Azure AD into a Java command line using username and password",
+    "Title": "Integrating Microsoft Entra ID into a Java command line using username and password",
     "Level": 200,
     "Client": "Java Console Application",
     "Service": "Microsoft Graph"
@@ -8,9 +8,9 @@
 
 
   /*
-  This section describes the Azure AD  Applications to configure, and their dependencies
+  This section describes the Microsoft Entra ID  Applications to configure, and their dependencies
   */
-  "AADApps": [
+  "Microsoft Entra IDApps": [
     {
       "Id": "app",
       "Name": "Native-Headless-Application",

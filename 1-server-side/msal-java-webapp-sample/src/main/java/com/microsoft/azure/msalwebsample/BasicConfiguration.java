@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * values by grabbing them from application.properties file
  */
 @Component
-@ConfigurationProperties("aad")
+@ConfigurationProperties("Microsoft Entra ID")
 class BasicConfiguration {
 
     private String clientId;

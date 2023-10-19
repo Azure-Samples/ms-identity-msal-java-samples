@@ -1,12 +1,12 @@
 {
     "Sample": {
-        "Title": "Enable your Java Spring Boot web app to sign in users on your Azure Active Directory tenant with the Microsoft identity platform",
+        "Title": "Enable your Java Spring Boot web app to sign in users on your Microsoft Entra tenant with the Microsoft identity platform",
         "Level": 100,
         "Client": "Java Spring Boot web app",
         "RepositoryUrl": "ms-identity-java-spring-tutorial",
-        "Endpoint": "AAD v2.0"
+        "Endpoint": "Microsoft Entra ID v2.0"
     },
-    "AADApps": [
+    "Microsoft Entra IDApps": [
         {
             "Id": "webApp",
             "Name": "java-spring-webapp-auth",

@@ -4,10 +4,10 @@ languages:
 - java
 - html
 products:
-- azure-active-directory
+- microsoft-entra-id
 - entra
 - msal-java
-description: "This sample demonstrates a Java web application that is secured using Azure Active Directory B2C."
+description: "This sample demonstrates a Java web application that is secured using Azure AD B2C."
 urlFragment: msal-java-b2c-web
 ---
 
@@ -15,7 +15,7 @@ urlFragment: msal-java-b2c-web
 
 ## Overview
 
-This sample shows how to build a Java web application that signs in users with Azure AD B2C using MSAL Java. It assumes you have some familiarity with Azure AD B2C. If you'd like to learn all that B2C has to offer, start with our documentation at aka.ms/aadb2c.
+This sample shows how to build a Java web application that signs in users with Azure AD B2C using MSAL Java. It assumes you have some familiarity with Azure AD B2C. If you'd like to learn all that B2C has to offer, start with our documentation at aka.ms/Microsoft Entra IDb2c.
 
 The app is a basic web application that performs three functions: sign-in, sign-up, and sign-out. It is intended to help get you started with Azure AD B2C, giving you the necessary tools to execute Azure AD B2C policies & securely identify users in your application.
 
@@ -28,9 +28,9 @@ This sample covers the following:
 
 ## Prerequisites
 
-1. [Create an Azure Active Directory B2C tenant](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-tenant)
-1. [Register an application in Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-register-applications).
-1. [Create user flows in Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-user-flows)
+1. [Create an Azure AD B2C tenant](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-tenant)
+1. [Register an application in Azure AD B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-register-applications).
+1. [Create user flows in Azure AD B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-user-flows)
 1. Working installation of [Java](https://openjdk.java.net/install/) 8 or above and [Maven](https://maven.apache.org/)
 
 ## Update the application
@@ -38,7 +38,7 @@ This sample covers the following:
 In the tutorial that you completed as part of the prerequisites, you [added a web application in Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-register-applications).
 To enable communication with the sample in this tutorial, you need to add a redirect URI to that application in Azure AD B2C.
 
-* Modify an existing or add a new **Reply URL**,  `https://localhost:8443/msal4jsample/secure/aad`.
+* Modify an existing or add a new **Reply URL**,  `https://localhost:8443/msal4jsample/secure/Microsoft Entra ID`.
 * On the properties page, record the application ID that you'll use when you configure the web application.
 * Also generate a key (client secret) for your web application. Record the key that you'll use when you configure this sample.
 
@@ -70,7 +70,7 @@ Open the `resources/application.properties` file
      For example, replace `fabrikamb2c` with `contoso`.
    * Set the value of `b2c.clientId` with the application ID that you recorded.
    * Replace the value of `b2c.secret` with the key that you recorded.
-   * Replace the value of `b2c.redirectUri` with `https://localhost:8443/msal4jsample/secure/aad​`.
+   * Replace the value of `b2c.redirectUri` with `https://localhost:8443/msal4jsample/secure/Microsoft Entra ID​`.
 
 1. In order to use HTTPS on localhost, you need to set up a self-signed certificate.
  - This terminal command will use Java's keytool utility to create a keystore called `keystore.p12` in the current directory, which is secured using the password `password`, and will create a cert with an alias of `testCert` and add it to the keystore.
@@ -163,7 +163,7 @@ You can the configure this sample to access that web API.
      For example, write them as `["demo.read", "demo.write"]`.
 
 Now, re-run your web app sample, and you will find a new link shows up,
-and you can access the web API using Azure Active Directory B2C.
+and you can access the web API using Azure AD B2C.
 
 ## Community Help and Support
 
@@ -187,4 +187,4 @@ For more information, see MSAL4J [conceptual documentation](https://github.com/A
 
 For more information about web apps scenarios on the Microsoft identity platform see [Scenario: Web app that signs in users](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-web-app-sign-user-overview) and [Scenario: Web app that calls web APIs](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-web-app-call-api-overview)
 
-For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](http://go.microsoft.com/fwlink/?LinkId=394414).
+For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](http://go.microsoft.com/fwlink/?LinkId=394414).

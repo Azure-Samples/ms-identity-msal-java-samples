@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import com.microsoft.aad.msal4j.ClientCredentialFactory;
-import com.microsoft.aad.msal4j.ClientCredentialParameters;
-import com.microsoft.aad.msal4j.ConfidentialClientApplication;
-import com.microsoft.aad.msal4j.IAuthenticationResult;
+import com.microsoft.Microsoft Entra ID.msal4j.ClientCredentialFactory;
+import com.microsoft.Microsoft Entra ID.msal4j.ClientCredentialParameters;
+import com.microsoft.Microsoft Entra ID.msal4j.ConfidentialClientApplication;
+import com.microsoft.Microsoft Entra ID.msal4j.IAuthenticationResult;
 import com.nimbusds.oauth2.sdk.http.HTTPResponse;
 
 import java.io.BufferedReader;

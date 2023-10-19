@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 
-public class AADClaimsVerifier implements JwtClaimsSetVerifier {
+public class Microsoft Entra IDClaimsVerifier implements JwtClaimsSetVerifier {
     private static final String ISS_CLAIM = "iss";
     private static final String AUD_CLAIM = "aud";
     private static final String V1_AUD_PREFIX = "api://";
@@ -18,14 +18,14 @@ public class AADClaimsVerifier implements JwtClaimsSetVerifier {
     private HashSet<String> acceptedIssuers = new HashSet<String>();
     private final String applicationId;
 
-    public AADClaimsVerifier(final String[] aadAliases, final String[] acceptedTenants, final String applicationId) {
+    public Microsoft Entra IDClaimsVerifier(final String[] Microsoft Entra IDAliases, final String[] acceptedTenants, final String applicationId) {
         // In production, you'd want to get a valid list of issuers from:
         // https://login.microsoftonline.com/common/discovery/instance?authorization_endpoint=https://login.microsoftonline.com/common/oauth2/v2.0/authorize&api-version=1.1
         // You must get all the values under the metadata[].aliases[] properties.
 
-        Assert.notEmpty(aadAliases, "aadAliases cannot be empty");
-        for (final String issuer : aadAliases) {
-            Assert.notNull(issuer, "AADAlias value cannot be null");
+        Assert.notEmpty(Microsoft Entra IDAliases, "Microsoft Entra IDAliases cannot be empty");
+        for (final String issuer : Microsoft Entra IDAliases) {
+            Assert.notNull(issuer, "Microsoft Entra IDAlias value cannot be null");
         }
 
         Assert.notEmpty(acceptedTenants, "acceptedTenants cannot be empty");
@@ -37,14 +37,14 @@ public class AADClaimsVerifier implements JwtClaimsSetVerifier {
 
         this.applicationId = applicationId;
 
-        generateAcceptedIssuers(aadAliases, acceptedTenants);
+        generateAcceptedIssuers(Microsoft Entra IDAliases, acceptedTenants);
     }
 
-    private void generateAcceptedIssuers(final String[] aadAliases, final String[] acceptedTenants) {
-        for (int i = 0; i < aadAliases.length; i++) {
+    private void generateAcceptedIssuers(final String[] Microsoft Entra IDAliases, final String[] acceptedTenants) {
+        for (int i = 0; i < Microsoft Entra IDAliases.length; i++) {
             for (int j = 0; j < acceptedTenants.length; j++){
-                acceptedIssuers.add(String.format(V1_ISSUER_FORMAT, aadAliases[i], acceptedTenants[j]));
-                acceptedIssuers.add(String.format(V2_ISSUER_FORMAT, aadAliases[i], acceptedTenants[j]));
+                acceptedIssuers.add(String.format(V1_ISSUER_FORMAT, Microsoft Entra IDAliases[i], acceptedTenants[j]));
+                acceptedIssuers.add(String.format(V2_ISSUER_FORMAT, Microsoft Entra IDAliases[i], acceptedTenants[j]));
             }
         }
     }

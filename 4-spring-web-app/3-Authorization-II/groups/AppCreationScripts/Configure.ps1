@@ -10,8 +10,8 @@ param(
 #Requires -Modules AzureAD -RunAsAdministrator
 
 <#
- This script creates the Azure AD applications needed for this sample and updates the configuration files
- for the visual Studio projects from the data in the Azure AD applications.
+ This script creates the Microsoft Entra applications needed for this sample and updates the configuration files
+ for the visual Studio projects from the data in the Microsoft Entra applications.
 
  Before running this script you need to install the AzureAD cmdlets as an administrator. 
  For this:
@@ -34,7 +34,7 @@ Function ComputePassword
 }
 
 # Create an application key
-# See https://www.sabin.io/blog/adding-an-azure-active-directory-application-and-key-using-powershell/
+# See https://www.sabin.io/blog/adding-an-azure-active-directoryapplication-and-key-using-powershell/
 Function CreateAppKey([DateTime] $fromDate, [double] $durationInMonths, [string]$pw)
 {
     $endDate = $fromDate.AddMonths($durationInMonths);
@@ -133,7 +133,7 @@ Function ReplaceInTextFile([string] $configFilePath, [System.Collections.HashTab
     Set-Content -Path $configFilePath -Value $lines -Force
 }
 <#.Description
-   This function creates a new Azure AD Security Group with provided values
+   This function creates a new Microsoft Entra Security Group with provided values
 #>  
 Function CreateSecurityGroup([string] $name, [string] $description)
 {
@@ -147,14 +147,14 @@ Function CreateSecurityGroup([string] $name, [string] $description)
 }
 
 Set-Content -Value "<html><body><table>" -Path createdApps.html
-Add-Content -Value "<thead><tr><th>Application</th><th>AppId</th><th>Url in the Azure portal</th></tr></thead><tbody>" -Path createdApps.html
+Add-Content -Value "<thead><tr><th>Application</th><th>AppId</th><th>Url in the Microsoft Entra portal</th></tr></thead><tbody>" -Path createdApps.html
 
 $ErrorActionPreference = "Stop"
 
 Function ConfigureApplications
 {
 <#.Description
-   This function creates the Azure AD applications for the sample in the provided Azure AD tenant and updates the
+   This function creates the Microsoft Entra applications for the sample in the provided Microsoft Entra tenant and updates the
    configuration files in the client and service project  of the visual studio solution (App.Config and Web.Config)
    so that they are consistent with the Applications parameters
 #> 
@@ -166,7 +166,7 @@ Function ConfigureApplications
     }
 
     # $tenantId is the Active Directory Tenant. This is a GUID which represents the "Directory ID" of the AzureAD tenant
-    # into which you want to create the apps. Look it up in the Azure portal in the "Properties" of the Azure AD.
+    # into which you want to create the apps. Look it up in the Microsoft Entra portal in the "Properties" of the Microsoft Entra ID.
 
     # Login to Azure PowerShell (interactive if credentials are not already provided:
     # you'll need to sign-in with creds enabling your to create apps in the tenant)
@@ -199,15 +199,15 @@ Function ConfigureApplications
     # Get the user running the script to add the user as the app owner
     $user = Get-AzureADUser -ObjectId $creds.Account.Id
 
-   # Create the webApp AAD application
-   Write-Host "Creating the AAD application (java-spring-webapp-groups)"
+   # Create the webApp Microsoft Entra application
+   Write-Host "Creating the Microsoft Entra application (java-spring-webapp-groups)"
    # Get a 6 months application key for the webApp Application
    $pw = ComputePassword
    $fromDate = [DateTime]::Now;
    $key = CreateAppKey -fromDate $fromDate -durationInMonths 6 -pw $pw
    $webAppAppKey = $pw
    # create the application 
-   $webAppAadApplication = New-AzureADApplication -DisplayName "java-spring-webapp-groups" `
+   $webAppMicrosoft Entra IDApplication = New-AzureADApplication -DisplayName "java-spring-webapp-groups" `
                                                   -HomePage "http://localhost:8080/" `
                                                   -ReplyUrls "http://localhost:8080/login/oauth2/code/" `
                                                   -PasswordCredentials $key `
@@ -215,14 +215,14 @@ Function ConfigureApplications
                                                   -PublicClient $False
 
    # create the service principal of the newly created application 
-   $currentAppId = $webAppAadApplication.AppId
+   $currentAppId = $webAppMicrosoft Entra IDApplication.AppId
    $webAppServicePrincipal = New-AzureADServicePrincipal -AppId $currentAppId -Tags {WindowsAzureActiveDirectoryIntegratedApp}
 
    # add the user running the script as an app owner if needed
-   $owner = Get-AzureADApplicationOwner -ObjectId $webAppAadApplication.ObjectId
+   $owner = Get-AzureADApplicationOwner -ObjectId $webAppMicrosoft Entra IDApplication.ObjectId
    if ($owner -eq $null)
    { 
-        Add-AzureADApplicationOwner -ObjectId $webAppAadApplication.ObjectId -RefObjectId $user.ObjectId
+        Add-AzureADApplicationOwner -ObjectId $webAppMicrosoft Entra IDApplication.ObjectId -RefObjectId $user.ObjectId
         Write-Host "'$($user.UserPrincipalName)' added as an application owner to app '$($webAppServicePrincipal.DisplayName)'"
    }
 
@@ -232,9 +232,9 @@ Function ConfigureApplications
 
    Write-Host "Done creating the webApp application (java-spring-webapp-groups)"
 
-   # URL of the AAD application in the Azure portal
-   # Future? $webAppPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$webAppAadApplication.AppId+"/objectId/"+$webAppAadApplication.ObjectId+"/isMSAApp/"
-   $webAppPortalUrl = "https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$webAppAadApplication.AppId+"/objectId/"+$webAppAadApplication.ObjectId+"/isMSAApp/"
+   # URL of the Microsoft Entra application in the Microsoft Entra portal
+   # Future? $webAppPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_Microsoft Entra ID_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$webAppMicrosoft Entra IDApplication.AppId+"/objectId/"+$webAppMicrosoft Entra IDApplication.ObjectId+"/isMSAApp/"
+   $webAppPortalUrl = "https://portal.azure.com/#blade/Microsoft_Microsoft Entra ID_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$webAppMicrosoft Entra IDApplication.AppId+"/objectId/"+$webAppMicrosoft Entra IDApplication.ObjectId+"/isMSAApp/"
    Add-Content -Value "<tr><td>webApp</td><td>$currentAppId</td><td><a href='$webAppPortalUrl'>java-spring-webapp-groups</a></td></tr>" -Path createdApps.html
 
    $requiredResourcesAccess = New-Object System.Collections.Generic.List[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]
@@ -247,13 +247,13 @@ Function ConfigureApplications
    $requiredResourcesAccess.Add($requiredPermissions)
 
 
-   Set-AzureADApplication -ObjectId $webAppAadApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
+   Set-AzureADApplication -ObjectId $webAppMicrosoft Entra IDApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
    Write-Host "Granted permissions."
 
    # Update config file for 'webApp'
    $configFile = $pwd.Path + "\..\src\main\resources\application.yml"
    Write-Host "Updating the sample code ($configFile)"
-   $dictionary = @{ "Enter_Your_Tenant_ID_Here" = $tenantId;"Enter_Your_Client_ID_Here" = $webAppAadApplication.AppId;"Enter_Your_Client_Secret_Here" = $webAppAppKey;"Enter_Your_Admin_Group_ID_Here" = $AdminGroup.objectId;"Enter_Your_User_Group_ID_Here" = $UserGroup.objectId };
+   $dictionary = @{ "Enter_Your_Tenant_ID_Here" = $tenantId;"Enter_Your_Client_ID_Here" = $webAppMicrosoft Entra IDApplication.AppId;"Enter_Your_Client_Secret_Here" = $webAppAppKey;"Enter_Your_Admin_Group_ID_Here" = $AdminGroup.objectId;"Enter_Your_User_Group_ID_Here" = $UserGroup.objectId };
    ReplaceInTextFile -configFilePath $configFile -dictionary $dictionary
 
    # Update config file for 'webApp'
@@ -262,10 +262,10 @@ Function ConfigureApplications
    $dictionary = @{ "Enter_Your_Admin_Group_ID_Here" = $AdminGroup.objectId;"Enter_Your_User_Group_ID_Here" = $UserGroup.objectId };
    ReplaceInTextFile -configFilePath $configFile -dictionary $dictionary
    Write-Host -ForegroundColor Green "------------------------------------------------------------------------------------------------" 
-   Write-Host "IMPORTANT: Please follow the instructions below to complete a few manual step(s) in the Azure portal":
+   Write-Host "IMPORTANT: Please follow the instructions below to complete a few manual step(s) in the Microsoft Entra portal":
    Write-Host "- For webApp"
    Write-Host "  - Navigate to $webAppPortalUrl"
-   Write-Host "  - Security groups matching the names you provided have been created in this tenant (if not present already). On Azure portal, assign some users to it, and configure ID & Access tokens to emit GroupIDs" -ForegroundColor Red 
+   Write-Host "  - Security groups matching the names you provided have been created in this tenant (if not present already). On Microsoft Entra portal, assign some users to it, and configure ID & Access tokens to emit GroupIDs" -ForegroundColor Red 
 
    Write-Host -ForegroundColor Green "------------------------------------------------------------------------------------------------" 
       if($isOpenSSL -eq 'Y')

@@ -25,8 +25,8 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
     @Value("${security.oauth2.client.client-id}")
     private String applicationId;
 
-    @Value("${security.oauth2.aad.aliases}")
-    private String[] aadAliases;
+    @Value("${security.oauth2.Microsoft Entra ID.aliases}")
+    private String[] Microsoft Entra IDAliases;
 
     @Value("${security.oauth2.accepted.tenants}")
     private String[] acceptedTenants;
@@ -34,7 +34,7 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
     @Value("${security.oauth2.scope.access-as-user}")
     private String accessAsUserScope;
 
-    private final String AAD_SCOPE_CLAIM = "scp";
+    private final String Microsoft Entra ID_SCOPE_CLAIM = "scp";
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -57,7 +57,7 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
         JwtAccessTokenConverter jwtConverter = new JwtAccessTokenConverter();
 
         DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
-        accessTokenConverter.setScopeAttribute(AAD_SCOPE_CLAIM);
+        accessTokenConverter.setScopeAttribute(Microsoft Entra ID_SCOPE_CLAIM);
 
         jwtConverter.setAccessTokenConverter(accessTokenConverter);
 
@@ -67,13 +67,13 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
     @Override
     public void configure(ResourceServerSecurityConfigurer resources){
         // we need to set resourceId to null so that spring doesn't try to verify this.
-        // this is because the aud claim is variable in AAD (e.g. clientId or api://clientId ).
-        // we then verify this in our custom verifier (AADClaimsVerifier)
+        // this is because the aud claim is variable in Microsoft Entra ID (e.g. clientId or api://clientId ).
+        // we then verify this in our custom verifier (Microsoft Entra IDClaimsVerifier)
         resources.resourceId(null);
     }
 
     @Bean
     public JwtClaimsSetVerifier claimSetVerifier() {
-        return new AADClaimsVerifier(aadAliases, acceptedTenants, applicationId);
+        return new Microsoft Entra IDClaimsVerifier(Microsoft Entra IDAliases, acceptedTenants, applicationId);
     }
 }

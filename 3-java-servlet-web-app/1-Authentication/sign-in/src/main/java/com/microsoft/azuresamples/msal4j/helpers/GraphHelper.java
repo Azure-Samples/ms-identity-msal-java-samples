@@ -71,7 +71,7 @@ public class GraphHelper {
 
         /**
          * This implementation of the IAuthenticationProvider helps injects the Graph access
-         * token from Azure AD into the headers of the IHttp request used by GraphSDK.
+         * token from Microsoft Entra ID into the headers of the IHttp request used by GraphSDK.
          * 
          * uses contextAdapter to get the latest access token from context
          * -> make sure you're updating AT in context with AuthHelper.acquireTokenSilently() before each API call.

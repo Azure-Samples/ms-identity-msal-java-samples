@@ -3,8 +3,8 @@
 
 package com.microsoft.azuresamples.msal4j.helpers;
 
-import com.microsoft.aad.msal4j.IAccount;
-import com.microsoft.aad.msal4j.IAuthenticationResult;
+import com.microsoft.Microsoft Entra ID.msal4j.IAccount;
+import com.microsoft.Microsoft Entra ID.msal4j.IAuthenticationResult;
 import com.microsoft.graph.models.Group;
 import com.nimbusds.jose.shaded.json.JSONArray;
 import com.nimbusds.jose.shaded.json.JSONObject;
@@ -175,7 +175,7 @@ public class IdentityContextData implements Serializable {
         this.setHasChanged(true);
     }
 
-    // policy is relevant for AAD B2C apps only.
+    // policy is relevant for Azure AD B2C apps only.
     public void setPolicy(final String policy) {
         this.policy = policy;
         this.setHasChanged(true);

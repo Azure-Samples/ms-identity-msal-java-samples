@@ -5,9 +5,9 @@ languages:
 - powershell
 - html
 products:
-- azure-active-directory
+- microsoft-entra-id
 - entra
-description: "This sample demonstrates a Java web application calling a Microsoft Graph that is secured using Azure Active Directory."
+description: "This sample demonstrates a Java web application calling a Microsoft Graph that is secured using Microsoft Entra ID."
 urlFragment: msal-java-sign-in-graph
 ---
 
@@ -19,11 +19,11 @@ urlFragment: msal-java-sign-in-graph
 
 ### Overview
 
-This sample demonstrates a Java web application calling a Microsoft Graph that is secured using Azure Active Directory.
+This sample demonstrates a Java web application calling a Microsoft Graph that is secured using Microsoft Entra ID.
 
 1. The Java web application uses the Microsoft Authentication Library for Java (MSAL4J) to obtain an:
 
-   - Id Token from Azure Active Directory (Azure AD) to sign in an user
+   - Id Token from Microsoft Entra ID to sign in an user
    - Access token that is used as a bearer token when calling the Microsoft Graph to get basic information of the signed-in user.
 
      ![Topology](./ReadmeFiles/Java-WebApp-Diagram.png)
@@ -34,7 +34,7 @@ This sample demonstrates a Java web application calling a Microsoft Graph that i
 
 ### Scenario
 
-This sample shows how to build a Java web app that uses OpenId Connect to sign in/ sign out an user and to get access to the Microsoft Graph using MSAL4J. For more information about how the protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-authentication-scenarios).
+This sample shows how to build a Java web app that uses OpenId Connect to sign in/ sign out an user and to get access to the Microsoft Graph using MSAL4J. For more information about how the protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-authentication-scenarios).
 
 ## How to run this sample
 
@@ -42,8 +42,8 @@ To run this sample, you'll need:
 
 - Working installation of Java and Maven
 - An Internet connection
-- An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/)
-- A user account in your Azure AD tenant.
+- a Microsoft Entra tenant. For more information on how to get a Microsoft Entra tenant, see [How to get a Microsoft Entra tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/)
+- A user account in your Microsoft Entra tenant.
 
 ### Step 1: Download Java (8 and above) for your platform
 
@@ -55,40 +55,40 @@ From your shell or command line:
 
 - `git clone https://github.com/Azure-Samples/ms-identity-java-webapp.git`
 
-### Step 3:  Register the sample with your Azure Active Directory tenant
+### Step 3:  Register the sample with your Microsoft Entra tenant
 
 To register these projects, you can:
 
 - either follow the steps in the paragraphs below
 - or use PowerShell scripts that:
-  - **automatically** create for you the Azure AD applications and related objects (passwords, permissions, dependencies)
+  - **automatically** create for you the Microsoft Entra applications and related objects (passwords, permissions, dependencies)
 
 If you want to use this automation, read the instructions in [App Creation Scripts](../AppCreationScripts/AppCreationScripts.md). Please note that the configuration of your code (Step 4) still needs to be done manually.
 
-#### First step: choose the Azure AD tenant where you want to create your applications
+#### First step: choose the Microsoft Entra tenant where you want to create your applications
 
 As a first step you'll need to:
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Sign in to the [Microsoft Entra portal](https://portal.azure.com).
 1. On the top bar, click on your account, and then on **Switch Directory**.
 1. Once the *Directory + subscription* pane opens, choose the Active Directory tenant where you wish to register your application, from the *Favorites* or *All Directories* list.
-1. Click on **All services** in the portal menu, and choose **Azure Active Directory**.
+1. Click on **All services** in the portal menu, and choose **Microsoft Entra ID**.
 
-> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Azure Active Directory window respectively as *Name* and *Directory ID*
+> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Microsoft Entra ID window respectively as *Name* and *Directory ID*
 
 #### Register the app (java-webapp)
 
-1. In the  **Azure Active Directory** pane, click on **App registrations** and choose **New registration**.
+1. In the  **Microsoft Entra ID** pane, click on **App registrations** and choose **New registration**.
 1. Enter a friendly name for the application, for example 'java-webapp', select **Accounts in any organizational directory and personal Microsoft Accounts (e.g. Skype, Xbox, Outlook.com)**.
 1. Click **Register** to register the application.
 1. On the application **Overview** page:
     - copy **Application (client) ID**
     - copy **Directory (tenant) ID**
     - You'll need both of these values later to configure the project, so copy them in a safe place.
-1. On the application **Authentication** page, under **Redirect URIs**, select **Web**. You will need to enter two different redirect URIs: one for the sign-in page, and one for the graph page. For both, you should use the same host and port number, then followed by "/msal4jsample/secure/aad" for the sign-in page and "msal4jsample/graph/me" for the user info page.
+1. On the application **Authentication** page, under **Redirect URIs**, select **Web**. You will need to enter two different redirect URIs: one for the sign-in page, and one for the graph page. For both, you should use the same host and port number, then followed by "/msal4jsample/secure/Microsoft Entra ID" for the sign-in page and "msal4jsample/graph/me" for the user info page.
    By default, the sample uses:
 
-    - `https://localhost:8443/msal4jsample/secure/aad`.
+    - `https://localhost:8443/msal4jsample/secure/Microsoft Entra ID`.
     - `https://localhost:8443/msal4jsample/graph/me`
 
     Click on **save**.
@@ -98,9 +98,9 @@ As a first step you'll need to:
    - Type a key description (for instance `app secret`),
    - Select a key duration of either **In 1 year**, **In 2 years**, or **Never Expires**.
    - The key value will display when you select **Add**. Copy the its value in a safe place.
-   - You'll need this key later to configure the project. This key value will not be displayed again, nor retrievable by any other means, so record it as soon as it is visible from the Azure portal.
+   - You'll need this key later to configure the project. This key value will not be displayed again, nor retrievable by any other means, so record it as soon as it is visible from the Microsoft Entra portal.
 
-### Step 4:  Configure the sample to use your Azure AD tenant
+### Step 4:  Configure the sample to use your Microsoft Entra tenant
 
 Open `application.properties` in the src/main/resources folder.
 1. Fill in your tenant and app registration information noted in registration step. 
@@ -108,8 +108,8 @@ Open `application.properties` in the src/main/resources folder.
    - Replace `Enter_the_Application_Id_here` with the **Application Id**
    - Replace `Enter_the_Client_Secret_Here` with the **secret key value**
    
-1. If you did not use the  default redirect URIs, then you'll have to update `aad.redirectUriSignin` and `aad.redirectUriGraph` as well with the registered redirect URIs.
-   - You can use any host and port number, but the path must stay the same (/msal4jsample/secure/aad and /msal4jsample/graph/me) as these are mapped to the controllers that will process the requests.
+1. If you did not use the  default redirect URIs, then you'll have to update `Microsoft Entra ID.redirectUriSignin` and `Microsoft Entra ID.redirectUriGraph` as well with the registered redirect URIs.
+   - You can use any host and port number, but the path must stay the same (/msal4jsample/secure/Microsoft Entra ID and /msal4jsample/graph/me) as these are mapped to the controllers that will process the requests.
 
 1. In order to use HTTPS on localhost, you need to set up a self-signed certificate. 
  - This terminal command will use Java's keytool utility to create a keystore called `keystore.p12` in the current directory, which is secured using the password `password`, and will create a cert with an alias of `testCert` and add it to the keystore.
@@ -214,4 +214,4 @@ For more information, see MSAL4J [conceptual documentation](https://github.com/A
 
 For more information about web apps scenarios on the Microsoft identity platform see [Scenario: Web app that signs in users](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-web-app-sign-user-overview) and [Scenario: Web app that calls web APIs](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-web-app-call-api-overview)
 
-For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](http://go.microsoft.com/fwlink/?LinkId=394414).
+For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](http://go.microsoft.com/fwlink/?LinkId=394414).

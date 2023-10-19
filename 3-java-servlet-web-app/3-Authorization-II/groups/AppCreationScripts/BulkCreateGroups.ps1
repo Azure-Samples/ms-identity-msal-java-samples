@@ -1,5 +1,5 @@
 <#
- Use this script to create 200+ groups in your Azure AD tenant and assign a user to it.
+ Use this script to create 200+ groups in your Microsoft Entra tenant and assign a user to it.
 
  Use the companion script BulkRemoveGroups.ps1 to remove these security groups from your tenant.
 #>

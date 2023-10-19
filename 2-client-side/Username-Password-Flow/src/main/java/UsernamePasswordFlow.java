@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import com.microsoft.aad.msal4j.IAccount;
-import com.microsoft.aad.msal4j.IAuthenticationResult;
-import com.microsoft.aad.msal4j.MsalException;
-import com.microsoft.aad.msal4j.PublicClientApplication;
-import com.microsoft.aad.msal4j.SilentParameters;
-import com.microsoft.aad.msal4j.UserNamePasswordParameters;
+import com.microsoft.Microsoft Entra ID.msal4j.IAccount;
+import com.microsoft.Microsoft Entra ID.msal4j.IAuthenticationResult;
+import com.microsoft.Microsoft Entra ID.msal4j.MsalException;
+import com.microsoft.Microsoft Entra ID.msal4j.PublicClientApplication;
+import com.microsoft.Microsoft Entra ID.msal4j.SilentParameters;
+import com.microsoft.Microsoft Entra ID.msal4j.UserNamePasswordParameters;
 
 import java.io.FileInputStream;
 import java.io.IOException;

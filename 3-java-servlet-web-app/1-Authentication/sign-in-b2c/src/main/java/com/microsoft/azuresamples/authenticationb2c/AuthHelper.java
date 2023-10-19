@@ -1,6 +1,6 @@
 package com.microsoft.azuresamples.authenticationb2c;
 
-import com.microsoft.aad.msal4j.*;
+import com.microsoft.Microsoft Entra ID.msal4j.*;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import java.util.logging.Level;
@@ -17,15 +17,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class AuthHelper {
-    static final String AUTHORITY = Config.getProperty("aad.authority");
-    static final String SIGN_IN_POLICY = Config.getProperty("aad.signInPolicy");
-    static final String PW_RESET_POLICY = Config.getProperty("aad.passwordResetPolicy");
-    static final String EDIT_PROFILE_POLICY = Config.getProperty("aad.editProfilePolicy");
-    static final String CLIENT_ID = Config.getProperty("aad.clientId");
-    static final String SECRET = Config.getProperty("aad.secret");
-    static final String SCOPES = Config.getProperty("aad.scopes");
-    static final String SIGN_OUT_ENDPOINT = Config.getProperty("aad.signOutEndpoint");
-    static final String POST_SIGN_OUT_FRAGMENT = Config.getProperty("aad.postSignOutFragment");
+    static final String AUTHORITY = Config.getProperty("Microsoft Entra ID.authority");
+    static final String SIGN_IN_POLICY = Config.getProperty("Microsoft Entra ID.signInPolicy");
+    static final String PW_RESET_POLICY = Config.getProperty("Microsoft Entra ID.passwordResetPolicy");
+    static final String EDIT_PROFILE_POLICY = Config.getProperty("Microsoft Entra ID.editProfilePolicy");
+    static final String CLIENT_ID = Config.getProperty("Microsoft Entra ID.clientId");
+    static final String SECRET = Config.getProperty("Microsoft Entra ID.secret");
+    static final String SCOPES = Config.getProperty("Microsoft Entra ID.scopes");
+    static final String SIGN_OUT_ENDPOINT = Config.getProperty("Microsoft Entra ID.signOutEndpoint");
+    static final String POST_SIGN_OUT_FRAGMENT = Config.getProperty("Microsoft Entra ID.postSignOutFragment");
     static final Long STATE_TTL = Long.parseLong(Config.getProperty("app.stateTTL"));
     static final String REDIRECT_URI = Config.getProperty("app.redirectUri");
     static final String HOME_PAGE = Config.getProperty("app.homePage");
@@ -149,7 +149,7 @@ public class AuthHelper {
         resp.sendRedirect(redirectUrl);
     }
 
-    public static void processAADCallback(final HttpServletRequest req, final HttpServletResponse resp)
+    public static void processMicrosoft Entra IDCallback(final HttpServletRequest req, final HttpServletResponse resp)
             throws Exception {
         Config.logger.log(Level.INFO, "processing redirect request...");
         final MsalAuthSession msalAuth = getMsalAuthSession(req.getSession());
@@ -202,7 +202,7 @@ public class AuthHelper {
 
             // have they done an edit profile or a password reset? Handle it by re-authorizing
             handlePolicyChange(req, resp, msalAuth);
-        } catch (final AADPasswordResetException pre) {
+        } catch (final Microsoft Entra IDPasswordResetException pre) {
             // this is a password reset request.
             // unlike *unexpected redirect endpoint exceptions*  DO NOT clear the session on PW reset
             // because the session contains important state and nonce info from original request
@@ -257,8 +257,8 @@ public class AuthHelper {
         Config.logger.log(Level.INFO, "error description is {0}", errorDescription);
         //if there is an error & its description has password reset err code, do reset pw flow
         if (errorDescription != null) {
-            if (errorDescription.contains(AADPasswordResetException.FORGOT_PASSWORD_ERROR_CODE)){
-                throw new AADPasswordResetException("Password reset error code in request.");
+            if (errorDescription.contains(Microsoft Entra IDPasswordResetException.FORGOT_PASSWORD_ERROR_CODE)){
+                throw new Microsoft Entra IDPasswordResetException("Password reset error code in request.");
             }
             throw new Exception("Unknown error in request.");
         }

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.microsoft.aad.msal4j.*;
+import com.microsoft.Microsoft Entra ID.msal4j.*;
 import com.nimbusds.jwt.JWTParser;
 import com.nimbusds.openid.connect.sdk.AuthenticationErrorResponse;
 import com.nimbusds.openid.connect.sdk.AuthenticationResponse;
@@ -105,7 +105,7 @@ public class AuthFilter extends OncePerRequestFilter {
         }
 
         if (params.get("error") != null) {
-            throw new AuthException(String.format("AAD returned an error response: %s - %s",
+            throw new AuthException(String.format("Microsoft Entra ID returned an error response: %s - %s",
                     params.get("error"),
                     params.get("error_description")));
         }

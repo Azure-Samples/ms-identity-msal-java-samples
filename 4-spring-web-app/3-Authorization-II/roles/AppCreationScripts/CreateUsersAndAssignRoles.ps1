@@ -6,7 +6,7 @@ param(
 )
 
 <#
- This script creates the following artefacts in the Azure AD tenant.
+ This script creates the following artefacts in the Microsoft Entra tenant.
  1) A number of App roles
  2) A set of users and assigns them to the app roles.
 
@@ -60,7 +60,7 @@ Function CreateRolesUsersAndRoleAssignments
 #> 
 
     # $tenantId is the Active Directory Tenant. This is a GUID which represents the "Directory ID" of the AzureAD tenant
-    # into which you want to create the apps. Look it up in the Azure portal in the "Properties" of the Azure AD.
+    # into which you want to create the apps. Look it up in the Microsoft Entra portal in the "Properties" of the Microsoft Entra ID.
 
     # Login to Azure PowerShell (interactive if credentials are not already provided:
     # you'll need to sign-in with creds enabling your to create apps in the tenant)

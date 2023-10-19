@@ -3,8 +3,8 @@
 
 package com.microsoft.azuresamples.msal4j.helpers;
 
-import com.microsoft.aad.msal4j.IAccount;
-import com.microsoft.aad.msal4j.IAuthenticationResult;
+import com.microsoft.Microsoft Entra ID.msal4j.IAccount;
+import com.microsoft.Microsoft Entra ID.msal4j.IAuthenticationResult;
 import com.nimbusds.jose.shaded.json.JSONArray;
 import com.nimbusds.jose.shaded.json.JSONObject;
 import com.nimbusds.jwt.SignedJWT;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import com.microsoft.aad.msal4j.*;
+import com.microsoft.Microsoft Entra ID.msal4j.*;
 
 import java.util.Collections;
 import java.util.Set;

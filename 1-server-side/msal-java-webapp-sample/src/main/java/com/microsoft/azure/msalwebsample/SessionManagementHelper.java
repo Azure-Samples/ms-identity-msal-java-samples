@@ -3,7 +3,7 @@
 
 package com.microsoft.azure.msalwebsample;
 
-import com.microsoft.aad.msal4j.IAuthenticationResult;
+import com.microsoft.Microsoft Entra ID.msal4j.IAuthenticationResult;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;

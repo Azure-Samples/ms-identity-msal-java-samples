@@ -10,13 +10,13 @@ These scenarios are generally considered secure enough for MSAL to store credent
 
 A group of web authentication samples using OpenId Connect and the Microsoft Identity platform
 
-1. Use MSAL Java in a web application to sign in users with Azure AD
+1. Use MSAL Java in a web application to sign in users with Microsoft Entra ID
     - Source code can be found in the [msal-java-webapp-sample](msal-java-webapp-sample) directory, as well as the [README](msal-java-webapp-sample/README.md) for configuring and running the sample
 1. Use MSAL Java in a web application to sign in users Azure AD B2C
     - Source code can be found in the [msal-b2c-web-sample](msal-b2c-web-sample) directory, as well as the [README](msal-b2c-web-sample/README.md) for configuring and running the sample
-1. Use MSAL Java alongside Spring Security to sign in users with Azure AD
+1. Use MSAL Java alongside Spring Security to sign in users with Microsoft Entra ID
     - Source code can be found in the [msal-spring-security-web-app](msal-spring-security-web-app) directory, as well as the [README](spring-security-web-app/README.md) for configuring and running the sample
-1. Use MSAL Java in a web application to sign in users with Azure AD, and obtain an access token for a separate web API
+1. Use MSAL Java in a web application to sign in users with Microsoft Entra ID, and obtain an access token for a separate web API
     - Source code can be found in the [msal-web-api-sample](msal-web-api-sample) directory, as well as the [README](msal-web-api-sample/README.md) for configuring and running the sample
 
 How to use the Microsoft Identity platform to access user data in a long-running, non-interactive process:

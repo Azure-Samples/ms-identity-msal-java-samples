@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.microsoft.aad.msal4j.*;
+import com.microsoft.Microsoft Entra ID.msal4j.*;
 import com.nimbusds.jwt.JWTParser;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class AuthPageController {
         return "index";
     }
 
-    @RequestMapping("/msal4jsample/secure/aad")
+    @RequestMapping("/msal4jsample/secure/Microsoft Entra ID")
     public ModelAndView securePage(HttpServletRequest httpRequest) throws ParseException {
         ModelAndView mav = new ModelAndView("auth_page");
 

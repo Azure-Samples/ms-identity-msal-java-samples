@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This class defines a page for showing the user AAD error details
+ * This class defines a page for showing the user Microsoft Entra ID error details
  *  In a real world app, you should likely NOT want to give out error details to your users.
  */
 @WebServlet(name = "AuthErrorDetailsServlet", urlPatterns = "/auth_error_details")

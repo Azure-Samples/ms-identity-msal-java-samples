@@ -1,9 +1,9 @@
 package com.microsoft.azuresamples.authenticationb2c;
 
-public class AADPasswordResetException extends Exception {
-    static final String FORGOT_PASSWORD_ERROR_CODE = Config.getProperty("aad.forgotPasswordErrCode");
+public class Microsoft Entra IDPasswordResetException extends Exception {
+    static final String FORGOT_PASSWORD_ERROR_CODE = Config.getProperty("Microsoft Entra ID.forgotPasswordErrCode");
 
-    AADPasswordResetException(String message){
+    Microsoft Entra IDPasswordResetException(String message){
         super(message);
     }
 }

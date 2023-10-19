@@ -1,6 +1,6 @@
 <#
- This script creates the Azure AD applications needed for this sample and updates the configuration files
- for the visual Studio projects from the data in the Azure AD applications.
+ This script creates the Microsoft Entra applications needed for this sample and updates the configuration files
+ for the visual Studio projects from the data in the Microsoft Entra applications.
 
  Before running this script you need to install the AzureAD cmdlets as an administrator. 
  For this:
@@ -102,12 +102,12 @@ Function UpdateTextFile([string] $configFilePath, [System.Collections.HashTable]
 }
 
 Set-Content -Value "<html><body><table>" -Path createdApps.html
-Add-Content -Value "<thead><tr><th>Application</th><th>AppId</th><th>Url in the Azure portal</th></tr></thead><tbody>" -Path createdApps.html
+Add-Content -Value "<thead><tr><th>Application</th><th>AppId</th><th>Url in the Microsoft Entra portal</th></tr></thead><tbody>" -Path createdApps.html
 
 Function ConfigureApplications
 {
 <#.Description
-   This function creates the Azure AD applications for the sample in the provided Azure AD tenant and updates the
+   This function creates the Microsoft Entra applications for the sample in the provided Microsoft Entra tenant and updates the
    configuration files in the client and service project  of the visual studio solution (App.Config and Web.Config)
    so that they are consistent with the Applications parameters
 #> 
@@ -121,7 +121,7 @@ Function ConfigureApplications
    process
    {
     # $tenantId is the Active Directory Tenant. This is a GUID which represents the "Directory ID" of the AzureAD tenant
-    # into which you want to create the apps. Look it up in the Azure portal in the "Properties" of the Azure AD.
+    # into which you want to create the apps. Look it up in the Microsoft Entra portal in the "Properties" of the Microsoft Entra ID.
 
     # Login to Azure PowerShell (interactive if credentials are not already provided:
     # you'll need to sign-in with creds enabling your to create apps in the tenant)
@@ -148,19 +148,19 @@ Function ConfigureApplications
     $tenant = Get-AzureADTenantDetail
     $tenantName =  ($tenant.VerifiedDomains | Where { $_._Default -eq $True }).Name
 
-   # Create the app AAD application
-   Write-Host "Creating the AAD appplication (Native-Headless-Application)"
-   $appAadApplication = New-AzureADApplication -DisplayName "Native-Headless-Application" `
+   # Create the app Microsoft Entra application
+   Write-Host "Creating the Microsoft Entra ID appplication (Native-Headless-Application)"
+   $appMicrosoft Entra IDApplication = New-AzureADApplication -DisplayName "Native-Headless-Application" `
                                                -ReplyUrls "https://Native-Headless-Application" `
                                                -PublicClient $True
 
 
-   $currentAppId = $appAadApplication.AppId
+   $currentAppId = $appMicrosoft Entra IDApplication.AppId
    $appServicePrincipal = New-AzureADServicePrincipal -AppId $currentAppId -Tags {WindowsAzureActiveDirectoryIntegratedApp}
    Write-Host "Done."
 
-   # URL of the AAD application in the Azure portal
-   $appPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_AAD_IAM/ApplicationBlade/appId/"+$appAadApplication.AppId+"/objectId/"+$appAadApplication.ObjectId
+   # URL of the Microsoft Entra application in the Microsoft Entra portal
+   $appPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_Microsoft Entra ID_IAM/ApplicationBlade/appId/"+$appMicrosoft Entra IDApplication.AppId+"/objectId/"+$appMicrosoft Entra IDApplication.ObjectId
    Add-Content -Value "<tr><td>app</td><td>$currentAppId</td><td><a href='$appPortalUrl'>Native-Headless-Application</a></td></tr>" -Path createdApps.html
 
    $requiredResourcesAccess = New-Object System.Collections.Generic.List[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]
@@ -169,16 +169,16 @@ Function ConfigureApplications
    $requiredPermissions = GetRequiredPermissions -applicationDisplayName "Microsoft Graph" `
                                                  -requiredDelegatedPermissions "User.Read";
    $requiredResourcesAccess.Add($requiredPermissions)
-   Set-AzureADApplication -ObjectId $appAadApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
+   Set-AzureADApplication -ObjectId $appMicrosoft Entra IDApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
    Write-Host "Granted."
 
    # Update config file for 'app'
    $configFile = $pwd.Path + "\..\src\main\java\UsernamePasswordFlow.java"
    Write-Host "Updating the sample code ($configFile)"
-   $dictionary = @{ "private final static String APP_ID" = $appAadApplication.AppId };
+   $dictionary = @{ "private final static String APP_ID" = $appMicrosoft Entra IDApplication.AppId };
    UpdateTextFile -configFilePath $configFile -dictionary $dictionary
    Write-Host ""
-   Write-Host "IMPORTANT: Think of completing the following manual step(s) in the Azure portal":
+   Write-Host "IMPORTANT: Think of completing the following manual step(s) in the Microsoft Entra portal":
    Write-Host "- For 'app'"
    Write-Host "  - Navigate to '$appPortalUrl'"
    Write-Host "  - click Settings > Required permissions > Grant Permissions"

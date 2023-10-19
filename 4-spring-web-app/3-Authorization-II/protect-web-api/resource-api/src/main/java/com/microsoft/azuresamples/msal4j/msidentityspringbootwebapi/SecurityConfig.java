@@ -3,14 +3,14 @@
 
 package com.microsoft.azuresamples.msal4j.msidentityspringbootwebapi;
 
-import com.azure.spring.aad.webapi.AADResourceServerWebSecurityConfigurerAdapter;
+import com.azure.spring.Microsoft Entra ID.webapi.Microsoft Entra IDResourceServerWebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends AADResourceServerWebSecurityConfigurerAdapter {
+public class SecurityConfig extends Microsoft Entra IDResourceServerWebSecurityConfigurerAdapter {
     /**
      * Add configuration logic as needed.
      */
