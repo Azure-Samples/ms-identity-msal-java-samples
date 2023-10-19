@@ -4,9 +4,9 @@
       "Level": 100,
       "Client": "Java Servlet web app",
       "RepositoryUrl": "ms-identity-java-servlet-webapp-roles",
-      "Endpoint": "Microsoft Entra ID v2.0"
+      "Endpoint": "AAD v2.0"
     },
-    "Microsoft Entra IDApps": [
+    "AADApps": [
       {
         "Id": "webApp",
         "Name": "java-servlet-webapp-authentication",

@@ -3,7 +3,7 @@
 
 package com.microsoft.azuresamples.msal4j.msidentityspringbootwebapp;
 
-import com.azure.spring.autoconfigure.b2c.Microsoft Entra IDB2COidcLoginConfigurer;
+import com.azure.spring.autoconfigure.b2c.AADB2COidcLoginConfigurer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,9 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${app.protect.authenticated}")
     private String[] protectedRoutes;
 
-    private final Microsoft Entra IDB2COidcLoginConfigurer configurer;
+    private final AADB2COidcLoginConfigurer configurer;
 
-    public SecurityConfig(Microsoft Entra IDB2COidcLoginConfigurer configurer) {
+    public SecurityConfig(AADB2COidcLoginConfigurer configurer) {
         this.configurer = configurer;
     }
 

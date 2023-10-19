@@ -10,8 +10,8 @@ param(
 #Requires -Modules AzureAD
 
 <#
- This script creates the Microsoft Entra applications needed for this sample and updates the configuration files
- for the visual Studio projects from the data in the Microsoft Entra applications.
+ This script creates the Azure AD applications needed for this sample and updates the configuration files
+ for the visual Studio projects from the data in the Azure AD applications.
 
  Before running this script you need to install the AzureAD cmdlets as an administrator.
  For this:
@@ -35,7 +35,7 @@ Function ComputePassword
 }
 
 # Create an application key
-# See https://www.sabin.io/blog/adding-an-azure-active-directoryapplication-and-key-using-powershell/
+# See https://www.sabin.io/blog/adding-an-azure-active-directory-application-and-key-using-powershell/
 Function CreateAppKey([DateTime] $fromDate, [double] $durationInYears, [string]$pw)
 {
     $endDate = $fromDate.AddYears($durationInYears)
@@ -138,7 +138,7 @@ Function ReplaceInTextFile([string] $configFilePath, [System.Collections.HashTab
 
 
 <#.Description
-   This function creates a new Microsoft Entra ID scope (OAuth2Permission) with default and provided values
+   This function creates a new Azure AD scope (OAuth2Permission) with default and provided values
 #>
 Function CreateScope( [string] $value, [string] $userConsentDisplayName, [string] $userConsentDescription, [string] $adminConsentDisplayName, [string] $adminConsentDescription)
 {
@@ -155,7 +155,7 @@ Function CreateScope( [string] $value, [string] $userConsentDisplayName, [string
 }
 
 <#.Description
-   This function creates a new Microsoft Entra AppRole with default and provided values
+   This function creates a new Azure AD AppRole with default and provided values
 #>
 Function CreateAppRole([string] $types, [string] $name, [string] $description)
 {
@@ -176,14 +176,14 @@ Function CreateAppRole([string] $types, [string] $name, [string] $description)
 
 
 Set-Content -Value "<html><body><table>" -Path createdApps.html
-Add-Content -Value "<thead><tr><th>Application</th><th>AppId</th><th>Url in the Microsoft Entra portal</th></tr></thead><tbody>" -Path createdApps.html
+Add-Content -Value "<thead><tr><th>Application</th><th>AppId</th><th>Url in the Azure portal</th></tr></thead><tbody>" -Path createdApps.html
 
 $ErrorActionPreference = "Stop"
 
 Function ConfigureApplications
 {
 <#.Description
-   This function creates the Microsoft Entra applications for the sample in the provided Microsoft Entra tenant and updates the
+   This function creates the Azure AD applications for the sample in the provided Azure AD tenant and updates the
    configuration files in the client and service project  of the visual studio solution (App.Config and Web.Config)
    so that they are consistent with the Applications parameters
 #>
@@ -195,7 +195,7 @@ Function ConfigureApplications
     }
 
     # $tenantId is the Active Directory Tenant. This is a GUID which represents the "Directory ID" of the AzureAD tenant
-    # into which you want to create the apps. Look it up in the Microsoft Entra portal in the "Properties" of the Microsoft Entra ID.
+    # into which you want to create the apps. Look it up in the Azure portal in the "Properties" of the Azure AD.
 
     # Login to Azure PowerShell (interactive if credentials are not already provided:
     # you'll need to sign-in with creds enabling your to create apps in the tenant)
@@ -229,8 +229,8 @@ Function ConfigureApplications
     $user = Get-AzureADUser -ObjectId $creds.Account.Id
 
 
-   # Create the service Microsoft Entra application
-   Write-Host "Creating the Microsoft Entra application (java_webapi)"
+   # Create the service AAD application
+   Write-Host "Creating the AAD application (java_webapi)"
 
    # Get a 2 years application key for the service Application
    $pw = ComputePassword
@@ -239,25 +239,25 @@ Function ConfigureApplications
    $serviceAppKey = $pw
 
    # create the application
-   $serviceMicrosoft Entra IDApplication = New-AzureADApplication -DisplayName "java_webapi" `
+   $serviceAadApplication = New-AzureADApplication -DisplayName "java_webapi" `
                                                    -HomePage "http://localhost:8081" `
                                                    -AvailableToOtherTenants $True `
                                                    -PasswordCredentials $key `
                                                    -PublicClient $False
 
-   $serviceIdentifierUri = 'api://'+$serviceMicrosoft Entra IDApplication.AppId
-   Set-AzureADApplication -ObjectId $serviceMicrosoft Entra IDApplication.ObjectId -IdentifierUris $serviceIdentifierUri
+   $serviceIdentifierUri = 'api://'+$serviceAadApplication.AppId
+   Set-AzureADApplication -ObjectId $serviceAadApplication.ObjectId -IdentifierUris $serviceIdentifierUri
 
 
    # create the service principal of the newly created application
-   $currentAppId = $serviceMicrosoft Entra IDApplication.AppId
+   $currentAppId = $serviceAadApplication.AppId
    $serviceServicePrincipal = New-AzureADServicePrincipal -AppId $currentAppId -Tags {WindowsAzureActiveDirectoryIntegratedApp}
 
    # add the user running the script as an app owner if needed
-   $owner = Get-AzureADApplicationOwner -ObjectId $serviceMicrosoft Entra IDApplication.ObjectId
+   $owner = Get-AzureADApplicationOwner -ObjectId $serviceAadApplication.ObjectId
    if ($owner -eq $null)
    {
-        Add-AzureADApplicationOwner -ObjectId $serviceMicrosoft Entra IDApplication.ObjectId -RefObjectId $user.ObjectId
+        Add-AzureADApplicationOwner -ObjectId $serviceAadApplication.ObjectId -RefObjectId $user.ObjectId
         Write-Host "'$($user.UserPrincipalName)' added as an application owner to app '$($serviceServicePrincipal.DisplayName)'"
    }
 
@@ -269,9 +269,9 @@ Function ConfigureApplications
     if ($scopes.Count -ge 0)
     {
         # add all existing scopes first
-        $serviceMicrosoft Entra IDApplication.Oauth2Permissions | foreach-object { $scopes.Add($_) }
+        $serviceAadApplication.Oauth2Permissions | foreach-object { $scopes.Add($_) }
 
-        $scope = $serviceMicrosoft Entra IDApplication.Oauth2Permissions | Where-Object { $_.Value -eq "User_impersonation" }
+        $scope = $serviceAadApplication.Oauth2Permissions | Where-Object { $_.Value -eq "User_impersonation" }
 
         if ($scope -ne $null)
         {
@@ -291,14 +291,14 @@ Function ConfigureApplications
     }
 
     # add/update scopes
-    Set-AzureADApplication -ObjectId $serviceMicrosoft Entra IDApplication.ObjectId -OAuth2Permission $scopes
+    Set-AzureADApplication -ObjectId $serviceAadApplication.ObjectId -OAuth2Permission $scopes
 
 
    Write-Host "Done creating the service application (java_webapi)"
 
-   # URL of the Microsoft Entra application in the Microsoft Entra portal
-   # Future? $servicePortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_Microsoft Entra ID_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$serviceMicrosoft Entra IDApplication.AppId+"/objectId/"+$serviceMicrosoft Entra IDApplication.ObjectId+"/isMSAApp/"
-   $servicePortalUrl = "https://portal.azure.com/#blade/Microsoft_Microsoft Entra ID_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$serviceMicrosoft Entra IDApplication.AppId+"/objectId/"+$serviceMicrosoft Entra IDApplication.ObjectId+"/isMSAApp/"
+   # URL of the AAD application in the Azure portal
+   # Future? $servicePortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$serviceAadApplication.AppId+"/objectId/"+$serviceAadApplication.ObjectId+"/isMSAApp/"
+   $servicePortalUrl = "https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$serviceAadApplication.AppId+"/objectId/"+$serviceAadApplication.ObjectId+"/isMSAApp/"
    Add-Content -Value "<tr><td>service</td><td>$currentAppId</td><td><a href='$servicePortalUrl'>java_webapi</a></td></tr>" -Path createdApps.html
 
 
@@ -316,12 +316,12 @@ Function ConfigureApplications
 
 
 
-   Set-AzureADApplication -ObjectId $serviceMicrosoft Entra IDApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
+   Set-AzureADApplication -ObjectId $serviceAadApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
    Write-Host "Granted permissions."
 
 
-   # Create the client Microsoft Entra application
-   Write-Host "Creating the Microsoft Entra application (java_webapp)"
+   # Create the client AAD application
+   Write-Host "Creating the AAD application (java_webapp)"
 
    # Get a 2 years application key for the client Application
    $pw = ComputePassword
@@ -330,9 +330,9 @@ Function ConfigureApplications
    $clientAppKey = $pw
 
    # create the application
-   $clientMicrosoft Entra IDApplication = New-AzureADApplication -DisplayName "java_webapp" `
+   $clientAadApplication = New-AzureADApplication -DisplayName "java_webapp" `
                                                   -HomePage "http://localhost:8080/msal4jsample" `
-                                                  -ReplyUrls "http://localhost:8080/msal4jsample/secure/Microsoft Entra ID", "http://localhost:8080/msal4jsample/graph/me" `
+                                                  -ReplyUrls "http://localhost:8080/msal4jsample/secure/aad", "http://localhost:8080/msal4jsample/graph/me" `
                                                   -IdentifierUris "https://$tenantName/java_webapp" `
                                                   -AvailableToOtherTenants $True `
                                                   -PasswordCredentials $key `
@@ -340,14 +340,14 @@ Function ConfigureApplications
 
 
    # create the service principal of the newly created application
-   $currentAppId = $clientMicrosoft Entra IDApplication.AppId
+   $currentAppId = $clientAadApplication.AppId
    $clientServicePrincipal = New-AzureADServicePrincipal -AppId $currentAppId -Tags {WindowsAzureActiveDirectoryIntegratedApp}
 
    # add the user running the script as an app owner if needed
-   $owner = Get-AzureADApplicationOwner -ObjectId $clientMicrosoft Entra IDApplication.ObjectId
+   $owner = Get-AzureADApplicationOwner -ObjectId $clientAadApplication.ObjectId
    if ($owner -eq $null)
    {
-        Add-AzureADApplicationOwner -ObjectId $clientMicrosoft Entra IDApplication.ObjectId -RefObjectId $user.ObjectId
+        Add-AzureADApplicationOwner -ObjectId $clientAadApplication.ObjectId -RefObjectId $user.ObjectId
         Write-Host "'$($user.UserPrincipalName)' added as an application owner to app '$($clientServicePrincipal.DisplayName)'"
    }
 
@@ -356,9 +356,9 @@ Function ConfigureApplications
 
    Write-Host "Done creating the client application (java_webapp)"
 
-   # URL of the Microsoft Entra application in the Microsoft Entra portal
-   # Future? $clientPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_Microsoft Entra ID_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$clientMicrosoft Entra IDApplication.AppId+"/objectId/"+$clientMicrosoft Entra IDApplication.ObjectId+"/isMSAApp/"
-   $clientPortalUrl = "https://portal.azure.com/#blade/Microsoft_Microsoft Entra ID_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$clientMicrosoft Entra IDApplication.AppId+"/objectId/"+$clientMicrosoft Entra IDApplication.ObjectId+"/isMSAApp/"
+   # URL of the AAD application in the Azure portal
+   # Future? $clientPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$clientAadApplication.AppId+"/objectId/"+$clientAadApplication.ObjectId+"/isMSAApp/"
+   $clientPortalUrl = "https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$clientAadApplication.AppId+"/objectId/"+$clientAadApplication.ObjectId+"/isMSAApp/"
    Add-Content -Value "<tr><td>client</td><td>$currentAppId</td><td><a href='$clientPortalUrl'>java_webapp</a></td></tr>" -Path createdApps.html
 
 
@@ -376,7 +376,7 @@ Function ConfigureApplications
 
 
 
-   Set-AzureADApplication -ObjectId $clientMicrosoft Entra IDApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
+   Set-AzureADApplication -ObjectId $clientAadApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
    Write-Host "Granted permissions."
 
 
@@ -384,9 +384,9 @@ Function ConfigureApplications
    Write-Host "Configure known client applications for the 'service'"
    $knowApplications = New-Object System.Collections.Generic.List[System.String]
 
-    $knowApplications.Add($clientMicrosoft Entra IDApplication.AppId)
+    $knowApplications.Add($clientAadApplication.AppId)
 
-   Set-AzureADApplication -ObjectId $serviceMicrosoft Entra IDApplication.ObjectId -KnownClientApplications $knowApplications
+   Set-AzureADApplication -ObjectId $serviceAadApplication.ObjectId -KnownClientApplications $knowApplications
    Write-Host "Configured."
 
 
@@ -395,7 +395,7 @@ Function ConfigureApplications
    $configFile = $pwd.Path + "\..\msal-obo-sample\src\main\resources\application.properties"
    Write-Host "Updating the sample code ($configFile)"
 
-   $dictionary = @{ "Enter_the_Tenant_Info_Here" = $tenantId;"Enter_the_Application_Id_Here" = $serviceMicrosoft Entra IDApplication.AppId;"Enter_the_Client_Secret_Here" = $serviceAppKey };
+   $dictionary = @{ "Enter_the_Tenant_Info_Here" = $tenantId;"Enter_the_Application_Id_Here" = $serviceAadApplication.AppId;"Enter_the_Client_Secret_Here" = $serviceAppKey };
    ReplaceInTextFile -configFilePath $configFile -dictionary $dictionary
 
 
@@ -404,13 +404,13 @@ Function ConfigureApplications
    $configFile = $pwd.Path + "\..\msal-web-sample\src\main\resources\application.properties"
    Write-Host "Updating the sample code ($configFile)"
 
-   $dictionary = @{ "Enter_the_Application_Id_Here" = $clientMicrosoft Entra IDApplication.AppId;"Enter_the_Client_Secret_Here" = $clientAppKey;"Enter_the_Obo_Api_Application_Id_Here" = $serviceMicrosoft Entra IDApplication.AppId };
+   $dictionary = @{ "Enter_the_Application_Id_Here" = $clientAadApplication.AppId;"Enter_the_Client_Secret_Here" = $clientAppKey;"Enter_the_Obo_Api_Application_Id_Here" = $serviceAadApplication.AppId };
    ReplaceInTextFile -configFilePath $configFile -dictionary $dictionary
 
 
    Write-Host ""
    Write-Host -ForegroundColor Green "------------------------------------------------------------------------------------------------" 
-   Write-Host "IMPORTANT: Please follow the instructions below to complete a few manual step(s) in the Microsoft Entra portal":
+   Write-Host "IMPORTANT: Please follow the instructions below to complete a few manual step(s) in the Azure portal":
 
    Write-Host "- For 'service'"
    Write-Host "  - Navigate to '$servicePortalUrl'"

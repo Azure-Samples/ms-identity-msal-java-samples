@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties("Microsoft Entra ID")
+@ConfigurationProperties("aad")
 class BasicConfiguration {
     String clientId;
     String authority;

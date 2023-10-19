@@ -1,5 +1,5 @@
-import com.microsoft.Microsoft Entra ID.msal4j.ITokenCacheAccessAspect;
-import com.microsoft.Microsoft Entra ID.msal4j.ITokenCacheAccessContext;
+import com.microsoft.aad.msal4j.ITokenCacheAccessAspect;
+import com.microsoft.aad.msal4j.ITokenCacheAccessContext;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;

@@ -9,7 +9,7 @@ products:
 urlFragment: java-servlet-webapp-authentication
 description: "This sample demonstrates a Java Servlet web app that signs users in with the Microsoft Entra platform and steps up the authentication challenge on-demand."
 ---
-# Enable your Java Servlet web app to sign in users to your Microsoft Entra tenant with the Microsoft identity platform
+# Enable your Java Servlet web app to sign in users to your Azure Active Directory tenant with the Microsoft identity platform
 
 
 ## Overview
@@ -42,13 +42,13 @@ Example claim challenge: `{"id_token":{"acrs":{"essential":true,"value":"c1"}}}`
 
 | File/folder                                                        | Description                                                                            |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| `AppCreationScripts/`                                              | Scripts to automatically configure Microsoft Entra ID app registrations.                         |
+| `AppCreationScripts/`                                              | Scripts to automatically configure Azure AD app registrations.                         |
 | `src/main/java/com/microsoft/azuresamples/msal4j/authwebapp/`      | This directory contains the classes that define the web app's backend business logic.  |
 | `src/main/java/com/microsoft/azuresamples/msal4j/authservlets/`    | This directory contains the classes that are used for sign in and sign out endpoints.  |
 | `____Servlet.java`                                                 | All of the endpoints available are defined in .java classes ending in ____Servlet.java.|
 | `src/main/java/com/microsoft/azuresamples/msal4j/helpers/`         | Helper classes for authentication.                                                     |
 | `AuthenticationFilter.java`                                        | Redirects unauthenticated requests to protected endpoints to a 401 page.               |
-| `src/main/resources/authentication.properties`                     | Microsoft Entra ID and program configuration.                                                    |
+| `src/main/resources/authentication.properties`                     | Azure AD and program configuration.                                                    |
 | `src/main/webapp/`                                                 | This directory contains the UI (JSP templates)                                         |
 | `CHANGELOG.md`                                                     | List of changes to the sample.                                                         |
 | `CONTRIBUTING.md`                                                  | Guidelines for contributing to the sample.                                             |
@@ -84,7 +84,7 @@ or download and extract the repository .zip file.
 
 <summary>Details here</summary>
 
-[Register a new web app](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Microsoft Entra portal](https://portal.azure.com).
+[Register a new web app](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Azure Portal](https://portal.azure.com).
 Following this guide, you must:
 
 1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.
@@ -93,7 +93,7 @@ Following this guide, you must:
     - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `java-servlet-webapp-authentication`.
     - Under **Supported account types**, select an option.
         - Select **Accounts in this organizational directory only** if you're building an application for use only by users in your tenant (**single-tenant**).
-        - Select **Accounts in any organizational directory** if you'd like users in any Microsoft Entra tenant to be able to use your application (**multi-tenant**).
+        - Select **Accounts in any organizational directory** if you'd like users in any Azure AD tenant to be able to use your application (**multi-tenant**).
         - Select **Accounts in any organizational directory and personal Microsoft accounts** for the widest set of customers (**multi-tenant** that also supports Microsoft personal accounts).
     - Select **Personal Microsoft accounts** for use only by users of personal Microsoft accounts (e.g., Hotmail, Live, Skype, Xbox accounts).
     - In the **Redirect URI** section, select **Web** in the combo-box and enter the following redirect URI: `http://localhost:8080/msal4j-servlet-auth/auth/redirect`.
@@ -105,7 +105,7 @@ Following this guide, you must:
     - Type a key description (for instance `app secret`),
     - Select one of the available key durations (**In 1 year**, **In 2 years**, or **Never Expires**) as per your security concerns.
     - The generated key value will be displayed when you click the **Add** button. Copy the generated value for use in the steps later.
-    - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra portal before navigating to any other screen or blade.
+    - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Azure portal before navigating to any other screen or blade.
 
 
 ### Configure the web app (java-servlet-webapp-authentication) to use your app registration
@@ -116,18 +116,18 @@ Open the project in your IDE to configure the code.
 
 1. Open the `./src/main/resources/authentication.properties` file
 2. Find the string `{enter-your-tenant-id-here}`. Replace the existing value with you tenant id
-3. Find the string `{enter-your-client-id-here}` and replace the existing value with the application ID (clientId) of the `java-servlet-webapp-authentication` application copied from the Microsoft Entra portal.
-4. Find the string `{enter-your-client-secret-here}` and replace the existing value with the key you saved during the creation of the `java-servlet-webapp-authentication` app, in the Microsoft Entra portal.
+3. Find the string `{enter-your-client-id-here}` and replace the existing value with the application ID (clientId) of the `java-servlet-webapp-authentication` application copied from the Azure portal.
+4. Find the string `{enter-your-client-secret-here}` and replace the existing value with the key you saved during the creation of the `java-servlet-webapp-authentication` app, in the Azure portal.
 
 </details>
 
 ### 3. Setup the MFA Conditional Access Context
 
-1. In the Microsoft Entra portal, type Microsoft Entra Conditional Access in the search bar and select it.
+1. In the Azure Portal, type Microsoft Entra Conditional Access in the search bar and select it.
 
 ![CA](./ReadmeFiles/CA.png)
 
-Note: this is a different Microsoft Entra portal section than Microsoft Entra ID
+Note: this is a different Azure Portal section than Microsoft Entra ID
 
 2. Go to the `Authentication Contexts` page, and click on `New Authentication context`. Give it a name (e.g. "MFA") and select an ID of the Auth context from the list, for example `c1`. Ensure the "Publish To Apps" checkbox is checked. Make a note of the ID.
 
@@ -190,7 +190,7 @@ As next steps, we can now either [get an Access Token for the users we signed-in
 
 Use [Stack Overflow](https://stackoverflow.com/questions/tagged/msal) to get support from the community.
 Ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before.
-Make sure that your questions or comments are tagged with [`microsoft-entra-id` `ms-identity` `java` `msal`].
+Make sure that your questions or comments are tagged with [`azure-active-directory` `ms-identity` `java` `msal`].
 
 If you find a bug in the sample, please raise the issue on [GitHub Issues](../../../../issues).
 
@@ -208,8 +208,8 @@ This project has adopted the Microsoft Open Source Code of Conduct. For more inf
 - [MSAL Java documentation](https://learn.microsoft.com/entra/msal/java/)
 - [Microsoft Authentication Library \(MSAL\) for Java](https://github.com/AzureAD/microsoft-authentication-library-for-java)
 - [MSAL Java Reference Documentation](https://learn.microsoft.com/java/api/overview/msal-java/)
-- [Microsoft identity platform (Microsoft Entra ID for developers)](https://learn.microsoft.com/azure/active-directory/develop/)
+- [Microsoft identity platform (Azure Active Directory for developers)](https://learn.microsoft.com/azure/active-directory/develop/)
 - [Quickstart: Register an application with the Microsoft identity platform (Preview)](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app)
-- [Understanding Microsoft Entra application consent experiences](https://learn.microsoft.com/azure/active-directory/develop/application-consent-experience)
+- [Understanding Azure AD application consent experiences](https://learn.microsoft.com/azure/active-directory/develop/application-consent-experience)
 - [Understand user and admin consent](https://learn.microsoft.com/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#understand-user-and-admin-consent)
 - [MSAL code samples](https://learn.microsoft.com/azure/active-directory/develop/sample-v2-code)

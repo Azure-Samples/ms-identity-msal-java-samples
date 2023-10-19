@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.naming.ServiceUnavailableException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.microsoft.Microsoft Entra ID.msal4j.*;
+import com.microsoft.aad.msal4j.*;
 import com.nimbusds.oauth2.sdk.AuthorizationCode;
 import com.nimbusds.openid.connect.sdk.AuthenticationResponse;
 import com.nimbusds.openid.connect.sdk.AuthenticationSuccessResponse;

@@ -3,7 +3,7 @@
 
 package com.microsoft.azure.msalwebsample;
 
-import com.microsoft.Microsoft Entra ID.msal4j.IAuthenticationResult;
+import com.microsoft.aad.msal4j.IAuthenticationResult;
 import com.nimbusds.jwt.JWTParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -34,7 +34,7 @@ public class AuthPageController {
         return "index";
     }
 
-    @RequestMapping("/msal4jsample/secure/Microsoft Entra ID")
+    @RequestMapping("/msal4jsample/secure/aad")
     public ModelAndView securePage(HttpServletRequest httpRequest) throws ParseException {
         ModelAndView mav = new ModelAndView("auth_page");
 

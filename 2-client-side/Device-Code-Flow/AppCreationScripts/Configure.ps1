@@ -6,8 +6,8 @@ param(
 )
 
 <#
- This script creates the Microsoft Entra applications needed for this sample and updates the configuration files
- for the visual Studio projects from the data in the Microsoft Entra applications.
+ This script creates the Azure AD applications needed for this sample and updates the configuration files
+ for the visual Studio projects from the data in the Azure AD applications.
 
  Before running this script you need to install the AzureAD cmdlets as an administrator. 
  For this:
@@ -109,21 +109,21 @@ Function UpdateTextFile([string] $configFilePath, [System.Collections.HashTable]
 }
 
 Set-Content -Value "<html><body><table>" -Path createdApps.html
-Add-Content -Value "<thead><tr><th>Application</th><th>AppId</th><th>Url in the Microsoft Entra portal</th></tr></thead><tbody>" -Path createdApps.html
+Add-Content -Value "<thead><tr><th>Application</th><th>AppId</th><th>Url in the Azure portal</th></tr></thead><tbody>" -Path createdApps.html
 
 $ErrorActionPreference = "Stop"
 
 Function ConfigureApplications
 {
 <#.Description
-   This function creates the Microsoft Entra applications for the sample in the provided Microsoft Entra tenant and updates the
+   This function creates the Azure AD applications for the sample in the provided Azure AD tenant and updates the
    configuration files in the client and service project  of the visual studio solution (App.Config and Web.Config)
    so that they are consistent with the Applications parameters
 #> 
     $commonendpoint = "common"
 
     # $tenantId is the Active Directory Tenant. This is a GUID which represents the "Directory ID" of the AzureAD tenant
-    # into which you want to create the apps. Look it up in the Microsoft Entra portal in the "Properties" of the Microsoft Entra ID.
+    # into which you want to create the apps. Look it up in the Azure portal in the "Properties" of the Azure AD.
 
     # Login to Azure PowerShell (interactive if credentials are not already provided:
     # you'll need to sign-in with creds enabling your to create apps in the tenant)
@@ -154,32 +154,32 @@ Function ConfigureApplications
     # Get the user running the script to add the user as the app owner
     $user = Get-AzureADUser -ObjectId $creds.Account.Id
 
-   # Create the client Microsoft Entra application
-   Write-Host "Creating the Microsoft Entra application (active-directory-java-deviceprofile)"
+   # Create the client AAD application
+   Write-Host "Creating the AAD application (active-directory-java-deviceprofile)"
    # create the application 
-   $clientMicrosoft Entra IDApplication = New-AzureADApplication -DisplayName "active-directory-java-deviceprofile" `
+   $clientAadApplication = New-AzureADApplication -DisplayName "active-directory-java-deviceprofile" `
                                                   -ReplyUrls "https://login.microsoftonline.com/common/oauth2/nativeclient" `
                                                   -AvailableToOtherTenants $True `
                                                   -PublicClient $True
 
    # create the service principal of the newly created application 
-   $currentAppId = $clientMicrosoft Entra IDApplication.AppId
+   $currentAppId = $clientAadApplication.AppId
    $clientServicePrincipal = New-AzureADServicePrincipal -AppId $currentAppId -Tags {WindowsAzureActiveDirectoryIntegratedApp}
 
    # add the user running the script as an app owner if needed
-   $owner = Get-AzureADApplicationOwner -ObjectId $clientMicrosoft Entra IDApplication.ObjectId
+   $owner = Get-AzureADApplicationOwner -ObjectId $clientAadApplication.ObjectId
    if ($owner -eq $null)
    { 
-        Add-AzureADApplicationOwner -ObjectId $clientMicrosoft Entra IDApplication.ObjectId -RefObjectId $user.ObjectId
+        Add-AzureADApplicationOwner -ObjectId $clientAadApplication.ObjectId -RefObjectId $user.ObjectId
         Write-Host "'$($user.UserPrincipalName)' added as an application owner to app '$($clientServicePrincipal.DisplayName)'"
    }
 
 
    Write-Host "Done creating the client application (active-directory-java-deviceprofile)"
 
-   # URL of the Microsoft Entra application in the Microsoft Entra portal
-   # Future? $clientPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_Microsoft Entra ID_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$clientMicrosoft Entra IDApplication.AppId+"/objectId/"+$clientMicrosoft Entra IDApplication.ObjectId+"/isMSAApp/"
-   $clientPortalUrl = "https://portal.azure.com/#blade/Microsoft_Microsoft Entra ID_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$clientMicrosoft Entra IDApplication.AppId+"/objectId/"+$clientMicrosoft Entra IDApplication.ObjectId+"/isMSAApp/"
+   # URL of the AAD application in the Azure portal
+   # Future? $clientPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$clientAadApplication.AppId+"/objectId/"+$clientAadApplication.ObjectId+"/isMSAApp/"
+   $clientPortalUrl = "https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$clientAadApplication.AppId+"/objectId/"+$clientAadApplication.ObjectId+"/isMSAApp/"
    Add-Content -Value "<tr><td>client</td><td>$currentAppId</td><td><a href='$clientPortalUrl'>active-directory-java-deviceprofile</a></td></tr>" -Path createdApps.html
 
    $requiredResourcesAccess = New-Object System.Collections.Generic.List[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]
@@ -192,13 +192,13 @@ Function ConfigureApplications
    $requiredResourcesAccess.Add($requiredPermissions)
 
 
-   Set-AzureADApplication -ObjectId $clientMicrosoft Entra IDApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
+   Set-AzureADApplication -ObjectId $clientAadApplication.ObjectId -RequiredResourceAccess $requiredResourcesAccess
    Write-Host "Granted permissions."
 
    # Update config file for 'client'
    $configFile = $pwd.Path + "\..\java\DeviceCodeFlow"
    Write-Host "Updating the sample code ($configFile)"
-   $dictionary = @{ "ClientId" = $clientMicrosoft Entra IDApplication.AppId };
+   $dictionary = @{ "ClientId" = $clientAadApplication.AppId };
    UpdateTextFile -configFilePath $configFile -dictionary $dictionary
   
    Add-Content -Value "</tbody></table></body></html>" -Path createdApps.html  

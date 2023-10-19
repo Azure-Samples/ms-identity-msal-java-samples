@@ -8,21 +8,21 @@ languages:
   - java
 products:
   - azure
-  - microsoft-entra-id
+  - azure-active-directory
   - msal-java
   - ms-graph
   - entra
-description: "This sample demonstrates how to use MSAL4J to sign-in users using windows Integrated Auth (WIA) in apps that run on a domain joined or Microsoft Entra joined Windows machine."
+description: "This sample demonstrates how to use MSAL4J to sign-in users using windows Integrated Auth (WIA) in apps that run on a domain joined or AAD joined Windows machine."
 urlFragment: msal-java-client-integrated-windows-auth
 ---
 
-# Invoking an API protected by Microsoft identity platform with users signed-in with Integrated Windows Authentication, on a Windows domain joined or Microsoft Entra joined machine
+# Invoking an API protected by Microsoft identity platform with users signed-in with Integrated Windows Authentication, on a Windows domain joined or AAD joined machine
 
 ## About this sample
 
 ### Overview
 
-This sample demonstrates how to use MSAL4J for apps running on a domain joined or Microsoft Entra joined Windows machine that wish to authenticate using Windows Integrated Authentication  It enables these apps to:
+This sample demonstrates how to use MSAL4J for apps running on a domain joined or AAD joined Windows machine that wish to authenticate using Windows Integrated Authentication  It enables these apps to:
 
 - Authenticate the user signed-in on the Windows machine
 - Call a web API (in this case, the [Microsoft Graph](https://graph.microsoft.com))
@@ -42,8 +42,8 @@ The application obtains tokens through Integrated Windows Authentication (Kerber
 To run this sample, you'll need:
 
 - Working installation of Java and Maven
-- a Microsoft Entra tenant. For more information on how to get a Microsoft Entra tenant, see [How to get a Microsoft Entra tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
-- One or more user accounts in your Microsoft Entra tenant.
+- An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
+- One or more user accounts in your Azure AD tenant.
 
 ### Step 1: Download Java (8 and above) for your platform
 
@@ -60,20 +60,20 @@ cd "Integrated-Windows-Auth-Flow"
 
 or download and extract the repository .zip file.
 
-### Step 3:  Register the sample with your Microsoft Entra tenant
+### Step 3:  Register the sample with your Azure Active Directory tenant
 
 To register the project, you can follow the steps in the paragraphs below:
 
-#### Choose the Microsoft Entra tenant where you want to create your applications
+#### Choose the Azure AD tenant where you want to create your applications
 
 As a first step you'll need to:
 
-1. Sign in to the [Microsoft Entra portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
-1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory**.
-   Change your portal session to the desired Microsoft Entra tenant.
-1. In the portal menu, select the **Microsoft Entra ID** service, and then select **App registrations**.
+1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
+1. If your account is present in more than one Azure AD tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory**.
+   Change your portal session to the desired Azure AD tenant.
+1. In the portal menu, select the **Azure Active Directory** service, and then select **App registrations**.
 
-> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Microsoft Entra ID window respectively as *Name* and *Directory ID*
+> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Azure Active Directory window respectively as *Name* and *Directory ID*
 
 #### Register the client app (iwa-console)
 
@@ -95,9 +95,9 @@ As a first step you'll need to:
 
 1. At this stage permissions are assigned correctly but the client app does not allow interaction. Therefore no consent can be presented via a UI and accepted to use the service app.
    Click the **Grant/revoke admin consent for {tenant}** button, and then select **Yes** when you are asked if you want to grant consent for the requested permissions for all account in the tenant.
-   You need to be a Microsoft Entra tenant admin to do this.
+   You need to be an Azure AD tenant admin to do this.
 
-### Step 4:  Configure the sample to use your Microsoft Entra tenant
+### Step 4:  Configure the sample to use your Azure AD tenant
 
 1. Open the `src\main\resources\application.properties` file
 1. Set the `CLIENT_ID` property to the client ID value you recorded earlier
@@ -178,9 +178,9 @@ For more information, see MSAL4J [conceptual documentation](https://github.com/A
 
 - [Integrated Windows Authentication](https://github.com/AzureAD/microsoft-authentication-library-for-java/wiki/Integrated-Windows-Authentication)
 - [Quickstart: Configure a client application to access web APIs](https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis)
-- [Understanding Microsoft Entra application consent experiences](https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience)
+- [Understanding Azure AD application consent experiences](https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience)
 - [Understand user and admin consent](https://docs.microsoft.com/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#understand-user-and-admin-consent)
-- About how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](http://go.microsoft.com/fwlink/?LinkId=394414).
+- About how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](http://go.microsoft.com/fwlink/?LinkId=394414).
 
 - [Customizing Token cache serialization](https://docs.microsoft.com/azure/active-directory/develop/msal-java-token-cache-serialization) (was not done in this sample, but you might want to add a serialized cache)
 

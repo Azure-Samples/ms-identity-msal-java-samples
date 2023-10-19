@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class Config {
     private static Logger logger = Logger.getLogger(Config.class.getName());
     private static Properties props = instantiateProperties();
-    private static final String[] REQUIRED = {"Microsoft Entra ID.authority", "Microsoft Entra ID.clientId", "Microsoft Entra ID.secret", "Microsoft Entra ID.signOutEndpoint", "Microsoft Entra ID.postSignOutFragment", "app.stateTTL", "app.homePage", "app.redirectEndpoint", "app.sessionParam", 
-    "app.protect.authenticated", "app.protect.groups", "app.groups", "Microsoft Entra ID.scopes"}; // app.groups & app.protect.groups are required for this sample, also Microsoft Entra ID.scopes=GroupMember.Read.All
+    private static final String[] REQUIRED = {"aad.authority", "aad.clientId", "aad.secret", "aad.signOutEndpoint", "aad.postSignOutFragment", "app.stateTTL", "app.homePage", "app.redirectEndpoint", "app.sessionParam", 
+    "app.protect.authenticated", "app.protect.groups", "app.groups", "aad.scopes"}; // app.groups & app.protect.groups are required for this sample, also aad.scopes=GroupMember.Read.All
     private static final List<String> REQ_PROPS = Arrays.asList(REQUIRED);
 
     private static Properties instantiateProperties() {
@@ -36,12 +36,12 @@ public class Config {
         return props;
     }
 
-    public static final String AUTHORITY = Config.getProperty("Microsoft Entra ID.authority");
-    public static final String CLIENT_ID = Config.getProperty("Microsoft Entra ID.clientId");
-    public static final String SECRET = Config.getProperty("Microsoft Entra ID.secret");
-    public static final String SCOPES = Config.getProperty("Microsoft Entra ID.scopes");
-    public static final String SIGN_OUT_ENDPOINT = Config.getProperty("Microsoft Entra ID.signOutEndpoint");
-    public static final String POST_SIGN_OUT_FRAGMENT = Config.getProperty("Microsoft Entra ID.postSignOutFragment");
+    public static final String AUTHORITY = Config.getProperty("aad.authority");
+    public static final String CLIENT_ID = Config.getProperty("aad.clientId");
+    public static final String SECRET = Config.getProperty("aad.secret");
+    public static final String SCOPES = Config.getProperty("aad.scopes");
+    public static final String SIGN_OUT_ENDPOINT = Config.getProperty("aad.signOutEndpoint");
+    public static final String POST_SIGN_OUT_FRAGMENT = Config.getProperty("aad.postSignOutFragment");
     public static final Long STATE_TTL = Long.parseLong(Config.getProperty("app.stateTTL"));
     public static final String HOME_PAGE = Config.getProperty("app.homePage");
     public static final String REDIRECT_ENDPOINT = Config.getProperty("app.redirectEndpoint");

@@ -19,11 +19,11 @@ public class Config {
     private static final Logger logger = Logger.getLogger(Config.class.getName());
     private static final Properties props = instantiateProperties();
     private static final String[] REQUIRED = {
-            "Microsoft Entra ID.authority",
-            "Microsoft Entra ID.clientId",
-            "Microsoft Entra ID.secret",
-            "Microsoft Entra ID.signOutEndpoint",
-            "Microsoft Entra ID.postSignOutFragment",
+            "aad.authority",
+            "aad.clientId",
+            "aad.secret",
+            "aad.signOutEndpoint",
+            "aad.postSignOutFragment",
             "app.stateTTL",
             "app.homePage",
             "app.redirectEndpoint",
@@ -50,12 +50,12 @@ public class Config {
         return props;
     }
 
-    public static final String AUTHORITY = Config.getProperty("Microsoft Entra ID.authority");
-    public static final String CLIENT_ID = Config.getProperty("Microsoft Entra ID.clientId");
-    public static final String SECRET = Config.getProperty("Microsoft Entra ID.secret");
-    public static final String SCOPES = Config.getProperty("Microsoft Entra ID.scopes");
-    public static final String SIGN_OUT_ENDPOINT = Config.getProperty("Microsoft Entra ID.signOutEndpoint");
-    public static final String POST_SIGN_OUT_FRAGMENT = Config.getProperty("Microsoft Entra ID.postSignOutFragment");
+    public static final String AUTHORITY = Config.getProperty("aad.authority");
+    public static final String CLIENT_ID = Config.getProperty("aad.clientId");
+    public static final String SECRET = Config.getProperty("aad.secret");
+    public static final String SCOPES = Config.getProperty("aad.scopes");
+    public static final String SIGN_OUT_ENDPOINT = Config.getProperty("aad.signOutEndpoint");
+    public static final String POST_SIGN_OUT_FRAGMENT = Config.getProperty("aad.postSignOutFragment");
     public static final Long STATE_TTL = Long.parseLong(Config.getProperty("app.stateTTL"));
     public static final String HOME_PAGE = Config.getProperty("app.homePage");
     public static final String REDIRECT_ENDPOINT = Config.getProperty("app.redirectEndpoint");

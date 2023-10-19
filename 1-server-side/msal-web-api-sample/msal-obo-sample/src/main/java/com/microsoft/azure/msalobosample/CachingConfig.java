@@ -25,7 +25,7 @@ public class CachingConfig {
                 return new ConcurrentMapCache(name,
                         CacheBuilder
                                 .newBuilder()
-                                .expireAfterWrite(1, TimeUnit.HOURS)// Microsoft Entra ID access tokens expires in 1 hour
+                                .expireAfterWrite(1, TimeUnit.HOURS)// AAD access tokens expires in 1 hour
                                 .maximumSize(1000)
                                 .build()
                                 .asMap(), false);

@@ -12,7 +12,7 @@ languages:
   - java
 products:
   - azure
-  - microsoft-entra-id
+  - azure-active-directory
   - msal-java
   - ms-graph
   - entra
@@ -33,7 +33,7 @@ This app demonstrates how to use the [Microsoft identity platform](http://aka.ms
 
 The console application:
 
-- Acquires an access token from Microsoft Entra ID using its own identity (without a user).
+- Acquires an access token from Azure AD using its own identity (without a user).
 - It then calls the Microsoft Graph `/users` endpoint to retrieve a list of users, which it then displays on the screen (as a Json blob).
 
 ![Topology](../ReadmeImages/topology.png)
@@ -45,8 +45,8 @@ For more information on the concepts used in this sample, be sure to read the [M
 To run this sample, you'll need:
 
 - Working installation of [Java 8 or greater](https://openjdk.java.net/install/) and [Maven](https://maven.apache.org/).
-- a Microsoft Entra tenant. For more information on how to get a Microsoft Entra tenant, see [How to get a Microsoft Entra tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/).
-- One or more user accounts in your Microsoft Entra tenant.
+- An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/).
+- One or more user accounts in your Azure AD tenant.
 
 ### Step 1:  Clone or download this repository
 
@@ -58,13 +58,13 @@ git clone https://github.com/Azure-Samples/ms-identity-java-daemon.git
 
 or download and extract the repository .zip file.
 
-### Step 2:  Register the sample with your Microsoft Entra tenant
+### Step 2:  Register the sample with your Azure Active Directory tenant
 
 To register the project, you can:
 
-- either follow the steps [Step 2: Register the sample with your Microsoft Entra tenant](#step-2-register-the-sample-with-your-microsoft-entra-tenant) and [Step 3: Configure the sample to use your Microsoft Entra tenant](#choose-the-azure-ad-tenant-where-you-want-to-create-your-applications)
+- either follow the steps [Step 2: Register the sample with your Azure Active Directory tenant](#step-2-register-the-sample-with-your-azure-active-directory-tenant) and [Step 3: Configure the sample to use your Azure AD tenant](#choose-the-azure-ad-tenant-where-you-want-to-create-your-applications)
 - or use PowerShell scripts that:
-  - **automatically** creates the Microsoft Entra applications and related objects (passwords, permissions, dependencies) for you.
+  - **automatically** creates the Azure AD applications and related objects (passwords, permissions, dependencies) for you.
   - modify the project's configuration files.
 
 If you want to use this automation, read the instructions in [App Creation Scripts](../AppCreationScripts/AppCreationScripts.md)
@@ -72,14 +72,14 @@ Please note that the configuration of your code (Step 3) still needs to be done 
 
 Follow the steps below to manually walk through the steps to register and configure the applications.
 
-#### Choose the Microsoft Entra tenant where you want to create your applications
+#### Choose the Azure AD tenant where you want to create your applications
 
 As a first step you'll need to:
 
-1. Sign in to the [Microsoft Entra portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
-1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory**.
-   Change your portal session to the desired Microsoft Entra tenant.
-1. In the portal menu, select the **Microsoft Entra ID** service, and then select **App registrations**.
+1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
+1. If your account is present in more than one Azure AD tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory**.
+   Change your portal session to the desired Azure AD tenant.
+1. In the portal menu, select the **Azure Active Directory** service, and then select **App registrations**.
 
 #### Register the client app (java-daemon-console)
 
@@ -93,7 +93,7 @@ As a first step you'll need to:
    - Type a key description (for instance `app secret`),
    - Select a key duration of either **In 1 year**, **In 2 years**, or **Never Expires** as per your security concerns.
    - The generated key value will be displayed when you click the **Add** button. Copy the generated value for use in the steps later.
-   - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra portal before navigating to any other screen or blade.
+   - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Azure portal before navigating to any other screen or blade.
 1. In the Application menu blade, click on the **API permissions** in the left to open the page where we add access to the Apis that your application needs.
    - Click the **Add a permission** button and then,
    - Ensure that the **Microsoft APIs** tab is selected

@@ -9,14 +9,14 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.Level;
 
-@WebServlet(name = "Microsoft Entra IDRedirectServlet", urlPatterns = "/auth_redirect")
-public class Microsoft Entra IDRedirectServlet extends HttpServlet {
+@WebServlet(name = "AADRedirectServlet", urlPatterns = "/auth_redirect")
+public class AADRedirectServlet extends HttpServlet {
     
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         Config.logger.log(Level.FINE, "Request has come with params {0}", req.getQueryString());
         try {
-            AuthHelper.processMicrosoft Entra IDCallback(req, resp);
+            AuthHelper.processAADCallback(req, resp);
         } catch (Exception e) {
             Config.logger.log(Level.WARNING, "Unable to process getting token by Auth Code: /auth_redirect endpoint");
             Config.logger.log(Level.WARNING, e.getMessage());

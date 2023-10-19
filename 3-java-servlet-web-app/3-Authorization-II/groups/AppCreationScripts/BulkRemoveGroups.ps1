@@ -1,5 +1,5 @@
 <#
- Use this script to remove the 200+ groups created in your Microsoft Entra tenant by BulkCreateGroups.ps1
+ Use this script to remove the 200+ groups created in your Azure AD tenant by BulkCreateGroups.ps1
 #>
 
 $ErrorActionPreference = "Stop"

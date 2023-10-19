@@ -1,7 +1,7 @@
 package com.microsoft.azuresamples.authenticationb2c;
 
 import javax.servlet.http.HttpSession;
-import com.microsoft.Microsoft Entra ID.msal4j.IAuthenticationResult;
+import com.microsoft.aad.msal4j.IAuthenticationResult;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;

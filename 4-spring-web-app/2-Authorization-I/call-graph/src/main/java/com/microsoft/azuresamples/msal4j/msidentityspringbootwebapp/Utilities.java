@@ -44,7 +44,7 @@ public class Utilities {
 
     /**
      * Take a few of the User properties obtained from the graph /me endpoint and put them into KV pairs for UI to display.
-     * @param graphAuthorizedClient OAuth2AuthorizedClient created by Microsoft Entra ID Boot starter. See the SampleController class for details.
+     * @param graphAuthorizedClient OAuth2AuthorizedClient created by AAD Boot starter. See the SampleController class for details.
      * @return Map<String,String> select Key-Values from User object
      */
     public static Map<String,String> graphUserProperties(OAuth2AuthorizedClient graphAuthorizedClient) {
@@ -67,12 +67,12 @@ public class Utilities {
      * getGraphServiceClient prepares and returns a graphServiceClient to make API calls to
      * Microsoft Graph. See docs for GraphServiceClient (GraphSDK for Java v3).
      * 
-     * Since the app handles token acquisition through Microsoft Entra ID boot starter, we can give GraphServiceClient
+     * Since the app handles token acquisition through AAD boot starter, we can give GraphServiceClient
      * the ability to use this access token when it requires it. In order to do this, we must create a
      * custom AuthenticationProvider (GraphAuthenticationProvider, see below).
      * 
      * 
-     * @param graphAuthorizedClient OAuth2AuthorizedClient created by Microsoft Entra ID Boot starter. Used to surface the access token.
+     * @param graphAuthorizedClient OAuth2AuthorizedClient created by AAD Boot starter. Used to surface the access token.
      * @return GraphServiceClient GraphServiceClient
      */
     
@@ -95,7 +95,7 @@ public class Utilities {
          * Set up the GraphAuthenticationProvider. Allows accessToken to be
          * used by GraphServiceClient through the interface IAuthenticationProvider
          * 
-         * @param graphAuthorizedClient OAuth2AuthorizedClient created by Microsoft Entra ID Boot starter. Used to surface the access token.
+         * @param graphAuthorizedClient OAuth2AuthorizedClient created by AAD Boot starter. Used to surface the access token.
          */
         public GraphAuthenticationProvider(@Nonnull OAuth2AuthorizedClient graphAuthorizedClient) {
            this.graphAuthorizedClient = graphAuthorizedClient;

@@ -3,7 +3,7 @@
 
 package com.microsoft.azuresamples.msal4j.helpers;
 
-import com.microsoft.Microsoft Entra ID.msal4j.*;
+import com.microsoft.aad.msal4j.*;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,7 +91,7 @@ public class AuthHelper {
                 context.setAuthResult(result, client.tokenCache().serialize());
                 // handle groups overage if it has occurred.
                 // optional: see groups sample.
-                // you will need Microsoft Entra ID.scopes=GroupMember.Read.All in your config file.
+                // you will need aad.scopes=GroupMember.Read.All in your config file.
                 // uncomment the following method call if this is relevant to you:
                 // handleGroupsOverage(contextAdapter);
                 logger.log(Level.INFO, "silent auth success!");
@@ -125,7 +125,7 @@ public class AuthHelper {
         contextAdapter.redirectUser(authorizeUrl);
     }
 
-    public static void processMicrosoft Entra IDCallback(IdentityContextAdapter contextAdapter) throws AuthException {
+    public static void processAADCallback(IdentityContextAdapter contextAdapter) throws AuthException {
         logger.log(Level.INFO, "processing redirect request...");
         final IdentityContextData context = contextAdapter.getContext();
 
@@ -170,7 +170,7 @@ public class AuthHelper {
 
             // handle groups overage if it has occurred.
             // optional: see groups sample.
-            // you will need Microsoft Entra ID.scopes=GroupMember.Read.All in your config file.
+            // you will need aad.scopes=GroupMember.Read.All in your config file.
             // uncomment the following method call if this is relevant to you:
             // handleGroupsOverage(contextAdapter);
 
@@ -222,7 +222,7 @@ public class AuthHelper {
         final String errorDescription = contextAdapter.getParameter("error_description");
         logger.log(Level.INFO, "error description is {0}", errorDescription);
         if (error != null || errorDescription != null) {
-            throw new AuthException(String.format("Received an error from Microsoft Entra ID. Error: %s %nErrorDescription: %s", error,
+            throw new AuthException(String.format("Received an error from AAD. Error: %s %nErrorDescription: %s", error,
                     errorDescription));
         }
     }

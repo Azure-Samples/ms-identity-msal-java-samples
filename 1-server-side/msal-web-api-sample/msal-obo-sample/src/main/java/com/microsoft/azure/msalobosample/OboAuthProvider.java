@@ -4,11 +4,11 @@
 package com.microsoft.azure.msalobosample;
 
 import com.google.common.hash.Hashing;
-import com.microsoft.Microsoft Entra ID.msal4j.ClientCredentialFactory;
-import com.microsoft.Microsoft Entra ID.msal4j.ConfidentialClientApplication;
-import com.microsoft.Microsoft Entra ID.msal4j.IAuthenticationResult;
-import com.microsoft.Microsoft Entra ID.msal4j.OnBehalfOfParameters;
-import com.microsoft.Microsoft Entra ID.msal4j.UserAssertion;
+import com.microsoft.aad.msal4j.ClientCredentialFactory;
+import com.microsoft.aad.msal4j.ConfidentialClientApplication;
+import com.microsoft.aad.msal4j.IAuthenticationResult;
+import com.microsoft.aad.msal4j.OnBehalfOfParameters;
+import com.microsoft.aad.msal4j.UserAssertion;
 import com.microsoft.graph.authentication.BaseAuthenticationProvider;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ class OboAuthProvider extends BaseAuthenticationProvider {
     @Value("${security.oauth2.client.client-secret}")
     private String secret;
 
-    @Value("${Microsoft Entra ID.graphDefaultScope}")
+    @Value("${aad.graphDefaultScope}")
     private String scope;
 
     @Autowired
@@ -72,7 +72,7 @@ class OboAuthProvider extends BaseAuthenticationProvider {
             authResult = application.acquireToken(parameters).join();
 
         } catch (Exception ex) {
-            throw new AuthException(String.format("Error acquiring token from Microsoft Entra ID: %s", ex.getMessage()),
+            throw new AuthException(String.format("Error acquiring token from AAD: %s", ex.getMessage()),
                     ex.getCause());
         }
 

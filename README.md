@@ -4,7 +4,7 @@ languages:
 products:
   - msal-java
   - azure
-  - microsoft-entra-id
+  - azure-active-directory
   - entra
 page_type: sample
 urlFragment: introduction-msal-java

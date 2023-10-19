@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import com.microsoft.Microsoft Entra ID.msal4j.ITokenCacheAccessAspect;
-import com.microsoft.Microsoft Entra ID.msal4j.ITokenCacheAccessContext;
+import com.microsoft.aad.msal4j.ITokenCacheAccessAspect;
+import com.microsoft.aad.msal4j.ITokenCacheAccessContext;
 
 import java.net.URI;
 import java.net.URL;

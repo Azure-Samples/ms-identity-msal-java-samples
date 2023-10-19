@@ -22,19 +22,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This class defines the endpoint for processing the redirect from Microsoft Entra ID MSAL
+ * This class defines the endpoint for processing the redirect from AAD MSAL
  * Java apps using this sample's paradigm will require this.
  */
-@WebServlet(name = "Microsoft Entra IDRedirectServlet", urlPatterns = "/auth/redirect")
-public class Microsoft Entra IDRedirectServlet extends HttpServlet {
-    private static Logger logger = Logger.getLogger(Microsoft Entra IDRedirectServlet.class.getName());
+@WebServlet(name = "AADRedirectServlet", urlPatterns = "/auth/redirect")
+public class AADRedirectServlet extends HttpServlet {
+    private static Logger logger = Logger.getLogger(AADRedirectServlet.class.getName());
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp)
             throws ServletException, IOException {
         logger.log(Level.FINE, "Request has come with params {0}", req.getQueryString());
         try {
-            AuthHelper.processMicrosoft Entra IDCallback(new IdentityContextAdapterServlet(req, resp));
+            AuthHelper.processAADCallback(new IdentityContextAdapterServlet(req, resp));
             logger.log(Level.INFO, "redirecting to home page.");
             resp.sendRedirect(Config.HOME_PAGE);
         } catch (AuthException ex) {

@@ -1,12 +1,12 @@
 {
     "Sample": {
-      "Title": "Enable your Java Servlet web app to sign in users to your Microsoft Entra tenant with the Microsoft identity platform",
+      "Title": "Enable your Java Servlet web app to sign in users to your Azure Active Directory tenant with the Microsoft identity platform",
       "Level": 100,
       "Client": "Java Servlet web app",
       "RepositoryUrl": "ms-identity-java-servlet-webapp-authentication",
-      "Endpoint": "Microsoft Entra ID v2.0"
+      "Endpoint": "AAD v2.0"
     },
-    "Microsoft Entra IDApps": [
+    "AADApps": [
       {
         "Id": "webApp",
         "Name": "java-servlet-webapp-groups",
@@ -23,8 +23,8 @@
           }
         ],
         "ManualSteps": [
-          { "Comment": "On Microsoft Entra portal, create a security group named GroupAdmin, assign some users to it, and configure your ID and Access token to emit GroupID in your app registration." },
-          { "Comment": "On Microsoft Entra portal, create a security group named GroupMember, assign some users to it, and configure your ID and Access token to emit GroupID in your app registration." }
+          { "Comment": "On Azure Portal, create a security group named GroupAdmin, assign some users to it, and configure your ID and Access token to emit GroupID in your app registration." },
+          { "Comment": "On Azure Portal, create a security group named GroupMember, assign some users to it, and configure your ID and Access token to emit GroupID in your app registration." }
         ]
       }
     ],

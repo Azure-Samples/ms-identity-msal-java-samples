@@ -4,9 +4,9 @@
         "Level": 100,
         "Client": "Java Spring Boot web app",
         "RepositoryUrl": "ms-identity-java-spring-tutorial",
-        "Endpoint": "Microsoft Entra ID v2.0"
+        "Endpoint": "AAD v2.0"
     },
-    "Microsoft Entra IDApps": [
+    "AADApps": [
         {
             "Id": "webApp",
             "Name": "java-spring-webapp-call-graph",

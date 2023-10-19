@@ -22,7 +22,7 @@ import javax.naming.ServiceUnavailableException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.microsoft.Microsoft Entra ID.msal4j.*;
+import com.microsoft.aad.msal4j.*;
 import com.nimbusds.jwt.JWTParser;
 import com.nimbusds.oauth2.sdk.AuthorizationCode;
 import com.nimbusds.openid.connect.sdk.AuthenticationErrorResponse;
@@ -36,7 +36,7 @@ import org.springframework.stereotype.Component;
 import static com.microsoft.azure.msalwebsample.SessionManagementHelper.FAILED_TO_VALIDATE_MESSAGE;
 
 /**
- * Helpers for acquiring authorization codes and tokens from Microsoft Entra ID
+ * Helpers for acquiring authorization codes and tokens from AAD
  */
 @Component
 class AuthHelper {

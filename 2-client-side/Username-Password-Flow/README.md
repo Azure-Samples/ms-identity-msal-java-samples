@@ -9,7 +9,7 @@ languages:
 author: ramya25
 products:
   - azure
-  - microsoft-entra-id
+  - azure-active-directory
   - msal-java
   - ms-graph
   - entra
@@ -38,17 +38,17 @@ Note that Username/Password is needed in some cases (for instance devops scenari
 
 - This requires having credentials in the application, which does not happen with the other flows.
 - The credentials should only be used when there is a high degree of trust between the resource owner and the client and when other authorization grant types are not available (such as an authorization code).
-- Do note that this attempts to authenticate and obtain tokens for users using this flow will often fail with applications registered with Microsoft Entra ID. Some of the situations and scenarios that will cause the failure are listed below  
+- Do note that this attempts to authenticate and obtain tokens for users using this flow will often fail with applications registered with Azure AD. Some of the situations and scenarios that will cause the failure are listed below  
   - When the user needs to consent to permissions that this application is requesting.
   - When a conditional access policy enforcing multi-factor authentication is in force.
-  - Microsoft Entra ID Protection can block authentication attempts if this user account is compromised.
+  - Azure AD Identity Protection can block authentication attempts if this user account is compromised.
   - The user's password is expired and requires a reset.
 
 While this flow seems simpler than the others, applications using these flows often encounter more problems as compared to other flows.
 
-The modern authentication protocols (SAML, WS-Fed, OAuth and OpenID), in principal, discourage apps from handling user credentials themselves. The aim is to decouple the authentication method from an app. Microsoft Entra ID controls the login experience to avoid exposing secrets (like passwords) to a website or an app.
+The modern authentication protocols (SAML, WS-Fed, OAuth and OpenID), in principal, discourage apps from handling user credentials themselves. The aim is to decouple the authentication method from an app. Azure AD controls the login experience to avoid exposing secrets (like passwords) to a website or an app.
 
-This enables IdPs like Microsoft Entra ID to provide seamless single sign-on experiences, enable users to authenticate using factors other than passwords (phone, face, biometrics) and Microsoft Entra ID can block or elevate authentication attempts if it discerns that the user’s account is compromised or the user is trying to access an app from an untrusted location and such.
+This enables IdPs like Azure AD to provide seamless single sign-on experiences, enable users to authenticate using factors other than passwords (phone, face, biometrics) and Azure AD can block or elevate authentication attempts if it discerns that the user’s account is compromised or the user is trying to access an app from an untrusted location and such.
 
 ## How to run this sample
 
@@ -56,8 +56,8 @@ To run this sample, you'll need:
 
 - Working installation of Java and Maven.
 - An Internet connection.
-- a Microsoft Entra tenant. For more information on how to get a Microsoft Entra tenant, see [How to get a Microsoft Entra tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/).
-- A user account in your Microsoft Entra tenant. This sample will not work with a Microsoft account (formerly Windows Live account). Therefore, if you signed in to the [Microsoft Entra portal](https://portal.azure.com) with a Microsoft account and have never created a user account in your directory before, you need to do that now.
+- An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/).
+- A user account in your Azure AD tenant. This sample will not work with a Microsoft account (formerly Windows Live account). Therefore, if you signed in to the [Azure portal](https://portal.azure.com) with a Microsoft account and have never created a user account in your directory before, you need to do that now.
 
 ## Quick Start
 
@@ -76,27 +76,27 @@ git clone https://github.com/Azure-Samples/ms-identity-java-desktop.git
 cd "Username-Password-Flow"
 ```
 
-### Step 3:  Register the sample with your Microsoft Entra tenant
+### Step 3:  Register the sample with your Azure Active Directory tenant
 
 To register the project, you can:
 
 - either follow the steps in the paragraphs below
 - or use PowerShell scripts that:
-  - **automatically** create for you the Microsoft Entra applications and related objects (passwords, permissions, dependencies)
+  - **automatically** create for you the Azure AD applications and related objects (passwords, permissions, dependencies)
   - modify the projects' configuration files.
 
 If you want to use this automation, read the instructions in [App Creation Scripts](./AppCreationScripts/AppCreationScripts.md)
 
-### First step: choose the Microsoft Entra tenant where you want to create your applications
+### First step: choose the Azure AD tenant where you want to create your applications
 
 As a first step you'll need to:
 
-1. Sign in to the [Microsoft Entra portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
-1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory**.
-   Change your portal session to the desired Microsoft Entra tenant.
-1. In the portal menu, click on **All services**, and choose **Microsoft Entra ID**.
+1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
+1. If your account is present in more than one Azure AD tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory**.
+   Change your portal session to the desired Azure AD tenant.
+1. In the portal menu, click on **All services**, and choose **Azure Active Directory**.
 
-> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Microsoft Entra ID window respectively as *Name* and *Directory ID*
+> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Azure Active Directory window respectively as *Name* and *Directory ID*
 
 #### Register the app app (Java-Console-Application)
 
@@ -116,9 +116,9 @@ As a first step you'll need to:
 1. At this stage permissions are assigned correctly but the client app does not allow interaction.
    Therefore no consent can be presented via UI and accepted to use the service app.
    Click the **Grant/revoke admin consent for {tenant}** button, and then select **Yes** when you are asked if you want to grant consent for the requested permissions for all accounts in the tenant.
-   You need to be a Microsoft Entra tenant admin to do this.
+   You need to be an Azure AD tenant admin to do this.
 
-### Step 4:  Configure the sample to use your Microsoft Entra tenant
+### Step 4:  Configure the sample to use your Azure AD tenant
 
 In the steps below, ClientID is the same as Application ID or AppId.
 
@@ -200,8 +200,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information, see MSAL4J [conceptual documentation](https://github.com/AzureAD/microsoft-authentication-library-for-java/wiki).
 
 - [Quickstart: Configure a client application to access web APIs](https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis)
-- [Understanding Microsoft Entra application consent experiences](https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience)
+- [Understanding Azure AD application consent experiences](https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience)
 - [Understand user and admin consent](https://docs.microsoft.com/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#understand-user-and-admin-consent)
-- About how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](http://go.microsoft.com/fwlink/?LinkId=394414).
+- About how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](http://go.microsoft.com/fwlink/?LinkId=394414).
 
-For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](http://go.microsoft.com/fwlink/?LinkId=394414).
+For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](http://go.microsoft.com/fwlink/?LinkId=394414).

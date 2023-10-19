@@ -6,7 +6,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.cache.Weigher;
-import com.microsoft.Microsoft Entra ID.msal4j.*;
+import com.microsoft.aad.msal4j.*;
 import com.nimbusds.oauth2.sdk.http.HTTPResponse;
 
 import java.io.BufferedReader;
@@ -53,7 +53,7 @@ class ClientCredentialGrant {
             IAuthenticationResult result = getAccessTokenByClientCredentialGrant(instance, clientId, tenantId, secret, scope);
 
             // If you try to fetch the same token again, it will hit the token cache and it will be much faster.
-            // In case Microsoft Entra ID has an outage, cached tokens are still available, increasing your app's resiliency.
+            // In case AAD has an outage, cached tokens are still available, increasing your app's resiliency.
             result = getAccessTokenByClientCredentialGrant(instance, clientId, tenantId, secret, scope);
 
 

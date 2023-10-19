@@ -1,12 +1,12 @@
 {
     "Sample": {
-      "Title": "Enable your Java Servlet web app to sign in users to your Microsoft Entra tenant with the Microsoft identity platform",
+      "Title": "Enable your Java Servlet web app to sign in users to your Azure Active Directory tenant with the Microsoft identity platform",
       "Level": 100,
       "Client": "Java Servlet web app",
       "RepositoryUrl": "ms-identity-java-servlet-webapp-call-graph",
-      "Endpoint": "Microsoft Entra ID v2.0"
+      "Endpoint": "AAD v2.0"
     },
-    "Microsoft Entra IDApps": [
+    "AADApps": [
       {
         "Id": "webApp",
         "Name": "java-servlet-webapp-call-graph",
