@@ -5,10 +5,10 @@ languages:
 products:
   - azure
   - msal-java
-  - azure-active-directory
+  - microsoft-entra-id
   - entra
 urlFragment: msal-java-deploy-spring-boot
-description: "This sample demonstrates how to use Azure App Service to deploy to Azure Cloud a Java Spring Boot web application that utilizes the Azure AD Spring Boot Starter client library for Java to sign in users and call Graph."
+description: "This sample demonstrates how to use Azure App Service to deploy to Azure Cloud a Java Spring Boot web application that utilizes the Microsoft Entra ID Spring Boot Starter client library for Java to sign in users and call Graph."
 ---
 
 # Deploy your Java applications to Azure Cloud and use Azure App Service to manage your operations
@@ -22,7 +22,7 @@ description: "This sample demonstrates how to use Azure App Service to deploy to
   - [Step 1: Create a new app on Azure App Service](#step-1-create-a-new-app-on-azure-app-service)
   - [Step 2: Prepare the web app for deployment](#step-2-prepare-the-web-app-for-deployment)
   - [Step 3: Deploy the web app](#step-3-deploy-the-web-app)
-  - [Step 4: Update your Azure AD App Registration](#step-4-update-your-azure-ad-app-registration)
+  - [Step 4: Update your Microsoft Entra app Registration](#step-4-update-your-azure-ad-app-registration)
 - [We'd love your feedback!](#wed-love-your-feedback)
 - [More information](#more-information)
 - [Community Help and Support](#community-help-and-support)
@@ -31,12 +31,12 @@ description: "This sample demonstrates how to use Azure App Service to deploy to
 
 ## Overview
 
-This sample demonstrates how to use [Azure App Service](https://docs.microsoft.com/azure/app-service/) to deploy to **Azure Cloud** a Java Spring Boot web application that utilizes the [Azure AD Spring Boot Starter client library for Java](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/spring/azure-spring-boot-starter-active-directory) to sign in users and call Graph. It is recommended that you clone the repository [Tutorial: Enable your Java Spring Boot web app to sign in users and call APIs with the Microsoft identity platform](https://github.com/azure-samples/ms-identity-java-spring-tutorial) and use the sample in the `2-Authorization-I/call-graph` directory for deployment. You may choose to use these steps to help you deploy a different sample or your own project, noting that the instructions here are specific to the sample listed.
+This sample demonstrates how to use [Azure App Service](https://docs.microsoft.com/azure/app-service/) to deploy to **Azure Cloud** a Java Spring Boot web application that utilizes the [Microsoft Entra ID Spring Boot Starter client library for Java](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/spring/azure-spring-boot-starter-active-directory) to sign in users and call Graph. It is recommended that you clone the repository [Tutorial: Enable your Java Spring Boot web app to sign in users and call APIs with the Microsoft identity platform](https://github.com/azure-samples/ms-identity-java-spring-tutorial) and use the sample in the `2-Authorization-I/call-graph` directory for deployment. You may choose to use these steps to help you deploy a different sample or your own project, noting that the instructions here are specific to the sample listed.
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
-- A [user account](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory) in your **Azure AD** tenant.
+- a Microsoft Entra tenant. For more information on how to get a Microsoft Entra tenant, see [How to get a Microsoft Entra tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
+- A [user account](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory) in your **Microsoft Entra ID** tenant.
 - [Visual Studio Code](https://code.visualstudio.com/download) is recommended for running and editing this sample.
 - [VS Code Azure Tools Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack) extension is recommended for interacting with **Azure** through VS Code interface.
 - An **Azure subscription**. This sample uses the free tier of **Azure App Service**.
@@ -52,7 +52,7 @@ Follow the setup instructions in [Enable your Java Spring Boot web app to sign i
 
 ### Register the web app
 
-Use an Azure AD application registration and its matching sample that that you have completed previously.
+Use a Microsoft Entra application registration and its matching sample that that you have completed previously.
 If you have not completed a sample yet, we recommend you proceed to complete [Enable your Java Spring Boot web app to sign in users and call Microsoft Graph with the Microsoft identity platform](https://github.com/Azure-Samples/ms-identity-java-spring-tutorial/tree/main/2-Authorization-I/call-graph) sample and use the app registration from it.
 
 ## Deployment
@@ -62,7 +62,7 @@ This guide is for deploying to **Azure App Service** via **VS Code Azure Tools E
 In order to deploy your app, you must:
 
 1. Prepare the app service and obtain a website URI in the form of `https://example-domain.azurewebsites.net.`
-2. Update your **Azure AD App Registration**'s redirect URIs from the **Azure portal**, in order to include the redirect URI of your Azure App Service hosted Java web application.
+2. Update your **Microsoft Entra app Registration**'s redirect URIs from the **Microsoft Entra admin center**, in order to include the redirect URI of your Azure App Service hosted Java web application.
 3. Prepare your web app for deployment.
 4. Deploy to Azure App Service.
 
@@ -105,14 +105,14 @@ You must first modify the configuration files in your application. Go to your ap
           internal-proxies: ".*"
     ```
 
-You **may skip the rest of this step** if you are doing a test deployment with a development Azure Active Directory App registration that does not have any sensitive data. **It is not secure to deploy secrets in a config file to a production application**. To deploy your app more securely, you must:
+You **may skip the rest of this step** if you are doing a test deployment with a development Microsoft Entra app registration that does not have any sensitive data. **It is not secure to deploy secrets in a config file to a production application**. To deploy your app more securely, you must:
 
 1. Supply a config file that omits secrets (i.e., `application.yml` that does not contain `azure.activedirectory.client-secret`)
 2. You may import the secrets from a secure location such as:
    1. **Azure Key Vault**. You may use the [Azure Key Vault Secrets Spring Boot starter client library for Java](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-keyvault-secrets_3.4.0/sdk/spring/azure-spring-boot-starter-keyvault-secrets). Set the client secret value in vault, naming it `azure.activedirectory.client-secret`.
 
-   2. **Environment Variables** You may configure an environment variable from Azure portal or use the Azure Tools extension for VSCode.
-      - Azure portal: *Azure Portal > App Services > YourAppName (e.g. example-domain) > Configuration.*
+   2. **Environment Variables** You may configure an environment variable from Microsoft Entra admin center or use the Azure Tools extension for VSCode.
+      - Microsoft Entra admin center: *Microsoft Entra admin center > App Services > YourAppName (e.g. example-domain) > Configuration.*
       - VSCode: *Azure Tools tab > App Service Blade > Your subscription > YourAppName (e.g. example-domain) > Application Settings > Right Click > New setting...* .
 
       Set an environment variable named `azure.activedirectory.client_secret`. Once you deploy your app, the secret will be loaded automatically. Note that the dash (`-`) from the config file must be replaced with an underscore (`_`) as follows:
@@ -149,11 +149,11 @@ This guide is for deploying to **Azure App Service** via **Azure Maven web app p
 
 3. The deployment should be finished in a few minutes. A status message will appear at the bottom right of your VSCode window.You will be notified when the deployment completes.
 
-### Step 4: Update your Azure AD App Registration
+### Step 4: Update your Microsoft Entra app Registration
 
 - Navigate to the home page of your deployed app; take note of and copy the **redirect_uri** displayed on the home page.
-- Navigate back to to the [Azure Portal](https://portal.azure.com).
-- In the left-hand navigation pane, select the **Azure Active Directory** service, and then select **App registrations**.
+- Navigate back to to the [Microsoft Entra admin center](https://portal.azure.com).
+- In the left-hand navigation pane, select the **Microsoft Entra ID** service, and then select **App registrations**.
 - In the resulting screen, select the name of your application.
 - In the Authentication blade, paste the URI you copied earlier from your deployed app instance. If the app had multiple redirect URIs, make sure to add new corresponding entries using the App service's full domain in lieu of `http://localhost:8080` for each redirect URI. For example, this might be `https://example-domain.azurewebsites.net/login/oauth2/code/`. Save the configuration.
 - From the *Branding* menu, update the **Home page URL**, to the address of your service, for example `https://example-domain.azurewebsites.net/`. Save the configuration.
@@ -172,7 +172,7 @@ Were we successful in addressing your learning objective? Consider taking a mome
 
 - [Azure App Services](https://docs.microsoft.com/azure/app-service/)
 
-For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](https://docs.microsoft.com/azure/active-directory/develop/authentication-flows-app-scenarios).
+For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](https://docs.microsoft.com/azure/active-directory/develop/authentication-flows-app-scenarios).
 
 ## Community Help and Support
 

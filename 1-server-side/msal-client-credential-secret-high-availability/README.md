@@ -12,7 +12,7 @@ languages:
   - java
 products:
   - azure
-  - azure-active-directory
+  - microsoft-entra-id
   - ms-graph
   - entra
 description: "This sample demonstrates how run a daemon console app, with an in-memory token cache with size eviction, to get an access token for many tenants to call Microsoft Graph using MSAL4J."
@@ -44,9 +44,9 @@ Prior to running the sample, ensure that you've configured your application prop
 
 | Property | Description |
 |:---------|:------------|
-| `TENANT_ID` | The unique GUID for your Microsoft Entra ID tenant. |
-| `CLIENT_ID` | The unique GUID for your application, registered in your Microsoft Entra ID tenant. |
-| `SECRET` | The secret configured for the client through the Azure Portal or via the Azure CLI. Make sure to use the client secret **value** and not the ID. |
+| `TENANT_ID` | The unique GUID for your Microsoft Entra tenant. |
+| `CLIENT_ID` | The unique GUID for your application, registered in your Microsoft Entra tenant. |
+| `SECRET` | The secret configured for the client through the Microsoft Entra admin center or via the Azure CLI. Make sure to use the client secret **value** and not the ID. |
 
 >**Note**
 >If you do not have an application registered, refer to [Quickstart: Register an application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app).

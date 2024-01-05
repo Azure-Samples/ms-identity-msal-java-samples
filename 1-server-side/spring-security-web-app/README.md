@@ -5,7 +5,7 @@ languages:
 - html
 products:
 - azure-spring-cloud
-- azure-active-directory
+- microsoft-entra-id
 - entra
 description: "This sample demonstrates a Java web application showcasing how to use Spring security for logging in an user using OAuth2.0"
 urlFragment: msal-java-server-spring-security
@@ -21,22 +21,22 @@ This sample demonstrates a Java web application showcasing how to use spring sec
 
 1. The Java web application:
 
-   - Obtains an Id Token from Azure Active Directory (Azure AD) to sign in an user
+   - Obtains an Id Token from Microsoft Entra ID to sign in an user
    - uses Spring Security for logging-in a user via OAuth2.0
 
 ### Scenario
 
-This sample shows how to build a Java web app that uses OpenId Connect to sign-in/ sign-out an user and to use spring security to sign-in user via OAuth2.0. For more information about how the protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-authentication-scenarios).
+This sample shows how to build a Java web app that uses OpenId Connect to sign-in/ sign-out an user and to use spring security to sign-in user via OAuth2.0. For more information about how the protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-authentication-scenarios).
 
-> Note: For a Spring web app sample signing in and authorizing access to users in an Azure AD group, refer to this [tutorial using Azure AD Spring Boot Starter](https://docs.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-active-directory).
+> Note: For a Spring web app sample signing in and authorizing access to users in a Microsoft Entra group, refer to this [tutorial using Microsoft Entra ID Spring Boot Starter](https://docs.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-active-directory).
 
 ## How to run this sample
 
 To run this sample, you'll need:
 
 - Working installation of Java and Maven
-- An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/)
-- One or more user accounts in your Azure AD tenant.
+- a Microsoft Entra tenant. For more information on how to get a Microsoft Entra tenant, see [How to get a Microsoft Entra tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/)
+- One or more user accounts in your Microsoft Entra tenant.
 
 ### Step 1: Download Java (8 and above) for your platform
 
@@ -58,20 +58,20 @@ Go to `spring-security-web-app` folder
 
 or download and extract the repository .zip file.
 
-### Step 3:  Register the sample with your Azure Active Directory tenant
+### Step 3:  Register the sample with your Microsoft Entra tenant
 
 To register the project, you can follow the steps in the paragraphs below:
 
-#### Choose the Azure AD tenant where you want to create your applications
+#### Choose the Microsoft Entra tenant where you want to create your applications
 
 As a first step you'll need to:
 
-1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
-1. If your account is present in more than one Azure AD tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory**.
-   Change your portal session to the desired Azure AD tenant.
-1. In the portal menu, select the **Azure Active Directory** service, and then select **App registrations**.
+1. Sign in to the [Microsoft Entra admin center](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
+1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory**.
+   Change your portal session to the desired Microsoft Entra tenant.
+1. In the portal menu, select the **Microsoft Entra ID** service, and then select **App registrations**.
 
-> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Azure Active Directory window respectively as *Name* and *Directory ID*
+> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Microsoft Entra ID window respectively as *Name* and *Directory ID*
 
 #### Register the client app (spring-security-web-app)
 
@@ -93,9 +93,9 @@ As a first step you'll need to:
    - Type a key description (for instance `app secret`),
    - Select a key duration of either **In 1 year**, **In 2 years**, or **Never Expires** as per your security concerns.
    - The generated key value will be displayed when you click the **Add** button. **Copy the generated value for use in the steps later**.
-     - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Azure portal before navigating to any other screen or blade.
+     - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra admin center before navigating to any other screen or blade.
 
-### Step 4:  Configure the sample to use your Azure AD tenant
+### Step 4:  Configure the sample to use your Microsoft Entra tenant
 
 Open `application.properties` in the src/main/resources folder. 
 1. Fill in your tenant and app registration information noted in registration step. 
@@ -237,4 +237,4 @@ For more information, see how spring security is used in [Java web api sample](h
 
 For more information about web apps scenarios on the Microsoft identity platform see [Scenario: Web app that signs in users](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-web-app-sign-user-overview) and [Scenario: Web app that calls web APIs](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-web-app-call-api-overview)
 
-For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](http://go.microsoft.com/fwlink/?LinkId=394414).
+For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](http://go.microsoft.com/fwlink/?LinkId=394414).

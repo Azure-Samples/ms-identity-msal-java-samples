@@ -12,11 +12,11 @@ languages:
   - java  
 products:
   - azure
-  - azure-active-directory
+  - microsoft-entra-id
   - msal-java
   - ms-graph
   - entra
-description: "This sample demonstrates a Java web app application calling a Java Web API that is secured using Azure Active Directory using the On-Behalf-Of flow"
+description: "This sample demonstrates a Java web app application calling a Java Web API that is secured using Microsoft Entra ID using the On-Behalf-Of flow"
 urlFragment: msal-java-obo-flow
 ---
 
@@ -26,7 +26,7 @@ urlFragment: msal-java-obo-flow
 
 ### Overview
 
-This sample demonstrates a Java web application signing-in a user with the Microsoft Identity Platform and also obtaining an [access token](https://aka.ms/access-tokens) for the Web API. The Web API, in turn calls the [Microsoft Graph](https://graph.microsoft.com) using an [access token](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) obtained using the [on-behalf-of](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow) flow. All these are secured using the [Microsoft identity platform (formerly Azure Active Directory for developers)](https://docs.microsoft.com/azure/active-directory/develop/).
+This sample demonstrates a Java web application signing-in a user with the Microsoft Identity Platform and also obtaining an [access token](https://aka.ms/access-tokens) for the Web API. The Web API, in turn calls the [Microsoft Graph](https://graph.microsoft.com) using an [access token](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) obtained using the [on-behalf-of](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow) flow. All these are secured using the [Microsoft identity platform (formerly Microsoft Entra ID for developers)](https://docs.microsoft.com/azure/active-directory/develop/).
 
 ### Scenario
 
@@ -44,8 +44,8 @@ The flow is as follows:
 To run this sample, you'll need:
 
 - Working installation of Java and Maven
-- An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
-- An user account in your Azure AD tenant.
+- a Microsoft Entra tenant. For more information on how to get a Microsoft Entra tenant, see [How to get a Microsoft Entra tenant](https://azure.microsoft.com/documentation/articles/active-directory-howto-tenant/)
+- An user account in your Microsoft Entra tenant.
 
 ### Step 1: Download Java (8 and above) for your platform
 
@@ -59,18 +59,18 @@ From your shell or command line:
 git clone https://github.com/Azure-Samples/ms-identity-java-webapi.git
 ```
 
-### Step 3:  Register the sample with your Azure Active Directory tenant
+### Step 3:  Register the sample with your Microsoft Entra tenant
 
-There are two projects in this sample. Each needs to be registered separately in your Azure AD tenant. To register these projects:
+There are two projects in this sample. Each needs to be registered separately in your Microsoft Entra tenant. To register these projects:
 
-#### First step: choose the Azure AD tenant where you want to create your applications
+#### First step: choose the Microsoft Entra tenant where you want to create your applications
 
 As a first step you'll need to:
 
-1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
-1. If your account is present in more than one Azure AD tenant, select your profile at the top right corner in the menu on top of the page, and then switch directory. Change your portal session to the desired Azure AD tenant.
-1. In the portal menu, select the Azure Active Directory service, and then select App registrations.
-> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Azure Active Directory window respectively as *Name* and *Directory ID*
+1. Sign in to the [Microsoft Entra admin center](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
+1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then switch directory. Change your portal session to the desired Microsoft Entra tenant.
+1. In the portal menu, select the Microsoft Entra ID service, and then select App registrations.
+> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Microsoft Entra ID window respectively as *Name* and *Directory ID*
 
 #### Register the Web Api app (Java-webapi)
 
@@ -86,7 +86,7 @@ As a first step you'll need to:
    - Type a key description (for instance `app secret`),
    - Select one of the available key durations (**In 1 year**, **In 2 years**, or **Never Expires**) as per your security concerns.
    - The generated key value will be displayed when you click the **Add** button. Copy the generated value for use in the steps later.
-   - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Azure portal before navigating to any other screen or blade.
+   - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra admin center before navigating to any other screen or blade.
 1. In the Application menu blade, click on the **API permissions** to open the page where we add access to the Apis that your application needs.
    - Click the **Add a permission** button and then,
    - Ensure that the **Microsoft APIs** tab is selected.
@@ -109,7 +109,7 @@ The first thing that we need to do is to declare the unique [resource](https://d
       - Click on the **Add scope** button on the bottom to save this scope.
       - Record the scope's URI (api://{clientid}/access_as_user) for later reference.
 
-#### Configure the **msal-obo-sample** to use your Azure AD tenant
+#### Configure the **msal-obo-sample** to use your Microsoft Entra tenant
 
 Open `application.properties` in the src/main/resources folder. Fill in with your tenant and app registration information noted in the above registration step.
 
@@ -137,7 +137,7 @@ Open `application.properties` in the src/main/resources folder. Fill in with you
    - Type a key description (for instance `app secret`),
    - Select one of the available key durations (**In 1 year**, **In 2 years**, or **Never Expires**) as per your security concerns.
    - The generated key value will be displayed when you click the **Add** button. Copy the generated value for use in the steps later.
-   - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Azure portal before navigating to any other screen or blade.
+   - You'll need this key later in your code's configuration files. This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra admin center before navigating to any other screen or blade.
 1. In the Application menu blade, click on the **API permissions** to open the page where we add access to the Apis that your application needs.
    - Click the **Add a permission** button and then,
    - Ensure that the **My APIs** tab is selected.
@@ -145,7 +145,7 @@ Open `application.properties` in the src/main/resources folder. Fill in with you
    - In the **Delegated permissions** section, select the **access_as_user** in the list.
    - Click on the **Add permissions** button in the bottom.
 
-#### Configure the **msal-web-sample** to use your Azure AD tenant
+#### Configure the **msal-web-sample** to use your Microsoft Entra tenant
 
 Open `application.properties` in the msal-web-sample/src/main/resources folder. Fill in with your tenant and app registration information noted in registration step.
 
@@ -173,17 +173,17 @@ If you are only testing locally, you may skip this step. If you deploy your app 
     ```
 
 3. Change both occurrences of `8080` to `8443` in the msal-web-sample's [application.properties](msal-web-sample/src/main/resources/application.properties) file.
-4. Update your java_webapp Azure AD application registration redirects (e.g., `https://localhost:8443/msal4jsample/secure/aad` and `https://localhost:8443/msal4jsample/graph/me`) on the [Azure Portal](https://portal.azure.com).
+4. Update your java_webapp Microsoft Entra application registration redirects (e.g., `https://localhost:8443/msal4jsample/secure/aad` and `https://localhost:8443/msal4jsample/graph/me`) on the [Microsoft Entra admin center](https://portal.azure.com).
 
 #### Configure known client applications for service (Java-webapi)
 
 For a middle tier web API (`Java-webapi`) to be able to call a downstream web API, the middle tier app needs to be granted the required permissions as well.
-However, since the middle tier cannot interact with the signed-in user, it needs to be explicitly bound to the client app in its Azure AD registration.
+However, since the middle tier cannot interact with the signed-in user, it needs to be explicitly bound to the client app in its Microsoft Entra ID registration.
 This binding merges the permissions required by both the client and the middle tier WebApi and and presents it to the end user in a single consent dialog. The user than then consent to this combined set of permissions.
 
 To achieve this, you need to add the "Client ID" of the client app, in the manifest of the web API in the **knownClientApplications** property. Here's how:
 
-In the [Azure portal](https://portal.azure.com), navigate to your `Java-webapi` app registration:
+In the [Microsoft Entra admin center](https://portal.azure.com), navigate to your `Java-webapi` app registration:
 
 - In the Application menu blade, select **Manifest**.
 - Find the attribute **knownClientApplications** and add your client application's(`Java-webapp`) **Application (client) Id** as its element.
@@ -370,7 +370,7 @@ There are many key points in this sample to make the On-Behalf-Of-(OBO) flow wor
                                 .build();
                 authResult = application.acquireToken(parameters).join();
             } else {
-                throw new AuthException(String.format("Error acquiring token from AAD: %s", ex.getMessage()),
+                throw new AuthException(String.format("Error acquiring token from Microsoft Entra ID: %s", ex.getMessage()),
                         ex.getCause());
             }
         }
@@ -407,4 +407,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 - The documentation for Microsoft identity platform is available from [https://aka.ms/aadv2](https://aka.ms/aadv2)
 - For more information about web apps scenarios on the Microsoft identity platform see [Scenario: Web app that signs in users](https://docs.microsoft.com/azure/active-directory/develop/scenario-web-app-sign-user-overview) and [Scenario: Web app that calls web APIs](https://docs.microsoft.com/azure/active-directory/develop/scenario-web-app-call-api-overview)
 - [Why update to Microsoft identity platform?](https://docs.microsoft.com/azure/active-directory/develop/azure-ad-endpoint-comparison)
-- For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Azure AD](http://go.microsoft.com/fwlink/?LinkId=394414).
+- For more information about how OAuth 2.0 protocols work in this scenario and other scenarios, see [Authentication Scenarios for Microsoft Entra ID](http://go.microsoft.com/fwlink/?LinkId=394414).
