@@ -12,7 +12,6 @@ languages:
   - java
 products:
   - azure
-  - microsoft-entra-id
   - ms-graph
   - entra
 description: "This sample demonstrates how run a daemon console app, with an in-memory token cache with size eviction, to get an access token for many tenants to call Microsoft Graph using MSAL4J."
