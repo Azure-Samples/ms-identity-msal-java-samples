@@ -5,7 +5,6 @@ languages:
 - html
 products:
 - azure-spring-cloud
-- microsoft-entra-id
 - entra
 description: "This sample demonstrates a Java web application showcasing how to use Spring security for logging in an user using OAuth2.0"
 urlFragment: msal-java-server-spring-security
