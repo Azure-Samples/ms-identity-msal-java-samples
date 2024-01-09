@@ -12,7 +12,6 @@ languages:
   - java  
 products:
   - azure
-  - microsoft-entra-id
   - msal-java
   - ms-graph
   - entra
