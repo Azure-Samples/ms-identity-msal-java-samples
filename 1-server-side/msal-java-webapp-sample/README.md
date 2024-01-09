@@ -5,7 +5,6 @@ languages:
 - powershell
 - html
 products:
-- microsoft-entra-id
 - entra
 description: "This sample demonstrates a Java web application calling a Microsoft Graph that is secured using Microsoft Entra ID."
 urlFragment: msal-java-sign-in-graph
