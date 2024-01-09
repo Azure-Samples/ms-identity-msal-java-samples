@@ -4,7 +4,6 @@ languages:
 products:
   - msal-java
   - azure
-  - microsoft-entra-id
   - entra
 page_type: sample
 urlFragment: introduction-msal-java
