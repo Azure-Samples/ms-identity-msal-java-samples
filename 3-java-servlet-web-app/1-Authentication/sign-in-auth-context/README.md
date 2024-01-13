@@ -84,7 +84,7 @@ or download and extract the repository .zip file.
 
 <summary>Details here</summary>
 
-[Register a new web app](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Microsoft Entra admin center](https://portal.azure.com).
+[Register a new web app](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Microsoft Entra admin center](https://entra.microsoft.com).
 Following this guide, you must:
 
 1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.

@@ -66,7 +66,7 @@ There are two projects in this sample. Each needs to be registered separately in
 
 As a first step you'll need to:
 
-1. Sign in to the [Microsoft Entra admin center](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
+1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) using either a work or school account or a personal Microsoft account.
 1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then switch directory. Change your portal session to the desired Microsoft Entra tenant.
 1. In the portal menu, select the Microsoft Entra ID service, and then select App registrations.
 > In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Microsoft Entra ID window respectively as *Name* and *Directory ID*
@@ -172,7 +172,7 @@ If you are only testing locally, you may skip this step. If you deploy your app 
     ```
 
 3. Change both occurrences of `8080` to `8443` in the msal-web-sample's [application.properties](msal-web-sample/src/main/resources/application.properties) file.
-4. Update your java_webapp Microsoft Entra application registration redirects (e.g., `https://localhost:8443/msal4jsample/secure/aad` and `https://localhost:8443/msal4jsample/graph/me`) on the [Microsoft Entra admin center](https://portal.azure.com).
+4. Update your java_webapp Microsoft Entra application registration redirects (e.g., `https://localhost:8443/msal4jsample/secure/aad` and `https://localhost:8443/msal4jsample/graph/me`) on the [Microsoft Entra admin center](https://entra.microsoft.com).
 
 #### Configure known client applications for service (Java-webapi)
 
@@ -182,7 +182,7 @@ This binding merges the permissions required by both the client and the middle t
 
 To achieve this, you need to add the "Client ID" of the client app, in the manifest of the web API in the **knownClientApplications** property. Here's how:
 
-In the [Microsoft Entra admin center](https://portal.azure.com), navigate to your `Java-webapi` app registration:
+In the [Microsoft Entra admin center](https://entra.microsoft.com), navigate to your `Java-webapi` app registration:
 
 - In the Application menu blade, select **Manifest**.
 - Find the attribute **knownClientApplications** and add your client application's(`Java-webapp`) **Application (client) Id** as its element.

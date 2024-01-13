@@ -62,7 +62,7 @@ This sample application defines the following two *Application Roles*:
 - `PrivilegedAdmin`: Authorized to access the `Admins Only` and the `Regular Users` pages.
 - `RegularUser`: Authorized to access the `Regular Users` page.
 
-These application roles are defined in the [Microsoft Entra admin center](https://portal.azure.com) in the application's registration manifest.  When a user signs into the application, Microsoft Entra ID emits a `roles` claim for each role that the user has been granted individually to the user in the from of role membership.  Assignment of users and groups to roles can be done through the portal's UI, or programmatically using the [Microsoft Graph](https://graph.microsoft.com) and [Azure AD Powershell](https://docs.microsoft.com/powershell/module/azuread/?view=azureadps-2.0). In this sample, application role management is done through the Microsoft Entra admin center or using PowerShell.
+These application roles are defined in the [Microsoft Entra admin center](https://entra.microsoft.com) in the application's registration manifest.  When a user signs into the application, Microsoft Entra ID emits a `roles` claim for each role that the user has been granted individually to the user in the from of role membership.  Assignment of users and groups to roles can be done through the portal's UI, or programmatically using the [Microsoft Graph](https://graph.microsoft.com) and [Azure AD Powershell](https://docs.microsoft.com/powershell/module/azuread/?view=azureadps-2.0). In this sample, application role management is done through the Microsoft Entra admin center or using PowerShell.
 
 ⚠️NOTE: Role claims will not be present for guest users in a tenant if the `https://login.microsoftonline.com/common/` endpoint is used as the authority to sign in users. You need to sign-in a user to a tenanted endpoint like 'https://login.microsoftonline.com/tenantid'
 
@@ -89,7 +89,7 @@ These application roles are defined in the [Microsoft Entra admin center](https:
 - [Maven 3](https://maven.apache.org/download.cgi)
 - [Java Extension Pack for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) is recommended for running this sample in VSCode.
 - An **Microsoft Entra ID** tenant. For more information see: [How to get a Microsoft Entra tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant)
-- A user account in your **Microsoft Entra ID** tenant. This sample will not work with a **personal Microsoft account**. Therefore, if you signed in to the [Microsoft Entra admin center](https://portal.azure.com) with a personal account and have never created a user account in your directory before, you need to do that now.
+- A user account in your **Microsoft Entra ID** tenant. This sample will not work with a **personal Microsoft account**. Therefore, if you signed in to the [Microsoft Entra admin center](https://entra.microsoft.com) with a personal account and have never created a user account in your directory before, you need to do that now.
 
 ## Setup
 
@@ -147,12 +147,12 @@ There is one project in this sample. To register it, you can:
 
 As a first step you'll need to:
 
-1. Sign in to the [Microsoft Entra admin center](https://portal.azure.com).
+1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com).
 1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory** to change your portal session to the desired Microsoft Entra tenant.
 
 ### Register the web app (java-spring-webapp-roles)
 
-1. Navigate to the [Microsoft Entra admin center](https://portal.azure.com) and select the **Microsoft Entra ID** service.
+1. Navigate to the [Microsoft Entra admin center](https://entra.microsoft.com) and select the **Microsoft Entra ID** service.
 1. Select the **App Registrations** blade on the left, then select **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `java-spring-webapp-roles`.
