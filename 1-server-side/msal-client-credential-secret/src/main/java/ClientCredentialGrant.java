@@ -62,7 +62,7 @@ class ClientCredentialGrant {
 
     private static void GetOrCreateApp(String clientId, String secret, String authority) throws MalformedURLException {
 
-        if (app!=null) {
+        if (app == null) {
             app = ConfidentialClientApplication.builder(
                             clientId,
                             ClientCredentialFactory.createFromSecret(secret))
