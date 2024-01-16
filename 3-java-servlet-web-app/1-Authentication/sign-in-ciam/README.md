@@ -7,8 +7,8 @@ products:
   - msal-java
   - microsoft-entra-id
   - entra
-urlFragment: msal-java-authentication-sign-in
-description: "This sample demonstrates a Java Servlet web app that signs in users with the Microsoft identity platform"
+urlFragment: msal-java-authentication-sign-in-ciam
+description: "This sample demonstrates a Java Servlet web app that signs in CIAM users with the Microsoft identity platform"
 ---
 
 # Enable your Java Servlet web app to sign in users to your Microsoft Entra tenant with the Microsoft identity platform
@@ -37,11 +37,11 @@ description: "This sample demonstrates a Java Servlet web app that signs in user
 
 ## Overview
 
-This sample demonstrates a Java Servlet web app that signs in users to your Microsoft Entra tenant using the [Microsoft Authentication Library (MSAL) for Java](https://github.com/AzureAD/microsoft-authentication-library-for-java).
+This sample demonstrates a Java Servlet web app that signs in users to your Microsoft Entra CIAM tenant using the [Microsoft Authentication Library (MSAL) for Java](https://github.com/AzureAD/microsoft-authentication-library-for-java).
 
 ## Scenario
 
-1. This web application uses **MSAL for Java (MSAL4J)** to sign in users to their own Microsoft Entra tenant and obtains an [ID Token](https://docs.microsoft.com/azure/active-directory/develop/id-tokens) from **Microsoft Entra ID**.
+1. This web application uses **MSAL for Java (MSAL4J)** to sign users into a Microsoft Entra CAIM tenant and obtain an [ID Token](https://docs.microsoft.com/azure/active-directory/develop/id-tokens) from **Microsoft Entra ID**.
 2. The **ID Token** proves that a user has successfully authenticated with this tenant.
 3. The web application protects one of its routes according to user's authentication status.
 
