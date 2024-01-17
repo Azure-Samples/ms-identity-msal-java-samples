@@ -135,7 +135,7 @@ This guide is for deploying to **Azure App Service** via **VS Code Azure Tools E
 ### Step 4: Update your Microsoft Entra app Registration
 
 - Navigate to the home page of your deployed app; take note of and copy the **redirect_uri** displayed on the home page.
-- Navigate back to to the [Microsoft Entra admin center](https://portal.azure.com).
+- Navigate back to to the [Microsoft Entra admin center](https://entra.microsoft.com).
 - In the left-hand navigation pane, select the **Microsoft Entra ID** service, and then select **App registrations**.
 - In the resulting screen, select the name of your application.
 - In the Authentication blade, paste the URI you copied earlier from your deployed app instance. If the app had multiple redirect URIs, make sure to add new corresponding entries using the App service's full domain in lieu of `http://localhost:8000` for each redirect URI. For example, this might be `https://example-domain.azurewebsites.net/auth/redirect`. Save the configuration.

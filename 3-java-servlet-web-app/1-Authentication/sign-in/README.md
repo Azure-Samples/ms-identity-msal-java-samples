@@ -122,7 +122,7 @@ There is one project in this sample. To register the app on the portal, you can:
 
 ### Register the web app (java-servlet-webapp-authentication)
 
-[Register a new web app](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Microsoft Entra admin center](https://portal.azure.com).
+[Register a new web app](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Microsoft Entra admin center](https://entra.microsoft.com).
 Following this guide, you must:
 
 1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.
@@ -235,7 +235,7 @@ In this sample, these values are read from the [authentication.properties](src/m
     ```
 
     - **AuthorizationRequestUrlParameters**: Parameters that must be set in order to build an AuthorizationRequestUrl.
-    - **REDIRECT_URI**: Where Microsoft Entra ID will redirect the browser (along with auth code) after collecting user credentials. It must match the redirect URI in the  Microsoft Entra app registration on [Microsoft Entra admin center](https://portal.azure.com)
+    - **REDIRECT_URI**: Where Microsoft Entra ID will redirect the browser (along with auth code) after collecting user credentials. It must match the redirect URI in the  Microsoft Entra app registration on [Microsoft Entra admin center](https://entra.microsoft.com)
     - **SCOPES**: [Scopes](https://docs.microsoft.com/azure/active-directory/develop/access-tokens#scopes) are permissions requested by the application.
       - Normally, the three scopes `openid profile offline_access` suffice for receiving an ID Token response.
       - Full list of scopes requested by the app can be found in the [authentication.properties file](./src/main/resources/authentication.properties). You can add more scopes like User.Read and so on.

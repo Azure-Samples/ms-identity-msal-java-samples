@@ -68,7 +68,7 @@ If you want to use this automation, read the instructions in [App Creation Scrip
 
 As a first step you'll need to:
 
-1. Sign in to the [Microsoft Entra admin center](https://portal.azure.com).
+1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com).
 1. On the top bar, click on your account, and then on **Switch Directory**.
 1. Once the *Directory + subscription* pane opens, choose the Active Directory tenant where you wish to register your application, from the *Favorites* or *All Directories* list.
 1. Click on **All services** in the portal menu, and choose **Microsoft Entra ID**.
