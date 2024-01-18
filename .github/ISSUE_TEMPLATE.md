@@ -1,37 +1,31 @@
-<!--
-IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION
--->
-> Please provide us with the following information:
-> ---------------------------------------------------------------
+---
+name: Bug report
+about: Please do NOT file bugs without filling in this form.
+title: '[Bug] '
+labels: ["untriaged", "needs attention"]
+assignees: ''
+---
 
-### This issue is for a: (mark with an `x`)
+**Which version of MSAL4J are you using?**
+
+Note that to get help, you need to run the latest version.
+<!-- E.g. Microsoft.Identity.Client 1.14.2 -->
+
+**Repro**
+
+```java
+String your = code(here);
 ```
-- [ ] bug report -> please search issues before submitting
-- [ ] feature request
-- [ ] documentation issue or request
-- [ ] regression (a behavior that used to work and stopped in a new release)
-```
 
-### Which sample?
+**Expected behavior**
+A clear and concise description of what you expected to happen (or code).
 
-Please provide the name of the sample you are using. E.g. `Server-Side Scenarios\client-credential-certificate`
+**Actual behavior**
+A clear and concise description of what happens, e.g. an exception is thrown, UI freezes.
 
-### Minimal steps to reproduce
->
+**Possible solution**
+<!-- Only if you have suggestions on a fix for the bug. -->
 
-### Any log messages given by the failure
->
-
-### Expected/desired behavior
->
-
-### OS and Version?
-> Windows 7, 8 or 10. Linux (which distribution). macOS (Yosemite? El Capitan? Sierra?)
-
-### Versions
->
-
-### Mention any other details that might be useful
-
-> ---------------------------------------------------------------
-> Thanks! We'll be in touch soon.
+**Additional context / logs / screenshots / links to code**
+<!-- Please do not include any customer data or Personal Identifiable Information (PII) in any content posted to GitHub. See https://docs.microsoft.com/compliance/regulatory/gdpr#gdpr-faqs for more info on PII.-->
+Add any other context about the problem here, such as logs and screenshots or links to code.
