@@ -110,7 +110,8 @@ Open the `./src/main/resources/authentication.properties` file and configure the
 1. `aad.clientid`: find the string `{enter-your-client-id-here}` and replace it with the application ID of the app registration
     - "Client ID" and "Application ID" are often used interchangeably in documentation and refer to the same value
 2. `aad.secret`: find the string `{enter-your-client-secret-here}` and replace it with the secret value you created 
-
+> [!IMPORTANT]  
+> Do not store secrets in code as they will leak. Secrets need to be stored in vaults (e.g. Azure KeyVault) and deployed at runtime. Secrets need to be rotated regularly. Use certificates instead of secrets for better security.
 
 ## Running The Sample
 #### Build .war File Using Maven
