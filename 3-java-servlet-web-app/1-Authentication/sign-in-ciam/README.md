@@ -175,7 +175,7 @@ The following parameters need to be provided upon instantiation:
 - The **Client Secret**, which is a requirement for Confidential Client Applications
 - The **Microsoft Entra authority**, which includes your Microsoft Entra tenant ID.
 
-In this sample, these values are read from the [authentication.properties](src/main/resources/authentication.properties) file using a properties reader in the class [Config.java](src/main/java/com/microsoft/azuresamples/authentication/Config.java).
+In this sample, these values are read from the [authentication.properties](src/main/resources/authentication.properties) file using a properties reader in the class [Config.java](src/main/java/com/microsoft/azuresamples/authentication/Config.java). However, in production, the `SECRET` must be stored in a secure location (e.g. Azure KeyVault). Do not store secrets in code. 
 
 ### Step-by-step walkthrough
 
