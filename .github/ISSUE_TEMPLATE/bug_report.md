@@ -7,22 +7,16 @@ assignees: ''
 
 ---
 
-**Which version of Microsoft.Identity.Web are you using?**
+**Which version of MSAL 4J are you using?**
 
 Note that to get help, you need to run the latest version.
-<!-- E.g. Microsoft.Identity.Web 2.16.1 -->
 
-**Is this a new or an existing app?**
-<!-- Ex:
-a. The app is in production and I have upgraded to a new version of Microsoft.Identity.Web*
-b. The app is in production and I haven't upgraded Microsoft.Identity.Web*, but started seeing this issue.
-c. This is a new app or an experiment.
--->
+<!-- E.g. 1.14.2 -->
 
 **Repro**
 
-```csharp
-var your = (code) => here;
+```java
+String your = code(here);
 ```
 
 **Expected behavior**
