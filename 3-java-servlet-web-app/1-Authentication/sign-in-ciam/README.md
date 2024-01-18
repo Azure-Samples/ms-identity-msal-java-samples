@@ -41,7 +41,7 @@ This sample demonstrates a Java Servlet web app that signs in users to your Micr
 
 ## Scenario
 
-1. This web application uses **MSAL for Java (MSAL4J)** to sign users into a Microsoft Entra CAIM tenant and obtain an [ID Token](https://docs.microsoft.com/azure/active-directory/develop/id-tokens) from **Microsoft Entra ID**.
+1. This web application uses **MSAL for Java (MSAL4J)** to sign users into a Microsoft Entra CIAM tenant and obtain an [ID Token](https://docs.microsoft.com/azure/active-directory/develop/id-tokens) from **Microsoft Entra ID**.
 2. The **ID Token** proves that a user has successfully authenticated with this tenant.
 3. The web application protects one of its routes according to user's authentication status.
 
@@ -49,7 +49,6 @@ This sample demonstrates a Java Servlet web app that signs in users to your Micr
 
 | File/folder                                                        | Description                                                                            |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| `AppCreationScripts/`                                              | Scripts to automatically configure Microsoft Entra app registrations.                         |
 | `src/main/java/com/microsoft/azuresamples/msal4j/authwebapp/`      | This directory contains the classes that define the web app's backend business logic.  |
 | `src/main/java/com/microsoft/azuresamples/msal4j/authservlets/`    | This directory contains the classes that are used for sign in and sign out endpoints.  |
 | `____Servlet.java`                                                 | All of the endpoints available are defined in .java classes ending in ____Servlet.java.|
@@ -154,12 +153,19 @@ If you want to replicate this sample's behavior, you may choose to copy the `pom
 A **ConfidentialClientApplication** instance is created in the [AuthHelper.java](src/main/java/com/microsoft/azuresamples/authentication/AuthHelper.java) class. This object helps craft the Microsoft Entra authorization URL and also helps exchange the authentication token for an access token.
 
 ```Java
-// getConfidentialClientInstance method
-IClientSecret secret = ClientCredentialFactory.createFromSecret(SECRET);
-confClientInstance = ConfidentialClientApplication
-                    .builder(CLIENT_ID, secret)
-                    .authority(AUTHORITY)
-                    .build();
+public static ConfidentialClientApplication getConfidentialClientInstance() throws MalformedURLException {
+        ConfidentialClientApplication confClientInstance = null;
+        logger.log(Level.INFO, "Getting confidential client instance");
+        try {
+            final IClientSecret secret = ClientCredentialFactory.createFromSecret(Config.SECRET);
+        confClientInstance = ConfidentialClientApplication.builder(Config.CLIENT_ID, secret)
+        .authority(Config.AUTHORITY).build();
+        } catch (final Exception ex) {
+        logger.log(Level.SEVERE, "Failed to create Confidential Client Application.");
+        throw ex;
+        }
+        return confClientInstance;
+}
 ```
 
 The following parameters need to be provided upon instantiation:

@@ -17,21 +17,23 @@ import java.util.logging.Logger;
 
 public class Config {
     private static Logger logger = Logger.getLogger(Config.class.getName());
-    private static Properties props = instantiateProperties();
-    private static final String[] REQUIRED = {"aad.authority", "aad.clientId", "aad.secret", "aad.signOutEndpoint", "aad.postSignOutFragment", "app.stateTTL", "app.homePage", "app.redirectEndpoint", "app.sessionParam", 
-    "app.protect.authenticated"};
-    private static final List<String> REQ_PROPS = Arrays.asList(REQUIRED);
+    private static Properties props;
 
-    private static Properties instantiateProperties() {
+    static {
+        try {
+            props = instantiateProperties();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static Properties instantiateProperties() throws IOException {
         final Properties props = new Properties();
         try {
             props.load(Config.class.getClassLoader().getResourceAsStream("authentication.properties"));
         } catch (final IOException ex) {
-            ex.printStackTrace();
-            logger.log(Level.SEVERE, "Could not load properties file. Exiting");
-            logger.log(Level.SEVERE, Arrays.toString(ex.getStackTrace()));
-            System.exit(1);
-            return null;
+            logger.log(Level.SEVERE, "Could not load properties file");
+            throw ex;
         }
         return props;
     }
@@ -48,31 +50,23 @@ public class Config {
     public static final String REDIRECT_URI = String.format("%s%s", HOME_PAGE, REDIRECT_ENDPOINT);
     public static final String SESSION_PARAM = Config.getProperty("app.sessionParam");
     public static final String PROTECTED_ENDPOINTS = Config.getProperty("app.protect.authenticated");
-    public static final String ROLES_PROTECTED_ENDPOINTS = Config.getProperty("app.protect.roles");
-    public static final String ROLE_NAMES_AND_IDS = Config.getProperty("app.roles");
-    public static final String GROUPS_PROTECTED_ENDPOINTS = Config.getProperty("app.protect.groups");
-    public static final String GROUP_NAMES_AND_IDS = Config.getProperty("app.groups");
 
     public static String getProperty(final String key) {
-        String prop = null;
-        if (props != null) {
+        String prop;
+
+        try {
             prop = Config.props.getProperty(key);
+
             if (prop != null) {
-                Config.logger.log(Level.FINE, "{0} is {1}", new String[] { key, prop });
+                Config.logger.log(Level.FINE, "{0} is {1}", new String[]{key, prop});
                 return prop;
-            } else if (REQ_PROPS.contains(key)) {
-                Config.logger.log(Level.SEVERE, "FATAL: Could not load required key {0} from config! EXITING", key);
-                System.exit(1); // HANDLE THIS BETTER IN YOUR APP.
-                return null;
             } else {
-                Config.logger.log(Level.WARNING, "Could not load {0}!", key);
+                Config.logger.log(Level.SEVERE, "A key could not be loaded from the properties file: {0}", key);
                 return "";
             }
-        } else {
-            Config.logger.log(Level.SEVERE, "FATAL: Could not load property reader! EXITING!");
-            System.exit(1);
-            return null;
+        } catch (Exception ex) {
+            Config.logger.log(Level.SEVERE, "Could not load required key {0} from config", key);
+            throw ex;
         }
     }
-
 }

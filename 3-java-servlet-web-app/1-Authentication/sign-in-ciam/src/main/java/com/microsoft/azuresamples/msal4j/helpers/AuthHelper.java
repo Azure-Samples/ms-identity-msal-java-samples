@@ -89,11 +89,6 @@ public class AuthHelper {
             if (result != null) {
                 logger.log(Level.INFO, "silent auth returned result. attempting to parse and process...");
                 context.setAuthResult(result, client.tokenCache().serialize());
-                // handle groups overage if it has occurred.
-                // optional: see groups sample.
-                // you will need aad.scopes=GroupMember.Read.All in your config file.
-                // uncomment the following method call if this is relevant to you:
-                // handleGroupsOverage(contextAdapter);
                 logger.log(Level.INFO, "silent auth success!");
             } else {
                 logger.log(Level.INFO, "silent auth returned null result! redirecting to authorize with code");
@@ -119,7 +114,7 @@ public class AuthHelper {
         final ConfidentialClientApplication client = getConfidentialClientInstance();
         AuthorizationRequestUrlParameters parameters = AuthorizationRequestUrlParameters
                 .builder(Config.REDIRECT_URI, Collections.singleton(Config.SCOPES)).responseMode(ResponseMode.QUERY)
-                .prompt(Prompt.SELECT_ACCOUNT).state(state).nonce(nonce).build();
+                .state(state).nonce(nonce).build();
 
         final String authorizeUrl = client.getAuthorizationRequestUrl(parameters).toString();
         contextAdapter.redirectUser(authorizeUrl);
@@ -168,30 +163,12 @@ public class AuthHelper {
             // set user to authenticated:
             context.setAuthResult(result, client.tokenCache().serialize());
 
-            // handle groups overage if it has occurred.
-            // optional: see groups sample.
-            // you will need aad.scopes=GroupMember.Read.All in your config file.
-            // uncomment the following method call if this is relevant to you:
-            // handleGroupsOverage(contextAdapter);
-
         } catch (final Exception ex) {
             contextAdapter.setContext(null); // clear the session data since there was a problem
             String message = String.format("Unable to exchange auth code for token:%n %s", ex.getMessage());
             logger.log(Level.WARNING, message);
             logger.log(Level.FINEST, Arrays.toString(ex.getStackTrace()));
             throw new AuthException(message);
-        }
-    }
-
-    /**
-     * If the user belongs to too many groups, and the ID token can't fit them all,
-     * we must consult Microsoft Graph to get group memberships. Place the resulting
-     * groups in IdentityContextData
-     */
-    private static void handleGroupsOverage(IdentityContextAdapter contextAdapter) {
-        IdentityContextData context = contextAdapter.getContext();
-        if (context.getGroupsOverage()) {
-            context.setGroups(GraphHelper.getGroups(GraphHelper.getGraphClient(contextAdapter)));
         }
     }
 
