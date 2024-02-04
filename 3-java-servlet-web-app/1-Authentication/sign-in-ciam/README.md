@@ -85,7 +85,7 @@ git clone https://github.com/Azure-Samples/ms-identity-msal-java-samples.git
 
 For this sample, you will be registering a new web app in the Microsoft Entra admin center: 
 
-1. Navigate to the app registrations page of the [Microsoft Entra admin center](https://portal.azure.com) (Identity > Applications > App registrations)
+1. Navigate to the app registrations page of the [Microsoft Entra admin center](https://entra.microsoft.com) (Identity > Applications > App registrations)
 1. Select **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app (something as straightforward as `java-servlet-ciam-webapp` will work for this sample)
@@ -110,7 +110,8 @@ Open the `./src/main/resources/authentication.properties` file and configure the
 1. `aad.clientid`: find the string `{enter-your-client-id-here}` and replace it with the application ID of the app registration
     - "Client ID" and "Application ID" are often used interchangeably in documentation and refer to the same value
 2. `aad.secret`: find the string `{enter-your-client-secret-here}` and replace it with the secret value you created 
-
+> [!IMPORTANT]  
+> Do not store secrets in code as they will leak. Secrets need to be stored in vaults (e.g. Azure KeyVault) and deployed at runtime. Secrets need to be rotated regularly. Use certificates instead of secrets for better security.
 
 ## Running The Sample
 #### Build .war File Using Maven
@@ -174,7 +175,7 @@ The following parameters need to be provided upon instantiation:
 - The **Client Secret**, which is a requirement for Confidential Client Applications
 - The **Microsoft Entra authority**, which includes your Microsoft Entra tenant ID.
 
-In this sample, these values are read from the [authentication.properties](src/main/resources/authentication.properties) file using a properties reader in the class [Config.java](src/main/java/com/microsoft/azuresamples/authentication/Config.java).
+In this sample, these values are read from the [authentication.properties](src/main/resources/authentication.properties) file using a properties reader in the class [Config.java](src/main/java/com/microsoft/azuresamples/authentication/Config.java). However, in production, the `SECRET` must be stored in a secure location (e.g. Azure KeyVault). Do not store secrets in code. 
 
 ### Step-by-step walkthrough
 
@@ -190,7 +191,7 @@ In this sample, these values are read from the [authentication.properties](src/m
     ```
 
     - **AuthorizationRequestUrlParameters**: Parameters that must be set in order to build an AuthorizationRequestUrl.
-    - **REDIRECT_URI**: Where Microsoft Entra ID will redirect the browser (along with auth code) after collecting user credentials. It must match the redirect URI in the  Microsoft Entra app registration on [Microsoft Entra admin center](https://portal.azure.com)
+    - **REDIRECT_URI**: Where Microsoft Entra ID will redirect the browser (along with auth code) after collecting user credentials. It must match the redirect URI in the  Microsoft Entra app registration on [Microsoft Entra admin center](https://entra.microsoft.com)
     - **SCOPES**: [Scopes](https://docs.microsoft.com/azure/active-directory/develop/access-tokens#scopes) are permissions requested by the application.
       - Normally, the three scopes `openid profile offline_access` suffice for receiving an ID Token response.
       - Full list of scopes requested by the app can be found in the [authentication.properties file](./src/main/resources/authentication.properties). You can add more scopes like User.Read and so on.

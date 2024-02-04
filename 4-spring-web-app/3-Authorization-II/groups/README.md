@@ -78,7 +78,7 @@ An Identity Developer session covered Microsoft Entra app roles and security gro
 - [Maven 3](https://maven.apache.org/download.cgi)
 - [Java Extension Pack for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) is recommended for running this sample in VSCode.
 - An **Microsoft Entra ID** tenant. For more information see: [How to get a Microsoft Entra tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant)
-- A user account in your **Microsoft Entra ID** tenant. This sample will not work with a **personal Microsoft account**. Therefore, if you signed in to the [Microsoft Entra admin center](https://portal.azure.com) with a personal account and have never created a user account in your directory before, you need to do that now.
+- A user account in your **Microsoft Entra ID** tenant. This sample will not work with a **personal Microsoft account**. Therefore, if you signed in to the [Microsoft Entra admin center](https://entra.microsoft.com) with a personal account and have never created a user account in your directory before, you need to do that now.
 - Two security groups, named **AdminGroup** and **UserGroup**, containing the user(s) with whom you want to sign and test this sample. Or, you may add the user to two existing security groups in your tenant. If you choose to use existing groups, be sure to modify the sample configuration to use your existing security groups' name and object ID.
 
 ## Setup
@@ -134,12 +134,12 @@ There is one project in this sample. To register it, you can:
 
 ### Choose the Microsoft Entra tenant where you want to create your applications
 
-1. Sign in to the [Microsoft Entra admin center](https://portal.azure.com).
+1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com).
 1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory** to change your portal session to the desired Microsoft Entra tenant.
 
 ### Register the web app (java-spring-webapp-groups)
 
-1. Navigate to the [Microsoft Entra admin center](https://portal.azure.com) and select the **Microsoft Entra ID** service.
+1. Navigate to the [Microsoft Entra admin center](https://entra.microsoft.com) and select the **Microsoft Entra ID** service.
 1. Select the **App Registrations** blade on the left, then select **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `java-spring-webapp-groups`.
@@ -164,7 +164,7 @@ There is one project in this sample. To register it, you can:
 
 ### Create Security Groups
 
-1. Navigate to the [Microsoft Entra admin center](https://portal.azure.com) and select the **Microsoft Entra ID** service.
+1. Navigate to the [Microsoft Entra admin center](https://entra.microsoft.com) and select the **Microsoft Entra ID** service.
 1. Select **Groups** blade on the left.
 1. In the **Groups** blade, select **New Group**.
     - For **Group Type**, select **Security**
@@ -429,7 +429,7 @@ There is one web app in this sample. To deploy it to **Azure App Services**, you
 
 #### Update the Microsoft Entra app registration (java-spring-webapp-groups)
 
-1. Navigate back to to the [Microsoft Entra admin center](https://portal.azure.com).
+1. Navigate back to to the [Microsoft Entra admin center](https://entra.microsoft.com).
 In the left-hand navigation pane, select the **Microsoft Entra ID** service, and then select **App registrations (Preview)**.
 1. In the resulting screen, select the `java-spring-webapp-groups` application.
 1. In the app's registration screen, select **Authentication** in the menu.

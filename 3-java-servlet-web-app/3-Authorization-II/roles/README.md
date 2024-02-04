@@ -61,7 +61,7 @@ This sample application defines the following two *Application Roles*:
 - `PrivilegedAdmin`: Authorized to access the `Admins Only` and the `Regular Users` pages.
 - `RegularUser`: Authorized to access the `Regular Users` page.
 
-These application roles are defined in the [Microsoft Entra admin center](https://portal.azure.com) in the application's registration manifest.  When a user signs into the application, Microsoft Entra ID emits a `roles` claim for each role that the user has been granted individually to the user in the from of role membership.  Assignment of users and groups to roles can be done through the portal's UI, or programmatically using the [Microsoft Graph](https://graph.microsoft.com) and [Azure AD Powershell](https://docs.microsoft.com/powershell/module/azuread/?view=azureadps-2.0).  In this sample, application role management is done through the Microsoft Entra admin center or using PowerShell.
+These application roles are defined in the [Microsoft Entra admin center](https://entra.microsoft.com) in the application's registration manifest.  When a user signs into the application, Microsoft Entra ID emits a `roles` claim for each role that the user has been granted individually to the user in the from of role membership.  Assignment of users and groups to roles can be done through the portal's UI, or programmatically using the [Microsoft Graph](https://graph.microsoft.com) and [Azure AD Powershell](https://docs.microsoft.com/powershell/module/azuread/?view=azureadps-2.0).  In this sample, application role management is done through the Microsoft Entra admin center or using PowerShell.
 
 ⚠️NOTE: Role claims will not be present for guest users in a tenant if the `https://login.microsoftonline.com/common/` endpoint is used as the authority to sign in users. You need to sign-in a user to a tenanted endpoint like 'https://login.microsoftonline.com/tenantid'
 
@@ -142,12 +142,12 @@ There is one project in this sample. To register the app on the portal, you can:
 
 As a first step you'll need to:
 
-1. Sign in to the [Microsoft Entra admin center](https://portal.azure.com).
+1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com).
 1. If your account is present in more than one Microsoft Entra tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory** to change your portal session to the desired Microsoft Entra tenant.
 
 ### Register the web app (java-servlet-webapp-roles)
 
-[Register a new web app](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Microsoft Entra admin center](https://portal.azure.com).
+[Register a new web app](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) in the [Microsoft Entra admin center](https://entra.microsoft.com).
 Following this guide, you must:
 
 1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.
@@ -286,7 +286,7 @@ In this sample, these values are read from the [authentication.properties](src/m
     ```
 
     - **AuthorizationRequestUrlParameters**: Parameters that must be set in order to build an AuthorizationRequestUrl.
-    - **REDIRECT_URI**: Where Microsoft Entra ID will redirect the browser (along with auth code) after collecting user credentials. It must match the redirect URI in the  Microsoft Entra app registration on [Microsoft Entra admin center](https://portal.azure.com)
+    - **REDIRECT_URI**: Where Microsoft Entra ID will redirect the browser (along with auth code) after collecting user credentials. It must match the redirect URI in the  Microsoft Entra app registration on [Microsoft Entra admin center](https://entra.microsoft.com)
     - **SCOPES**: [Scopes](https://docs.microsoft.com/azure/active-directory/develop/access-tokens#scopes) are permissions requested by the application.
       - Normally, the three scopes `openid profile offline_access` suffice for receiving an ID Token response.
       - Full list of scopes requested by the app can be found in the [authentication.properties file](./src/main/resources/authentication.properties). You can add more scopes like User.Read and so on.
