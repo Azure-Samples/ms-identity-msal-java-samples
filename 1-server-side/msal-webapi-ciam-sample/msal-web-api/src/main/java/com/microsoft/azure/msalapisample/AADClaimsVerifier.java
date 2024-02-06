@@ -1,4 +1,5 @@
-package com.microsoft.azure.msalobosample;
+package com.microsoft.azure.msalapisample;
+
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.security.oauth2.provider.token.store.JwtClaimsSetVerifier;
 import org.springframework.util.Assert;
