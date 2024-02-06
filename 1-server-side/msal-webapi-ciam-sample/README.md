@@ -109,10 +109,11 @@ The first thing that we need to do is to declare the unique [resource](https://d
       - Click on the **Add scope** button on the bottom to save this scope.
       - Record the scope's URI (api://{clientid}/access_as_user) for later reference.
 
-#### Configure the **msal-obo-sample** to use your Microsoft Entra tenant
+#### Configure the **msal-web-api** to use your Microsoft Entra tenant
 
 Open `application.properties` in the src/main/resources folder. Fill in with your tenant and app registration information noted in the above registration step.
 
+- Replace *Enter-Your-Tenant-Domain-Here* with  **Directory (tenant) domain name**.
 - Replace *Enter_the_Tenant_Info_Here* with  **Directory (tenant) ID**.
 - *Enter_the_Application_Id_here* with the **Application (client) ID**.
 - *Enter_the_Client_Secret_Here* with the **key value** noted earlier.
@@ -146,10 +147,11 @@ Open `application.properties` in the src/main/resources folder. Fill in with you
    - In the **Delegated permissions** section, select the **access_as_user** in the list.
    - Click on the **Add permissions** button in the bottom.
 
-#### Configure the **msal-web-sample** to use your Microsoft Entra tenant
+#### Configure the **msal-web-app** to use your Microsoft Entra tenant
 
 Open `application.properties` in the msal-web-sample/src/main/resources folder. Fill in with your tenant and app registration information noted in registration step.
 
+- Replace *Enter-Your-Tenant-Domain-Here* with  **Directory (tenant) domain name**.
 - Replace *Enter_the_Application_Id_here* with the **Application (client) ID**.
 - Replace *Enter_the_Client_Secret_Here* with the **key value** noted earlier.
 - Replace *Enter_the_Api_Scope_Here* with the API exposed in the `Web Api app` **(api://{clientId}/access_as_user)**.
