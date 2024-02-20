@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-package com.microsoft.azure.msalapisample;
+package com.microsoft.azure.msalapiciamsample;
 
 import com.google.common.cache.CacheBuilder;
 import org.springframework.cache.Cache;

@@ -1,4 +1,4 @@
-package com.microsoft.azure.msalapisample;
+package com.microsoft.azure.msalapiciamsample;
 
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.security.oauth2.provider.token.store.JwtClaimsSetVerifier;
@@ -11,23 +11,13 @@ import java.util.Map;
 public class AADClaimsVerifier implements JwtClaimsSetVerifier {
     private static final String ISS_CLAIM = "iss";
     private static final String AUD_CLAIM = "aud";
-    private static final String V1_AUD_PREFIX = "api://";
-    private static final String V1_ISSUER_FORMAT = "https://%s/%s/";
-    private static final String V2_ISSUER_FORMAT= "https://%s/%s/v2.0";
+    private static final String V2_ISSUER_FORMAT = "https://%s.ciamlogin.com/%s/v2.0";
 
 
-    private HashSet<String> acceptedIssuers = new HashSet<String>();
+    private HashSet<String> acceptedIssuers = new HashSet<>();
     private final String applicationId;
 
-    public AADClaimsVerifier(final String[] aadAliases, final String[] acceptedTenants, final String applicationId) {
-        // In production, you'd want to get a valid list of issuers from:
-        // https://login.microsoftonline.com/common/discovery/instance?authorization_endpoint=https://login.microsoftonline.com/common/oauth2/v2.0/authorize&api-version=1.1
-        // You must get all the values under the metadata[].aliases[] properties.
-
-        Assert.notEmpty(aadAliases, "aadAliases cannot be empty");
-        for (final String issuer : aadAliases) {
-            Assert.notNull(issuer, "AADAlias value cannot be null");
-        }
+    public AADClaimsVerifier(final String[] acceptedTenants, final String applicationId) {
 
         Assert.notEmpty(acceptedTenants, "acceptedTenants cannot be empty");
         for (final String tenant : acceptedTenants) {
@@ -38,24 +28,21 @@ public class AADClaimsVerifier implements JwtClaimsSetVerifier {
 
         this.applicationId = applicationId;
 
-        generateAcceptedIssuers(aadAliases, acceptedTenants);
+        generateAcceptedIssuers(acceptedTenants);
     }
 
-    private void generateAcceptedIssuers(final String[] aadAliases, final String[] acceptedTenants) {
-        for (int i = 0; i < aadAliases.length; i++) {
-            for (int j = 0; j < acceptedTenants.length; j++){
-                acceptedIssuers.add(String.format(V1_ISSUER_FORMAT, aadAliases[i], acceptedTenants[j]));
-                acceptedIssuers.add(String.format(V2_ISSUER_FORMAT, aadAliases[i], acceptedTenants[j]));
-            }
+    private void generateAcceptedIssuers(final String[] acceptedTenants) {
+        for (String acceptedTenant : acceptedTenants) {
+            acceptedIssuers.add(String.format(V2_ISSUER_FORMAT, acceptedTenant, acceptedTenant));
         }
     }
 
     /**
      * This method is used by Spring to verify certain parts of the access token.
-     *
+     * <p>
      * Currently, it ensures that the issue and audience exist, that the issuer matches the accepted issues defined
-     *  in the security.oauth2.aad.aliases field of application.properites, and that the audience matches the API set up
-     *  in Azure
+     * in the security.oauth2.aad.aliases field of application.properites, and that the audience matches the API set up
+     * in Azure
      */
 
     public void verify(final Map<String, Object> claims) throws InvalidTokenException {
@@ -67,14 +54,14 @@ public class AADClaimsVerifier implements JwtClaimsSetVerifier {
             throw new InvalidTokenException("token must contain audience (aud) claim");
 
         final String jwtIssuer = (String) claims.get(ISS_CLAIM);
-        if (!Arrays.stream(acceptedIssuers.toArray()).anyMatch(x -> x.equals(jwtIssuer))) {
+        if (Arrays.stream(acceptedIssuers.toArray()).noneMatch(x -> x.equals(jwtIssuer))) {
             throw new InvalidTokenException("Invalid Issuer (iss) claim: " + jwtIssuer);
         }
 
         final String jwtAud = (String) claims.get(AUD_CLAIM);
-        if (!jwtAud.equals(applicationId) && !jwtAud.equals( V1_AUD_PREFIX + applicationId)) {
+        if (!jwtAud.equals(applicationId)) {
             throw new InvalidTokenException("Invalid Audience (aud) claim: " + jwtAud);
         }
-        
+
     }
 }

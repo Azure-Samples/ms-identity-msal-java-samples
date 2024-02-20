@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-package com.microsoft.azure.msalappsample;
+package com.microsoft.azure.msalappciamsample;
 
 import com.microsoft.aad.msal4j.IAuthenticationResult;
 import com.nimbusds.jwt.JWTParser;
@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.ParseException;
 
-import static com.microsoft.azure.msalappsample.AuthHelper.getAuthSessionObject;
+import static com.microsoft.azure.msalappciamsample.AuthHelper.getAuthSessionObject;
 
 @Controller
 public class AuthPageController {

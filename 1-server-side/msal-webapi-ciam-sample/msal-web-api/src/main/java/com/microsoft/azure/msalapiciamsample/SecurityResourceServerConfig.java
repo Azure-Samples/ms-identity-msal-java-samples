@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-package com.microsoft.azure.msalapisample;
+package com.microsoft.azure.msalapiciamsample;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -25,9 +25,6 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
     @Value("${security.oauth2.client.client-id}")
     private String applicationId;
 
-    @Value("${security.oauth2.aad.aliases}")
-    private String[] aadAliases;
-
     @Value("${security.oauth2.accepted.tenants}")
     private String[] acceptedTenants;
 
@@ -48,8 +45,7 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
 
     @Bean
     public TokenStore tokenStore() {
-        JwkTokenStore jwkTokenStore = new JwkTokenStore(keySetUri, accessTokenConverter(), claimSetVerifier());
-        return jwkTokenStore;
+        return new JwkTokenStore(keySetUri, accessTokenConverter(), claimSetVerifier());
     }
 
     @Bean
@@ -74,6 +70,6 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
 
     @Bean
     public JwtClaimsSetVerifier claimSetVerifier() {
-        return new AADClaimsVerifier(aadAliases, acceptedTenants, applicationId);
+        return new AADClaimsVerifier(acceptedTenants, applicationId);
     }
 }

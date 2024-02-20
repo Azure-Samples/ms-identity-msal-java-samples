@@ -72,13 +72,13 @@ As a first step you'll need to:
 1. In the portal menu, select the Microsoft Entra ID service, and then select App registrations.
 > In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties** of the Microsoft Entra ID window respectively as *Name* and *Directory ID*
 
-#### Register the Web API app in Azure
+#### Register an app in Azure for the API
 
 1. Navigate to the app registrations page of the [Microsoft Entra admin center](https://entra.microsoft.com) (Identity > Applications > App registrations)
 1. Select **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
-    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app (something as straightforward as `java-ciam-web-api` will work for this sample)
-    - Change **Supported account types** to **Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com)**.
+    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app (something as straightforward as `sample-ciam-web-api` will work for this sample)
+    - Ensure **Supported account types** is **Accounts in this organizational directory only (`your-tenant-domain-name` only - Single tenant)**.
 1. Click on the **Register** button to create the application.
 1. In the app registration's Overview tab, find and note the **Application (client) ID** and **Directory (tenant) ID** values. These will be needed in later steps.
 1. Select the **Certificates & secrets** tab in the left to open the page where we can generate secrets and upload certificates.
@@ -87,13 +87,13 @@ As a first step you'll need to:
     - Select a key duration that best suits your security needs (for testing with this sample, the quickest expiration option is likely enough)
     - The generated key value will be displayed when you click the **Add** button. Copy the generated **value** for use in later steps.
         - **Be sure to save this key value!** This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra admin center before navigating to any other screen or blade.
-1. In the Application menu blade, click on the **API permissions** to open the page where we add access to the Apis that your application needs.
+1. In the Application menu blade, click on **API permissions** to open the page where we add access to the Apis that your application needs.
    - Click the **Add a permission** button and then,
    - Ensure that the **Microsoft APIs** tab is selected.
    - In the *Commonly used Microsoft APIs* section, click on **Microsoft Graph**
    - In the **Delegated permissions** section, select the **User.Read** in the list. Use the search box if necessary.
    - Click on the **Add permissions** button in the bottom.
-1. In the Application menu blade, click on the **Expose an API** to open the page where declare the parameters to expose this app as an Api for which client applications can obtain [access tokens](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) for.
+1. In the Application menu blade, click on **Expose an API** to open the page where declare the parameters to expose this app as an Api for which client applications can obtain [access tokens](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) for.
 The first thing that we need to do is to declare the unique [resource](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow) URI that the clients will be using to obtain access tokens for this Api. To declare an resource URI, follow the following steps:
    - Click `Set` next to the **Application ID URI** to generate a URI that is unique for this app.
    - For this sample, accept the proposed Application ID URI (api://{clientId}) by selecting **Save**, and record the URI for later reference.
@@ -102,30 +102,32 @@ The first thing that we need to do is to declare the unique [resource](https://d
       - For **Scope name**, use `access_as_user`.
       - Select **Admins and users** options for **Who can consent?**
       - For **Admin consent display name** type `Access API`
-      - For **Admin consent description** type `Allows the app to access the API as the signed-in user.`
+      - For **Admin consent description** type `Allows the app to access java-ciam-web-api as the signed-in user.`
       - For **User consent display name** type `Access API`
       - For **User consent description** type `Allow the application to access the API on your behalf.`
       - Keep **State** as **Enabled**
       - Click on the **Add scope** button on the bottom to save this scope.
-      - Record the scope's URI (api://{clientid}/access_as_user) for later reference.
+      - Record the scope's URI (`api://{clientid}/access_as_user`) for later reference.
+1. Finally, in the Application menu blade, click on **Manifest** to open the application's manifest editor
+    - Find the `accessTokenAcceptedVersion` field and change the value to `2`
+    - The version of access tokens is determined by the resource, so a value of `2` will result in v2.0 access tokens rather than the default v1.0
 
-#### Configure the **msal-web-api** to use your Microsoft Entra tenant
+#### Configure **msal-web-api** to use your app registration
 
-Open `application.properties` in the src/main/resources folder. Fill in with your tenant and app registration information noted in the above registration step.
+Open `application.properties` in the msal-web-api/src/main/resources folder, and fill in the following placeholders:
+- Replace *Enter-Your-Tenant-Domain-Here* with the **directory (tenant) domain name**.
+  - For example, if your directory domain is contoso.onmicrosoft.com, you would use just 'contoso' here
+- Replace *Enter_the_Tenant_Id_Here* with the **directory (tenant) ID**.
+- Replace *Enter_the_Application_Id_here* with the **application (client) ID**.
+- Replace *Enter_the_Client_Secret_Here* with the **secret key value**.
 
-- Replace *Enter-Your-Tenant-Domain-Here* with  **Directory (tenant) domain name**.
-- Replace *Enter_the_Tenant_Info_Here* with  **Directory (tenant) ID**.
-- *Enter_the_Application_Id_here* with the **Application (client) ID**.
-- *Enter_the_Client_Secret_Here* with the **key value** noted earlier.
-
-#### Register the client web app (Java-webapp)
+#### Register an app in Azure for the client web app
 
 1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.
 1. Click **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
-   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `java-ciam-web-api`.
-   - Change **Supported account types** to **Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com)**.
-     > Note that there are more than one redirect URIs used in this sample. You'll need to add them from the **Authentication** tab later after the app has been created successfully.
+   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app (something as straightforward as `sample-ciam-web-app` will work for this sample)
+   - Ensure **Supported account types** is **Accounts in this organizational directory only (`your-tenant-domain-name` only - Single tenant)**.
 1. Click on the **Register** button to create the application.
 1. In the app's registration **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the configuration file(s) later in your code.
 1. In the app's registration screen, click on the **Authentication** blade in the left and:
@@ -141,44 +143,24 @@ Open `application.properties` in the src/main/resources folder. Fill in with you
     - The generated key value will be displayed when you click the **Add** button. Copy the generated **value** for use in later steps.
         - **Be sure to save this key value!** This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra admin center before navigating to any other screen or blade.
 1. In the Application menu blade, click on the **API permissions** to open the page where we add access to the Apis that your application needs.
-   - Click the **Add a permission** button and then,
-   - Ensure that the **My APIs** tab is selected.
-   - In the list of APIs, select the API you created previously (the example name was `java-ciam-web-api`)
-   - In the **Delegated permissions** section, select the **access_as_user** in the list.
-   - Click on the **Add permissions** button in the bottom.
+   - Click the **Add a permission** button
+   - Go to the **My APIs** tab
+   - In the list of APIs, select the API you created previously (the example name was `sample-ciam-web-api`)
+   - In the **Delegated permissions** section, select the **access_as_user** in the list
+   - Click on the **Add permissions** button in the bottom
 
-#### Configure the **msal-web-app** to use your Microsoft Entra tenant
+#### Configure **msal-web-app** to use your app registration
 
-Open `application.properties` in the msal-web-sample/src/main/resources folder. Fill in with your tenant and app registration information noted in registration step.
+Open `application.properties` in the msal-web-app/src/main/resources folder. Fill in with your tenant and app registration information noted in registration step.
 
-- Replace *Enter-Your-Tenant-Domain-Here* with  **Directory (tenant) domain name**.
-- Replace *Enter_the_Application_Id_here* with the **Application (client) ID**.
-- Replace *Enter_the_Client_Secret_Here* with the **key value** noted earlier.
-- Replace *Enter_the_Api_Scope_Here* with the API exposed in the `Web Api app` **(api://{clientId}/access_as_user)**.
+- Replace *Enter-Your-Tenant-Domain-Here* with the **directory (tenant) domain name**.
+    - For example, if your directory domain is contoso.onmicrosoft.com, you would use just 'contoso' here
+- Replace *Enter_the_Tenant_Id_Here* with the **directory (tenant) ID**.
+- Replace *Enter_the_Application_Id_here* with the **application (client) ID**.
+- Replace *Enter_the_Client_Secret_Here* with the **secret key value**.
+- Replace *Enter_the_Api_Scope_Here* with the API you exposed, which should have the format of **(api://{clientId}/access_as_user)**
 
-#### HTTPS on localhost
-
-If you are only testing locally, you may skip this step. If you deploy your app to Azure App Service (for production or for testing), https is handled by Azure and you may skip this step. Note that https is essential for providing critical security and data integrity to your applications, and http should not be used outside of testing scenarios. If you need to configure your application to handle https, complete the instructions in this section.
-
-1. Use the `keytool` utility (included in JRE) if you want to generate self-signed certificate.
-
-    ```Bash
-    keytool -genkeypair -alias testCert -keyalg RSA -storetype PKCS12 -keystore keystore.p12 -storepass password
-    ```
-
-2. Put the following key-value pairs into your [application.properties](msal-web-sample/src/main/resources/application.properties) file.
-
-    ```ini
-    server.ssl.key-store-type=PKCS12
-    server.ssl.key-store=classpath:keystore.p12
-    server.ssl.key-store-password=password
-    server.ssl.key-alias=testCert
-    ```
-
-3. Change both occurrences of `8080` to `8443` in the msal-web-sample's [application.properties](msal-web-sample/src/main/resources/application.properties) file.
-4. Update your java_webapp Microsoft Entra application registration redirects (e.g., `https://localhost:8443/msal4jsample/secure/aad` and `https://localhost:8443/msal4jsample/graph/me`) on the [Microsoft Entra admin center](https://entra.microsoft.com).
-
-#### Configure known client applications for service (Java-webapi)
+#### Configure known client applications for the API
 
 For a middle tier web API to be able to call a downstream web API, the middle tier app needs to be granted the required permissions as well.
 However, since the middle tier cannot interact with the signed-in user, it needs to be explicitly bound to the client app in its Microsoft Entra ID registration.
@@ -186,10 +168,10 @@ This binding merges the permissions required by both the client and the middle t
 
 To achieve this, you need to add the "Client ID" of the client app, in the manifest of the web API in the **knownClientApplications** property. Here's how:
 
-In the [Microsoft Entra admin center](https://entra.microsoft.com), navigate to your `Java-webapi` app registration:
+In the [Microsoft Entra admin center](https://entra.microsoft.com), navigate to the app registration you created for the API (sample-ciam-web-api):
 
 - In the Application menu blade, select **Manifest**.
-- Find the attribute **knownClientApplications** and add your client application's(`Java-webapp`) **Application (client) Id** as its element.
+- Find the attribute **knownClientApplications** and add your client application's(`sample-ciam-web-app`) **Application (client) Id** as its element.
 - Click **Save**.
 
 ### Step 4: Run the applications
@@ -220,8 +202,8 @@ The following steps are for IntelliJ IDEA. But you can choose and work with any 
 
 If you would like to deploy the sample to Tomcat, you will need to make a couple of changes to the source code in both modules.
 
-1. Open msal-webapp-sample/pom.xml
-    - Under `<name>msal-web-sample</name>` add `<packaging>war</packaging>`
+1. Open msal-web-app/pom.xml
+    - Under `<name>msal-web-app</name>` add `<packaging>war</packaging>`
     - Add dependency:
 
          ```xml
@@ -231,7 +213,7 @@ If you would like to deploy the sample to Tomcat, you will need to make a couple
          </dependency>
          ```
 
-2. Open msal-web-sample/src/main/java/com.microsoft.azure.msalwebsample/MsalWebSampleApplication
+2. Open msal-web-app/src/main/java/com.microsoft.azure.msalciamwebsample/MsalWebSampleApplication
 
     - Delete all source code and replace with
 
@@ -258,11 +240,11 @@ If you would like to deploy the sample to Tomcat, you will need to make a couple
 
 3. Open a command prompt, go to the root folder of the project, and run `mvn package`
 
-- This will generate a `msal-web-sample-0.1.0.war` file in your /targets directory.
+- This will generate a `msal-web-app-0.1.0.war` file in your /targets directory.
 - Rename this file to `msal4jsample.war`
 - Deploy this war file using Tomcat or any other J2EE container solution.
 - To deploy on Tomcat container, copy the .war file to the webapp's folder under your Tomcat installation and then start the Tomcat server.
-- Repeat these steps for the `msal-obo-sample` also.
+- Repeat these steps for the `msal-web-api` also.
 
 This WAR will automatically be hosted at `http:<yourserverhost>:<yourserverport>/`
 
@@ -272,6 +254,28 @@ Tomcats default port is 8080. This can be changed by
     - Replace "8080" with your desired port number
 
 Example: `http://localhost:8080/msal4jsample`
+
+#### HTTPS on localhost
+
+If you are only testing locally, you may skip this step. If you deploy your app to Azure App Service (for production or for testing), https is handled by Azure and you may skip this step. Note that https is essential for providing critical security and data integrity to your applications, and http should not be used outside of testing scenarios. If you need to configure your application to handle https, complete the instructions in this section.
+
+1. Use the `keytool` utility (included in JRE) if you want to generate self-signed certificate.
+
+    ```Bash
+    keytool -genkeypair -alias testCert -keyalg RSA -storetype PKCS12 -keystore keystore.p12 -storepass password
+    ```
+
+2. Put the following key-value pairs into your [application.properties](msal-web-sample/src/main/resources/application.properties) file.
+
+    ```ini
+    server.ssl.key-store-type=PKCS12
+    server.ssl.key-store=classpath:keystore.p12
+    server.ssl.key-store-password=password
+    server.ssl.key-alias=testCert
+    ```
+
+3. Change both occurrences of `8080` to `8443` in the msal-web-sample's [application.properties](msal-web-sample/src/main/resources/application.properties) file.
+4. Update your java_webapp Microsoft Entra application registration redirects (e.g., `https://localhost:8443/msal4jsample/secure/aad` and `https://localhost:8443/msal4jsample/graph/me`) on the [Microsoft Entra admin center](https://entra.microsoft.com).
 
 ### You're done, run the code
 
