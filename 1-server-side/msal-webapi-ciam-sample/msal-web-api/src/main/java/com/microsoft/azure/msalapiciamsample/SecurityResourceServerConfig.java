@@ -25,8 +25,8 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
     @Value("${security.oauth2.client.client-id}")
     private String applicationId;
 
-    @Value("${security.oauth2.accepted.tenants}")
-    private String[] acceptedTenants;
+    @Value("${security.oauth2.accepted.tenant}")
+    private String acceptedTenant;
 
     @Value("${security.oauth2.scope.access-as-user}")
     private String accessAsUserScope;
@@ -70,6 +70,6 @@ public class SecurityResourceServerConfig extends ResourceServerConfigurerAdapte
 
     @Bean
     public JwtClaimsSetVerifier claimSetVerifier() {
-        return new AADClaimsVerifier(acceptedTenants, applicationId);
+        return new AADClaimsVerifier(acceptedTenant, applicationId);
     }
 }

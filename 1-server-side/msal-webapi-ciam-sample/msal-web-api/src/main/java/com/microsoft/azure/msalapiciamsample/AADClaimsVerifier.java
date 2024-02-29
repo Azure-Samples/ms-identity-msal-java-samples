@@ -4,6 +4,7 @@ import org.springframework.security.oauth2.common.exceptions.InvalidTokenExcepti
 import org.springframework.security.oauth2.provider.token.store.JwtClaimsSetVerifier;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -14,27 +15,22 @@ public class AADClaimsVerifier implements JwtClaimsSetVerifier {
     private static final String V2_ISSUER_FORMAT = "https://%s.ciamlogin.com/%s/v2.0";
 
 
-    private HashSet<String> acceptedIssuers = new HashSet<>();
+    private String acceptedIssuer = "";
     private final String applicationId;
 
-    public AADClaimsVerifier(final String[] acceptedTenants, final String applicationId) {
+    public AADClaimsVerifier(final String tenant, final String applicationId) {
 
-        Assert.notEmpty(acceptedTenants, "acceptedTenants cannot be empty");
-        for (final String tenant : acceptedTenants) {
-            Assert.notNull(tenant, "acceptedTenant value cannot be null");
-        }
 
+        Assert.notNull(tenant, "acceptedTenant value cannot be null");
         Assert.notNull(applicationId, "applicationId (for audience claim) cannot be null");
 
         this.applicationId = applicationId;
 
-        generateAcceptedIssuers(acceptedTenants);
+        generateAcceptedIssuers(tenant);
     }
 
-    private void generateAcceptedIssuers(final String[] acceptedTenants) {
-        for (String acceptedTenant : acceptedTenants) {
-            acceptedIssuers.add(String.format(V2_ISSUER_FORMAT, acceptedTenant, acceptedTenant));
-        }
+    private void generateAcceptedIssuers(final String acceptedTenant) {
+        acceptedIssuer = String.format(V2_ISSUER_FORMAT, acceptedTenant, acceptedTenant);
     }
 
     /**
@@ -54,7 +50,7 @@ public class AADClaimsVerifier implements JwtClaimsSetVerifier {
             throw new InvalidTokenException("token must contain audience (aud) claim");
 
         final String jwtIssuer = (String) claims.get(ISS_CLAIM);
-        if (Arrays.stream(acceptedIssuers.toArray()).noneMatch(x -> x.equals(jwtIssuer))) {
+        if (!acceptedIssuer.equals(jwtIssuer)) {
             throw new InvalidTokenException("Invalid Issuer (iss) claim: " + jwtIssuer);
         }
 
