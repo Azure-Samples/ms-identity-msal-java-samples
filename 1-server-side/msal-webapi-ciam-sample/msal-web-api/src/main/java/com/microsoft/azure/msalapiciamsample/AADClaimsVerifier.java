@@ -14,7 +14,6 @@ public class AADClaimsVerifier implements JwtClaimsSetVerifier {
     private static final String AUD_CLAIM = "aud";
     private static final String V2_ISSUER_FORMAT = "https://%s.ciamlogin.com/%s/v2.0";
 
-
     private String acceptedIssuer = "";
     private final String applicationId;
 
@@ -44,9 +43,9 @@ public class AADClaimsVerifier implements JwtClaimsSetVerifier {
     public void verify(final Map<String, Object> claims) throws InvalidTokenException {
         if (CollectionUtils.isEmpty(claims))
             throw new InvalidTokenException("token must contain claims");
-        if (!claims.containsKey("iss"))
+        if (!claims.containsKey(ISS_CLAIM))
             throw new InvalidTokenException("token must contain issuer (iss) claim");
-        if (!claims.containsKey("aud"))
+        if (!claims.containsKey(AUD_CLAIM))
             throw new InvalidTokenException("token must contain audience (aud) claim");
 
         final String jwtIssuer = (String) claims.get(ISS_CLAIM);
