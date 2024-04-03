@@ -21,9 +21,9 @@
   <dependencies> 
     <!-- Azure Active Directory Spring Boot Starter  -->  
     <dependency>
-			<groupId>com.azure.spring</groupId>
-			<artifactId>spring-cloud-azure-starter-active-directory</artifactId>
-		</dependency>  
+	<groupId>com.azure.spring</groupId>
+	<artifactId>spring-cloud-azure-starter-active-directory</artifactId>
+    </dependency>  
     <!-- Spring OAuth2 Client -->  
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
