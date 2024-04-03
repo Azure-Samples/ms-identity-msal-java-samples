@@ -30,12 +30,10 @@ public class SecurityConfig  {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.authorizeHttpRequests(configurer -> configurer
-                        .requestMatchers(allowedOrigins)
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .apply(AadWebApplicationHttpSecurityConfigurer.aadWebApplication());
+        http.apply(AadWebApplicationHttpSecurityConfigurer.aadWebApplication())
+               .and()
+           .authorizeHttpRequests()
+               .anyRequest().authenticated();
         // @formatter:on
         return http.build();
     }
