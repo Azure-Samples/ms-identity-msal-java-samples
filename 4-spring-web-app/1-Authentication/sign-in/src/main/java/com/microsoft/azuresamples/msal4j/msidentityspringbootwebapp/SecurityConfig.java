@@ -31,7 +31,7 @@ public class SecurityConfig  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         http.authorizeHttpRequests(configurer -> configurer
-                        .requestMatchers("/**")
+                        .requestMatchers(allowedOrigins)
                         .permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
