@@ -28,29 +28,11 @@ public class SecurityConfig  {
     private String[] allowedOrigins;
 
     @Bean
-    @Order(1)
-    SecurityFilterChain apiFilterChain(HttpSecurity httpSecurity) throws Exception {
-        // Deprecated but the only way it works
-        httpSecurity.authorizeHttpRequests(
-                        configurer -> configurer
-                                .requestMatchers("/**")
-                                .permitAll()
-                                .anyRequest().authenticated()
-                )
-                // CSRF is not needed as an Authorization Token is being used for authentication
-                .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .apply(AadResourceServerHttpSecurityConfigurer.aadResourceServer());
-        return httpSecurity.build();
-    }
-
-    @Bean
-    public SecurityFilterChain htmlFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         http.authorizeHttpRequests(configurer -> configurer
                         .requestMatchers("/**")
                         .permitAll()
-                        .authenticated()
                         .anyRequest().authenticated())
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .apply(AadWebApplicationHttpSecurityConfigurer.aadWebApplication());
