@@ -3,40 +3,59 @@
 
 package com.microsoft.azuresamples.msal4j.msidentityspringbootwebapp;
 
-import com.azure.spring.aad.webapp.AADWebSecurityConfigurerAdapter;
-
+import com.azure.spring.cloud.autoconfigure.implementation.aad.security.AadResourceServerHttpSecurityConfigurer;
+import com.azure.spring.cloud.autoconfigure.implementation.aad.security.AadWebApplicationHttpSecurityConfigurer;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.lang.NonNull;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * AADWebSecurityConfigurer (AADWSC) is an extension of Spring's WebSecurityConfigurer (WSC).
- * 
- * You must extend AADWSC to define your own custom configuration in the configure() method.
- * Be sure to call super.configure() first. This will set up all of your AuthN/AuthZ properly.
- * 
- * You may omit this by not extending the AADWSC class.
- * 
- * If you don't extend AADWSC or WSC, AAD boot starter will create a DefaultAADWebSecurityConfigurerAdapter
- * bean automatically, and define its own default http.authorizeRequests() rule (authorize ALL requests).
- * 
- * See DefaultAADWebSecurityConfigurerAdapter in com.azure.spring.aad.webapp.AADWebAppConfiguration
- */
-
+@Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends AADWebSecurityConfigurerAdapter{
-  @Value( "${app.protect.authenticated}" )
-  private String[] protectedRoutes;
+@EnableMethodSecurity
+public class SecurityConfig  {
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-    // use required configuration from AADWebSecurityAdapter.configure:
-    super.configure(http);
-    // add custom configuration:
-    http.authorizeRequests()
-      .antMatchers(protectedRoutes).authenticated()     // limit these pages to authenticated users (default: /token_details)
-      .antMatchers("/**").permitAll();                  // allow all other routes.
+    @Value("${app.protect.authenticated}")
+    private String[] allowedOrigins;
+
+    @Bean
+    @Order(1)
+    SecurityFilterChain apiFilterChain(HttpSecurity httpSecurity) throws Exception {
+        // Deprecated but the only way it works
+        httpSecurity.authorizeHttpRequests(
+                        configurer -> configurer
+                                .requestMatchers("/**")
+                                .permitAll()
+                                .anyRequest().authenticated()
+                )
+                // CSRF is not needed as an Authorization Token is being used for authentication
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .apply(AadResourceServerHttpSecurityConfigurer.aadResourceServer());
+        return httpSecurity.build();
     }
+
+    @Bean
+    public SecurityFilterChain htmlFilterChain(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http.authorizeHttpRequests(configurer -> configurer
+                        .requestMatchers("/**")
+                        .permitAll()
+                        .authenticated()
+                        .anyRequest().authenticated())
+                .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .apply(AadWebApplicationHttpSecurityConfigurer.aadWebApplication());
+        // @formatter:on
+        return http.build();
+    }
+
 }
