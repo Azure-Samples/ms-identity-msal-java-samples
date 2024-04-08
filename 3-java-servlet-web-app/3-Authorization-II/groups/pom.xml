@@ -17,7 +17,7 @@
         <dependency>
             <groupId>com.microsoft.azure</groupId>
             <artifactId>msal4j</artifactId>
-            <version>1.9.1</version>
+            <version>1.14.3</version>
         </dependency>
 
         <!-- Some distributions of Java SDK do not include javax servlets. -->
@@ -39,14 +39,14 @@
         <dependency>
             <groupId>com.nimbusds</groupId>
             <artifactId>nimbus-jose-jwt</artifactId>
-            <version>9.0.1</version>
+            <version>9.37.3</version>
         </dependency>
 
         <!-- For MS Graph -->
         <dependency>
             <groupId>com.microsoft.graph</groupId>
             <artifactId>microsoft-graph</artifactId>
-            <version>5.5.0</version>
+            <version>6.5.1</version>
         </dependency>
 
         <dependency>
