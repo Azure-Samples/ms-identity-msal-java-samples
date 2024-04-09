@@ -4,7 +4,7 @@
         <!-- &nbsp;Have you updated your app's <em>redirect URI</em> on <a target="_blank" th:href="@{https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/Overview/appId/}+${@environment.getProperty('azure.activedirectory.client-id')}">Azure Portal</a>? -->
         &nbsp;Have you updated your app's <em>redirect URI</em> on <a target="_blank" href="https://portal.azure.com/">Azure Portal</a>?
         <br>
-        <strong>Redirect URI:</strong> <th:block th:text="${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest().replacePath('/login/oauth2/code/').toUriString()}"></th:block>
+        <strong>Redirect URI:</strong> <th:block th:text="${@urlBuilder.fromCurrentRequest().replacePath('/login/oauth2/code/').toUriString()}"></th:block>
 
     </div>
     <div sec:authorize="isAuthenticated()">

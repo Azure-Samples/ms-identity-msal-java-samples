@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 // This class is used to configure the security of the application.
 // To provide a configuration, apply the AadWebApplicationHttpSecurityConfigurer#aadWebApplication method for the HttpSecurity, as shown in the following example
@@ -27,10 +30,18 @@ public class SecurityConfig  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         http.apply(AadWebApplicationHttpSecurityConfigurer.aadWebApplication())
-        .and()
-        .authorizeHttpRequests()
-        .anyRequest().authenticated();
+            .and()
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(allowedOrigins).authenticated()
+                .anyRequest().permitAll()
+                );
         // @formatter:on
         return http.build();
+    }
+
+    @Bean
+    @RequestScope
+    public ServletUriComponentsBuilder urlBuilder() {
+        return ServletUriComponentsBuilder.fromCurrentRequest();
     }    
 }
