@@ -5,7 +5,7 @@
   <parent> 
     <groupId>org.springframework.boot</groupId>  
     <artifactId>spring-boot-starter-parent</artifactId>  
-    <version>2.5.6</version>  
+    <version>3.2.4</version>  
     <relativePath/>  
     <!-- lookup parent from repository --> 
   </parent>  
@@ -15,15 +15,14 @@
   <name>ms-identity-spring-boot-webapp</name>  
   <description>Microsoft identity platform Spring Boot sample</description>  
   <properties> 
-    <java.version>11</java.version>  
-    <azure.version>3.9.0</azure.version>
+    <java.version>17</java.version>
+		<spring-cloud-azure.version>5.10.0</spring-cloud-azure.version>
   </properties>  
   <dependencies> 
     <!-- Azure Active Directory Spring Boot Starter  -->  
-    <dependency> 
-      <groupId>com.azure.spring</groupId>  
-      <artifactId>azure-spring-boot-starter-active-directory</artifactId>  
-      <version>${azure.version}</version> 
+    <dependency>
+	<groupId>com.azure.spring</groupId>
+	<artifactId>spring-cloud-azure-starter-active-directory</artifactId>
     </dependency>  
     <!-- Spring OAuth2 Client -->  
     <dependency> 
@@ -41,7 +40,7 @@
     </dependency>
     <dependency> 
       <groupId>org.thymeleaf.extras</groupId>  
-      <artifactId>thymeleaf-extras-springsecurity5</artifactId> 
+      <artifactId>thymeleaf-extras-springsecurity6</artifactId> 
     </dependency>
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
@@ -55,6 +54,17 @@
 		</exclusions>
 	</dependency>
   </dependencies>
+  <dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.azure.spring</groupId>
+				<artifactId>spring-cloud-azure-dependencies</artifactId>
+				<version>${spring-cloud-azure.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
   <build> 
     <plugins> 
       <plugin> 
