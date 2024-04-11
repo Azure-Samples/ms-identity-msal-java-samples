@@ -56,7 +56,7 @@ To successfully use this sample, you need a working installation of [Java](https
 From your shell or command line:
 
 ```Shell
-git clone https://github.com/Azure-Samples/ms-identity-java-webapi.git
+https://github.com/Azure-Samples/ms-identity-msal-java-samples.git
 ```
 
 ### Step 3:  Register the sample with your Microsoft Entra tenant
@@ -79,23 +79,23 @@ As a first step you'll need to:
 1. In the **Register an application page** that appears, enter your application's registration information:
     - In the **Name** section, enter a meaningful application name that will be displayed to users of the app (something as straightforward as `sample-ciam-web-api` will work for this sample)
     - Ensure **Supported account types** is **Accounts in this organizational directory only (`your-tenant-domain-name` only - Single tenant)**.
-1. Click on the **Register** button to create the application.
+1. Select the **Register** button to create the application.
 1. In the app registration's Overview tab, find and note the **Application (client) ID** and **Directory (tenant) ID** values. These will be needed in later steps.
 1. Select the **Certificates & secrets** tab in the left to open the page where we can generate secrets and upload certificates.
-1. In the **Client secrets** section, click on **New client secret**:
+1. In the **Client secrets** section, select **New client secret**:
     - Type a meaningful description (for instance `ciam sample app secret`)
     - Select a key duration that best suits your security needs (for testing with this sample, the quickest expiration option is likely enough)
-    - The generated key value will be displayed when you click the **Add** button. Copy the generated **value** for use in later steps.
+    - The generated key value will be displayed when you select the **Add** button. Copy the generated **value** for use in later steps.
         - **Be sure to save this key value!** This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra admin center before navigating to any other screen or blade.
-1. In the Application menu blade, click on **API permissions** to open the page where we add access to the Apis that your application needs.
-   - Click the **Add a permission** button and then,
+1. In the Application menu blade, select **API permissions** to open the page where we add access to the Apis that your application needs.
+   - Select the **Add a permission** button and then,
    - Ensure that the **Microsoft APIs** tab is selected.
-   - In the *Commonly used Microsoft APIs* section, click on **Microsoft Graph**
+   - In the *Commonly used Microsoft APIs* section, select **Microsoft Graph**
    - In the **Delegated permissions** section, select the **User.Read** in the list. Use the search box if necessary.
-   - Click on the **Add permissions** button in the bottom.
-1. In the Application menu blade, click on **Expose an API** to open the page where declare the parameters to expose this app as an Api for which client applications can obtain [access tokens](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) for.
+   - Select the **Add permissions** button in the bottom.
+1. In the Application menu blade, select **Expose an API** to open the page where declare the parameters to expose this app as an Api for which client applications can obtain [access tokens](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) for.
 The first thing that we need to do is to declare the unique [resource](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow) URI that the clients will be using to obtain access tokens for this Api. To declare an resource URI, follow the following steps:
-   - Click `Set` next to the **Application ID URI** to generate a URI that is unique for this app.
+   - Select **Add** next to the **Application ID URI** to generate a URI that is unique for this app.
    - For this sample, accept the proposed Application ID URI (api://{clientId}) by selecting **Save**, and record the URI for later reference.
 1. All Apis have to publish a minimum of one [scope](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow#request-an-authorization-code) for the client's to obtain an access token successfully. To publish a scope, follow the following steps:
    - Select **Add a scope** button open the **Add a scope** screen and Enter the values as indicated below:  
@@ -106,9 +106,9 @@ The first thing that we need to do is to declare the unique [resource](https://d
       - For **User consent display name** type `Access API`
       - For **User consent description** type `Allow the application to access the API on your behalf.`
       - Keep **State** as **Enabled**
-      - Click on the **Add scope** button on the bottom to save this scope.
+      - Select the **Add scope** button on the bottom to save this scope.
       - Record the scope's URI (`api://{clientid}/access_as_user`) for later reference.
-1. Finally, in the Application menu blade, click on **Manifest** to open the application's manifest editor
+1. Finally, in the Application menu blade, select **Manifest** to open the application's manifest editor
     - Find the `accessTokenAcceptedVersion` field and change the value to `2`
     - The version of access tokens is determined by the resource, so a value of `2` will result in v2.0 access tokens rather than the default v1.0
 
@@ -124,30 +124,30 @@ Open `application.properties` in the msal-web-api/src/main/resources folder, and
 #### Register an app in Azure for the client web app
 
 1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.
-1. Click **New registration**.
+1. Select **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app (something as straightforward as `sample-ciam-web-app` will work for this sample)
    - Ensure **Supported account types** is **Accounts in this organizational directory only (`your-tenant-domain-name` only - Single tenant)**.
-1. Click on the **Register** button to create the application.
+1. Select the **Register** button to create the application.
 1. In the app's registration **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the configuration file(s) later in your code.
-1. In the app's registration screen, click on the **Authentication** blade in the left and:
+1. In the app's registration screen, select **Authentication** blade in the left and:
    - In the **Platform configurations** section select **Add a platform** and create a new **Web** application
    - Enter the following as the redirect URI: `http://localhost:8080/msal4jsample/secure/aad`
-   - Click on **Configure** to save your changes.
-   - Click the **Save** button to save the redirect URI changes.
-1. In the Application menu blade, click on the **Certificates & secrets** to open the page where we can generate secrets and upload certificates.
+   - Select **Configure** to save your changes.
+   - Select the **Save** button to save the redirect URI changes.
+1. In the Application menu blade, select **Certificates & secrets** to open the page where we can generate secrets and upload certificates.
 1. Select the **Certificates & secrets** tab in the left to open the page where we can generate secrets and upload certificates.
-1. In the **Client secrets** section, click on **New client secret**:
+1. In the **Client secrets** section, select **New client secret**:
     - Type a meaningful description (for instance `ciam sample app secret`)
     - Select a key duration that best suits your security needs (for testing with this sample, the quickest expiration option is likely enough)
-    - The generated key value will be displayed when you click the **Add** button. Copy the generated **value** for use in later steps.
+    - The generated key value will be displayed when you select the **Add** button. Copy the generated **value** for use in later steps.
         - **Be sure to save this key value!** This key value will not be displayed again, and is not retrievable by any other means, so make sure to note it from the Microsoft Entra admin center before navigating to any other screen or blade.
-1. In the Application menu blade, click on the **API permissions** to open the page where we add access to the Apis that your application needs.
-   - Click the **Add a permission** button
+1. In the Application menu blade, select **API permissions** to open the page where we add access to the Apis that your application needs.
+   - Select the **Add a permission** button
    - Go to the **My APIs** tab
    - In the list of APIs, select the API you created previously (the example name was `sample-ciam-web-api`)
    - In the **Delegated permissions** section, select the **access_as_user** in the list
-   - Click on the **Add permissions** button in the bottom
+   - Select the **Add permissions** button in the bottom
 
 #### Configure **msal-web-app** to use your app registration
 
@@ -187,14 +187,14 @@ If you are running the application from an IDE, follow the steps below.
 The following steps are for IntelliJ IDEA. But you can choose and work with any editor of your choice.
 
 1. Navigate to *Run* --> *Edit Configurations* from menu bar.
-2. Click on '+' (Add new configuration) and select *Application*.
+2. Select '+' (Add new configuration) and select *Application*.
 3. Enter name of the application for example `webapp`
 4. Go to main class and select from the dropdown, for example `MsalWebSampleApplication` also go to *Use classpath of the module* and select from the dropdown, for example `msal-web-sample`.
-5. Click on *Apply*. Follow the same instructions for adding the other application.
-6. Click on '+' (Add new configuration) and select *Compound*.
+5. Select *Apply*. Follow the same instructions for adding the other application.
+6. Select '+' (Add new configuration) and select *Compound*.
 7. Enter a friendly name for in the *Name* for example `Msal-webapi-sample`.
-8. Click on '+' and select the application names you have created in the above steps one at a time.
-9. Click on *Apply*. Select the created configuration and click **Run**. Now both the projects will run at a time.
+8. Select on '+' and select the application names you have created in the above steps one at a time.
+9. Select on *Apply*. Select the created configuration and select **Run**. Now both the projects will run at a time.
 
 - Now navigate to the home page of the project. For this sample, the standard home page URL is <https://localhost:8080/msal4jsample>
 
@@ -279,7 +279,7 @@ If you are only testing locally, you may skip this step. If you deploy your app 
 
 ### You're done, run the code
 
-Click on "Login" to start the process of logging in. Once logged in, you'll see the account information for the user that is logged in and a Button "Call OBO API" , which will call the Microsoft Graph API with the OBO token and display the basic information of the signed-in user. You'll then have the option to "Sign out".
+Select "Login" to start the process of logging in. Once logged in, you'll see the account information for the user that is logged in and a Button "Call OBO API" , which will call the Microsoft Graph API with the OBO token and display the basic information of the signed-in user. You'll then have the option to "Sign out".
 
 ## About the Code
 
