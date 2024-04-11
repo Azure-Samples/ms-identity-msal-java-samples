@@ -56,7 +56,7 @@ To successfully use this sample, you need a working installation of [Java](https
 From your shell or command line:
 
 ```Shell
-https://github.com/Azure-Samples/ms-identity-msal-java-samples.git
+git clone https://github.com/Azure-Samples/ms-identity-msal-java-samples.git
 ```
 
 ### Step 3:  Register the sample with your Microsoft Entra tenant
