@@ -15,7 +15,7 @@
   <name>ms-identity-spring-boot-webapp</name>  
   <description>Microsoft identity platform Spring Boot sample</description>  
   <properties> 
-    <java.version>11</java.version>  
+    <java.version>8</java.version>
     <azure.version>3.9.0</azure.version>
   </properties>  
   <dependencies> 

@@ -6,9 +6,8 @@ package com.microsoft.azuresamples.msal4j.helpers;
 import com.microsoft.aad.msal4j.IAccount;
 import com.microsoft.aad.msal4j.IAuthenticationResult;
 import com.microsoft.graph.models.Group;
-import com.nimbusds.jose.shaded.json.JSONArray;
-import com.nimbusds.jose.shaded.json.JSONObject;
 import com.nimbusds.jwt.SignedJWT;
+import net.minidev.json.JSONArray;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -18,6 +17,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import static com.nimbusds.jose.util.JSONObjectUtils.getJSONArray;
+import static com.nimbusds.jose.util.JSONObjectUtils.getJSONObject;
 
 /**
  * This class defines all auth-related session properties that are required MSAL
@@ -127,18 +129,25 @@ public class IdentityContextData implements Serializable {
     }
 
     public void setGroupsFromIdToken(Map<String,Object> idTokenClaims) {
-        JSONArray groupsFromToken = (JSONArray)this.idTokenClaims.get("groups");
-        if (groupsFromToken != null) {
-            setGroupsOverage(false);
-            this.groups = new ArrayList<>();
-            groupsFromToken.forEach(elem -> this.groups.add((String)elem));
-        } else {
-            // check for potential groups overage scenario!
-            JSONObject jsonObj = (JSONObject)idTokenClaims.get("_claim_names");
-            if (jsonObj != null && jsonObj.containsKey("groups")) {
-                // overage scenario exists, handle it:
-                setGroupsOverage(true);
+        List<Object> groupsFromToken;
+        try {
+            groupsFromToken = getJSONArray(this.idTokenClaims, "groups");
+
+            if (groupsFromToken != null) {
+                setGroupsOverage(false);
+                this.groups = new ArrayList<>();
+                groupsFromToken.forEach(elem -> this.groups.add((String) elem));
+            } else {
+                // check for potential groups overage scenario!
+                Map<String, Object> jsonObj = getJSONObject(this.idTokenClaims, "_claim_names");
+
+                if (jsonObj != null && jsonObj.containsKey("groups")) {
+                    // overage scenario exists, handle it:
+                    setGroupsOverage(true);
+                }
             }
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
         setHasChanged(true);
     }
