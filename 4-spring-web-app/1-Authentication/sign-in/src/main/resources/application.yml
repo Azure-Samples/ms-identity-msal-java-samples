@@ -2,6 +2,7 @@ spring:
   cloud:
     azure:
       active-directory:
+        # Yml structure Learn doc link : https://learn.microsoft.com/en-us/azure/developer/java/spring-framework/spring-boot-starter-for-azure-active-directory-developer-guide?tabs=SpringCloudAzure4x
         enabled: true
         profile:
           # Specifies your Active Directory ID:
