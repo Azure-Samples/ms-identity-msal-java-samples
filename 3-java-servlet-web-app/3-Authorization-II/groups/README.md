@@ -272,8 +272,8 @@ The object id of the security groups the signed in user is member of is returned
 {
   ...
   "groups": [
-    "0bbe91cc-b69e-414d-85a6-a043d6752215",
-    "48931dac-3736-45e7-83e8-015e6dfd6f7c",]
+    "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
+    "bbbbbbbb-1111-2222-3333-cccccccccccc",]
   ...
 }
 ```
