@@ -10,7 +10,7 @@
         }
     },
     "replacements": {
-        "../sign-in-ciam/src/main/resources/authentication.properties":{
+        "../sign-in-ciam/src/main/resources/sample.authentication.properties":{
             "out": "../sign-in-ciam/src/main/resources/authentication.properties",
             "tokens": {
                 "{enter-your-client-id-here}": "appId",
