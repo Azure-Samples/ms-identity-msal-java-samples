@@ -1,0 +1,23 @@
+{
+    "$schema": "https://raw.githubusercontent.com/microsoft/vscode-ms-entra/main/schemas/sampleConfigV1.schema.json",
+    "_version": "1",
+    "credential": "secret",
+    "appUpdates": {
+        "web": {
+            "redirectUris": [
+                "http://localhost:8080/msal4j-servlet-auth/auth/redirect"
+            ]
+        }
+    },
+    "replacements": {
+        "../sign-in-ciam/src/main/resources/authentication.properties":{
+            "out": "../sign-in-ciam/src/main/resources/authentication.properties",
+            "tokens": {
+                "{enter-your-client-id-here}": "appId",
+                "{enter-your-client-secret-here}": "clientSecret",
+                "{enter-your-tenant-domain-here}": "tenantName"
+            }
+        }
+    }
+
+}
