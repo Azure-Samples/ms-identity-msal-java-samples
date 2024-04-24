@@ -2,3 +2,4 @@
 .idea
 *.class
 target/
+sign-in-ciam/**/resources/authentication.properties
