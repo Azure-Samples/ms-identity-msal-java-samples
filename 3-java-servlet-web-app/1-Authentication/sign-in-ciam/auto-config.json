@@ -11,8 +11,8 @@
         }
     },
     "replacements": {
-        "../sign-in-ciam/src/main/resources/externalId-sample.authentication.properties":{
-            "out": "../sign-in-ciam/src/main/resources/authentication.properties",
+        "src/main/resources/externalId-sample.authentication.properties":{
+            "out": "src/main/resources/authentication.properties",
             "tokens": {
                 "{enter-your-client-id-here}": "appId",
                 "{enter-your-client-secret-here}": "clientSecret",
