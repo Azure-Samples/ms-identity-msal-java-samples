@@ -39,7 +39,7 @@ public class AuthFilter implements Filter {
             try {
                 String currentUri = httpRequest.getRequestURL().toString();
                 String realProto = httpRequest.getHeader("x-forwarded-proto");
-                if (realProto!=null)
+                if (realProto != null)
                     currentUri = currentUri.replaceFirst("http", realProto);
                 String path = httpRequest.getServletPath();
                 String queryStr = httpRequest.getQueryString();
