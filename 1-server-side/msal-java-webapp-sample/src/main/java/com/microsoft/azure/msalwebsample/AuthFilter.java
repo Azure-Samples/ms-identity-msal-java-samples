@@ -38,6 +38,9 @@ public class AuthFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             try {
                 String currentUri = httpRequest.getRequestURL().toString();
+                String realProto = httpRequest.getHeader("x-forwarded-proto");
+                if (realProto != null)
+                    currentUri = currentUri.replaceFirst("http", realProto);
                 String path = httpRequest.getServletPath();
                 String queryStr = httpRequest.getQueryString();
                 String fullUrl = currentUri + (queryStr != null ? "?" + queryStr : "");
