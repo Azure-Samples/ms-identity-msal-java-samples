@@ -11,6 +11,11 @@ urlFragment: msal-java-spring-boot-web-api
 description: "This sample demonstrates a Java Spring web application calling a Java Spring web API that is secured using Microsoft Entra ID"
 ---
 
+> [!IMPORTANT]  
+> Microsoft does not provide a token validation library except [for .NET](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet). This sample
+> is provided as-is, without guaratees, using the industry standard Spring Security library, which is known to work well for single tenant scenarios.
+> For more details about token validation, see https://learn.microsoft.com/entra/identity-platform/security-tokens#validate-tokens
+
 # Protect your Java Spring Boot web API with the Microsoft identity platform
 
 - [Overview](#overview)
