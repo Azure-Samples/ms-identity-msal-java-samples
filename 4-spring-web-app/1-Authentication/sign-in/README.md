@@ -165,7 +165,7 @@ Open the project in your IDE (Visual Studio Code or IntelliJ IDEA) to configure 
 ## Running the sample
 
 1. Open a terminal or the integrated VSCode terminal.
-1. In the same directory as this readme file, run `mvn clean compile spring-boot:run`.
+1. In the same directory as this readme file, run `mvn clean compile spring-boot:run` or `mvn clean compile spring-boot::run`.
 1. Open your browser and navigate to `http://localhost:8080`.
 
 ![Experience](./ReadmeFiles/app.png)
