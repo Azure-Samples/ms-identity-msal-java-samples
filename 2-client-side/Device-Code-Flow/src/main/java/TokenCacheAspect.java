@@ -6,7 +6,10 @@ import com.microsoft.aad.msal4j.ITokenCacheAccessContext;
 
 import java.net.URI;
 import java.net.URL;
-import java.nio.file.*;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,14 +40,14 @@ public class TokenCacheAspect implements ITokenCacheAccessAspect {
                 URL path = TokenCacheAspect.class.getResource(resource);
                 return new String(
                         Files.readAllBytes(
-                                Paths.get(path.toURI())));
+                                Path.of(path.toURI())));
             }
             else {
                 URI uri = TokenCacheAspect.class.getResource(resource).toURI();
                 Map<String, String> env = new HashMap<>();
                 env.put("create", "true");
                 FileSystem fs = FileSystems.newFileSystem(uri, env);
-                Path myFolderPath = Paths.get(uri);
+                Path myFolderPath = Path.of(uri);
 
                 return new String(Files.readAllBytes(myFolderPath));
             }
