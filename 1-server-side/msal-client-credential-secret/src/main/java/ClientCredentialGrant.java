@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Properties;
@@ -72,7 +73,7 @@ class ClientCredentialGrant {
     }
 
     private static String getUsersListFromGraph(String accessToken) throws IOException {
-        URL url = new URL("https://graph.microsoft.com/v1.0/users");
+        URL url = URI.create("https://graph.microsoft.com/v1.0/users").toURL();
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
         conn.setRequestMethod("GET");
@@ -94,7 +95,7 @@ class ClientCredentialGrant {
             }
             return response.toString();
         } else {
-            return String.format("Connection returned HTTP code: %s with message: %s",
+            return "Connection returned HTTP code: %s with message: %s".formatted(
                     httpResponseCode, conn.getResponseMessage());
         }
     }
