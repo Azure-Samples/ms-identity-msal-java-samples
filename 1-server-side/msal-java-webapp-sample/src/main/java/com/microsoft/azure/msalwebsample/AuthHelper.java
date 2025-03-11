@@ -102,7 +102,7 @@ class AuthHelper {
 
         IAuthenticationResult result =  SessionManagementHelper.getAuthSessionObject(httpRequest);
 
-        IConfidentialClientApplication app = createClientApplication();
+        ConfidentialClientApplication app = createClientApplication();
 
         Object tokenCache = httpRequest.getSession().getAttribute("token_cache");
         if (tokenCache != null) {
