@@ -11,5 +11,7 @@ public class MsalWebSampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MsalWebSampleApplication.class, args);
+
+		//test
 	}
 }
